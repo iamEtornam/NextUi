@@ -6,6 +6,8 @@
 
 Open source, Beautiful, modern and fast Flutter UI library.
 
+<img src="screenshots/cover.png" width="50%">
+
 ## Installation 💻
 
 **❗ In order to start using Next Ui you must have the [Flutter SDK][flutter_install_link] installed on your machine.**
@@ -17,6 +19,25 @@ dart pub add next_ui
 ```
 
 ---
+
+### Road map
+|components 1|components 2|components 3|
+|---------|----------|-----------|
+| [ ] Dark mode support | [ ] Card               | [ ] Textarea      |
+| [ ] Button            | [ ] Input              | [ ] Tooltip       |
+| [ ] Button Group      | [ ] Table              | [ ] Modal         |
+| [ ] Chip              | [ ] Switch             | [ ] Dropdown      |
+| [ ] Code              | [ ] Avatar Group       | [ ] Select        |
+| [ ] Link              | [ ] Accordion          | [ ] Listbox       |
+| [ ] Radio             | [ ] Progress           | [ ] ScrollShadow  |
+| [ ] Radio Group       | [ ] Circular Progress  |                   |
+| [ ] Avatar            | [ ] Divider            |                   |
+| [ ] Kbd               | [ ] Popover            |                   |
+| [ ] Checkbox          | [ ] Image              |                   |
+| [ ] User              | [ ] Navbar             |                   |
+| [ ] Badge             | [ ] Pagination         |                   |
+| [ ] Checkbox Group    | [ ] Skeleton           |                   |
+
 
 ## Continuous Integration 🤖
 
