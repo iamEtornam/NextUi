@@ -34,6 +34,30 @@ enum ButtonVariant {
   ghost,
 }
 
+/// Next UI Chip variant
+enum ChipVariant {
+  /// Solid background with contrasting text
+  solid,
+
+  /// Bordered with transparent background
+  bordered,
+
+  /// Light background with colored text
+  light,
+
+  /// Flat with subtle background
+  flat,
+
+  /// Faded with low opacity background
+  faded,
+
+  /// Shadow with elevation
+  shadow,
+
+  /// Dot variant with small indicator
+  dot,
+}
+
 /// Next UI Button color
 enum ButtonColor {
   /// Default color
@@ -55,6 +79,9 @@ enum ButtonColor {
   danger,
 }
 
+/// Next UI Chip color (reusing button colors)
+typedef ChipColor = ButtonColor;
+
 /// Next UI Button radius
 enum ButtonRadius {
   /// No border radius
@@ -72,6 +99,12 @@ enum ButtonRadius {
   /// Full border radius (pill shape)
   full,
 }
+
+/// Next UI Chip radius (reusing button radius)
+typedef ChipRadius = ButtonRadius;
+
+/// Next UI Chip size (reusing button size)
+typedef ChipSize = ButtonSize;
 
 /// Next UI Spinner placement
 enum SpinnerPlacement {

@@ -24,9 +24,9 @@ dart pub add next_ui
 |components 1|components 2|components 3|
 |---------|----------|-----------|
 | [ ] Dark mode support | [ ] Card               | [ ] Textarea      |
-| [ ] Button            | [ ] Input              | [ ] Tooltip       |
+| [x] Button            | [ ] Input              | [ ] Tooltip       |
 | [ ] Button Group      | [ ] Table              | [ ] Modal         |
-| [ ] Chip              | [ ] Switch             | [ ] Dropdown      |
+| [x] Chip              | [ ] Switch             | [ ] Dropdown      |
 | [ ] Code              | [ ] Avatar Group       | [ ] Select        |
 | [ ] Link              | [ ] Accordion          | [ ] Listbox       |
 | [ ] Radio             | [ ] Progress           | [ ] ScrollShadow  |
