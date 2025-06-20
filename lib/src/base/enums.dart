@@ -100,6 +100,9 @@ typedef RadioColor = ButtonColor;
 /// Next UI Checkbox color (reusing button colors)
 typedef CheckboxColor = ButtonColor;
 
+/// Next UI Circular Progress color (reusing button colors)
+typedef CircularProgressColor = ButtonColor;
+
 /// Next UI Button radius
 enum ButtonRadius {
   /// No border radius
@@ -129,6 +132,9 @@ typedef RadioSize = ButtonSize;
 
 /// Next UI Checkbox radius (reusing button radius)
 typedef CheckboxRadius = ButtonRadius;
+
+/// Next UI Circular Progress size (reusing button size)
+typedef CircularProgressSize = ButtonSize;
 
 /// Next UI RadioGroup orientation
 enum RadioGroupOrientation {

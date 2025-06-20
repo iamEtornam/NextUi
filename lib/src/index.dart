@@ -5,5 +5,6 @@ export 'package:next_ui/src/components/button.dart';
 export 'package:next_ui/src/components/checkbox.dart';
 export 'package:next_ui/src/components/checkbox_group.dart';
 export 'package:next_ui/src/components/chip.dart';
+export 'package:next_ui/src/components/circular_progress.dart';
 export 'package:next_ui/src/components/radio_group.dart';
 export 'package:next_ui/src/components/text.dart';
