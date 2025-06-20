@@ -3,7 +3,8 @@ import 'package:next_ui/src/index.dart';
 
 /// Next UI Chip component
 ///
-/// A small block of essential information that represents an input, attribute, or action.
+/// A small block of essential information that represents 
+/// an input, attribute, or action.
 /// Following HeroUI design patterns with comprehensive customization options.
 ///
 /// ## Basic Usage

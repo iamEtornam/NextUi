@@ -7,7 +7,7 @@ class NextUiColors {
   /// `NextUiColors.primary[50]`
   ///  `NextUiColors.primary.shade.50`
   static final MaterialColor primary =
-      MaterialColor(const Color(0xFF001731).value, const <int, Color>{
+      MaterialColor(const Color(0xFF001731).toARGB32(), const <int, Color>{
     50: Color(0xFFe6f1fe),
     100: Color(0xFFcce3fd),
     200: Color(0xFF99c7fb),
@@ -24,7 +24,7 @@ class NextUiColors {
   /// `NextUiColors.secondary[50]`
   /// `NextUiColors.secondary.50`
   static final MaterialColor secondary =
-      MaterialColor(const Color(0xFF180828).value, const <int, Color>{
+      MaterialColor(const Color(0xFF180828).toARGB32(), const <int, Color>{
     50: Color(0xFFf2eafa),
     100: Color(0xFFe4d4f4),
     200: Color(0xFFc9a9e9),
@@ -43,7 +43,7 @@ class NextUiColors {
   /// `NextUiColors.success[50]`
   /// `NextUiColors.success.50`
   static final MaterialColor success =
-      MaterialColor(const Color(0xFF052814).value, const <int, Color>{
+      MaterialColor(const Color(0xFF052814).toARGB32(), const <int, Color>{
     50: Color(0xFFe8faf0),
     100: Color(0xFFd1f4e0),
     200: Color(0xFFa2e9c1),
@@ -60,7 +60,7 @@ class NextUiColors {
   /// `NextUiColors.warning[50]`
   /// `NextUiColors.warning.50`
   static final MaterialColor warning =
-      MaterialColor(const Color(0xFF312107).value, const <int, Color>{
+      MaterialColor(const Color(0xFF312107).toARGB32(), const <int, Color>{
     50: Color(0xFFfefce8),
     100: Color(0xFFfdedd3),
     200: Color(0xFFfbdba7),
@@ -77,7 +77,7 @@ class NextUiColors {
   /// `NextUiColors.danger[50]`
   /// `NextUiColors.danger.50`
   static final MaterialColor danger =
-      MaterialColor(const Color(0xFF310413).value, const <int, Color>{
+      MaterialColor(const Color(0xFF310413).toARGB32(), const <int, Color>{
     50: Color(0xFFfee7ef),
     100: Color(0xFFfdd0df),
     200: Color(0xFFfaa0bf),

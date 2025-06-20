@@ -3,7 +3,8 @@ import 'package:next_ui/src/index.dart';
 
 /// Next UI RadioGroup component
 ///
-/// Radio Groups allow users to select a single option from a list of mutually exclusive options.
+/// Radio Groups allow users to select a single option from a 
+/// list of mutually exclusive options.
 /// Following HeroUI design patterns with comprehensive customization options.
 ///
 /// ## Basic Usage
@@ -28,7 +29,8 @@ import 'package:next_ui/src/index.dart';
 ///     NextRadio(
 ///       value: 'react',
 ///       label: Text('React'),
-///       description: Text('A JavaScript library for building user interfaces'),
+///       description: Text('A JavaScript library for building 
+/// user interfaces'),
 ///     ),
 ///     NextRadio(
 ///       value: 'vue',
