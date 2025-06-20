@@ -30,7 +30,7 @@ dart pub add next_ui
 | [ ] Code              | [ ] Avatar Group       | [ ] Select        |
 | [ ] Link              | [ ] Accordion          | [ ] Listbox       |
 | [ ] Radio             | [ ] Progress           | [ ] ScrollShadow  |
-| [ ] Radio Group       | [ ] Circular Progress  |                   |
+| [x] Radio Group       | [ ] Circular Progress  |                   |
 | [ ] Avatar            | [ ] Divider            |                   |
 | [ ] Kbd               | [ ] Popover            |                   |
 | [ ] Checkbox          | [ ] Image              |                   |

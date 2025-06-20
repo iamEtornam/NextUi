@@ -82,6 +82,9 @@ enum ButtonColor {
 /// Next UI Chip color (reusing button colors)
 typedef ChipColor = ButtonColor;
 
+/// Next UI Radio color (reusing button colors)
+typedef RadioColor = ButtonColor;
+
 /// Next UI Button radius
 enum ButtonRadius {
   /// No border radius
@@ -105,6 +108,36 @@ typedef ChipRadius = ButtonRadius;
 
 /// Next UI Chip size (reusing button size)
 typedef ChipSize = ButtonSize;
+
+/// Next UI Radio size (reusing button size)
+typedef RadioSize = ButtonSize;
+
+/// Next UI RadioGroup orientation
+enum RadioGroupOrientation {
+  /// Vertical orientation (default)
+  vertical,
+
+  /// Horizontal orientation
+  horizontal,
+}
+
+/// Next UI validation state
+enum ValidationState {
+  /// Valid state
+  valid,
+
+  /// Invalid state
+  invalid,
+}
+
+/// Next UI validation behavior
+enum ValidationBehavior {
+  /// Native validation
+  native,
+
+  /// ARIA validation
+  aria,
+}
 
 /// Next UI Spinner placement
 enum SpinnerPlacement {
