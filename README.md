@@ -33,10 +33,10 @@ dart pub add next_ui
 | [x] Radio Group       | [ ] Circular Progress  |                   |
 | [ ] Avatar            | [ ] Divider            |                   |
 | [ ] Kbd               | [ ] Popover            |                   |
-| [ ] Checkbox          | [ ] Image              |                   |
+| [x] Checkbox          | [ ] Image              |                   |
 | [ ] User              | [ ] Navbar             |                   |
 | [ ] Badge             | [ ] Pagination         |                   |
-| [ ] Checkbox Group    | [ ] Skeleton           |                   |
+| [x] Checkbox Group    | [ ] Skeleton           |                   |
 
 
 ## Continuous Integration 🤖

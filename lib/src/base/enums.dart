@@ -10,6 +10,18 @@ enum ButtonSize {
   lg,
 }
 
+/// Next UI Checkbox size
+enum CheckboxSize {
+  /// small checkbox
+  sm,
+
+  /// medium checkbox
+  md,
+
+  /// large checkbox
+  lg,
+}
+
 /// Next UI Button variant
 enum ButtonVariant {
   /// Solid background with contrasting text
@@ -85,6 +97,9 @@ typedef ChipColor = ButtonColor;
 /// Next UI Radio color (reusing button colors)
 typedef RadioColor = ButtonColor;
 
+/// Next UI Checkbox color (reusing button colors)
+typedef CheckboxColor = ButtonColor;
+
 /// Next UI Button radius
 enum ButtonRadius {
   /// No border radius
@@ -112,6 +127,9 @@ typedef ChipSize = ButtonSize;
 /// Next UI Radio size (reusing button size)
 typedef RadioSize = ButtonSize;
 
+/// Next UI Checkbox radius (reusing button radius)
+typedef CheckboxRadius = ButtonRadius;
+
 /// Next UI RadioGroup orientation
 enum RadioGroupOrientation {
   /// Vertical orientation (default)
@@ -120,6 +138,9 @@ enum RadioGroupOrientation {
   /// Horizontal orientation
   horizontal,
 }
+
+/// Next UI CheckboxGroup orientation (reusing radio group orientation)
+typedef CheckboxGroupOrientation = RadioGroupOrientation;
 
 /// Next UI validation state
 enum ValidationState {
