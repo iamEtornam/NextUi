@@ -206,6 +206,20 @@ enum InputVariant {
 
 /// Input color options
 enum InputColor {
+/// Switch size options
+enum SwitchSize {
+  /// Small switch size
+  sm,
+
+  /// Medium switch size
+  md,
+
+  /// Large switch size
+  lg,
+}
+
+/// Switch color options
+enum SwitchColor {
   /// Default color
   defaultColor,
 
