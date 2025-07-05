@@ -174,3 +174,36 @@ enum SpinnerPlacement {
   /// Spinner at the end
   end,
 }
+
+/// Switch size options
+enum SwitchSize {
+  /// Small switch size
+  sm,
+
+  /// Medium switch size
+  md,
+
+  /// Large switch size
+  lg,
+}
+
+/// Switch color options
+enum SwitchColor {
+  /// Default color
+  defaultColor,
+
+  /// Primary color
+  primary,
+
+  /// Secondary color
+  secondary,
+
+  /// Success color
+  success,
+
+  /// Warning color
+  warning,
+
+  /// Danger color
+  danger,
+}

@@ -52,6 +52,14 @@ class MyApp extends StatelessWidget {
               ),
               SizedBox(height: 16),
               
+              // Switch Example
+              NextSwitch(
+                isSelected: true,
+                label: Text('Enable Feature'),
+                onValueChange: (value) {},
+              ),
+              SizedBox(height: 16),
+              
               // Chip Example
               NextChip.solid(
                 child: Text('Success'),
@@ -82,6 +90,7 @@ class MyApp extends StatelessWidget {
 | --------------------- | -------------------------------------------------------- | ----------- |
 | **Button**            | 7 variants, 3 sizes, 6 colors, loading states, icons     | ✅ Complete |
 | **Chip**              | 7 variants, 3 sizes, 6 colors, closable, avatar support  | ✅ Complete |
+| **Switch**            | 3 sizes, 6 colors, label support, icons, disabled states | ✅ Complete |
 | **Checkbox**          | 3 sizes, 6 colors, indeterminate state, validation       | ✅ Complete |
 | **Checkbox Group**    | Multi-selection, validation, orientation control         | ✅ Complete |
 | **Radio Group**       | Single selection, validation, horizontal/vertical layout | ✅ Complete |
@@ -95,7 +104,6 @@ class MyApp extends StatelessWidget {
 | Button Group       | 🔄 Planned |
 | Card               | 🔄 Planned |
 | Input/TextField    | 🔄 Planned |
-| Switch             | 🔄 Planned |
 | Avatar             | 🔄 Planned |
 | Badge              | 🔄 Planned |
 | Modal              | 🔄 Planned |
@@ -168,6 +176,71 @@ NextChip.solid(
 NextChip.dot(
   color: ChipColor.success,
   child: Text('Status'),
+);
+```
+
+### Switch
+
+```dart
+// Basic Switch
+NextSwitch(
+  isSelected: true,
+  onValueChange: (value) => print('Switch: $value'),
+);
+
+// Switch with Label
+NextSwitch(
+  isSelected: false,
+  label: Text('Enable notifications'),
+  onValueChange: (value) {},
+);
+
+// Switch Sizes
+NextSwitch.small(isSelected: true);   // Small
+NextSwitch.medium(isSelected: true);  // Medium (default)
+NextSwitch.large(isSelected: true);   // Large
+
+// Switch Colors
+NextSwitch(
+  color: SwitchColor.primary,
+  isSelected: true,
+  onValueChange: (value) {},
+);
+
+// Switch with Icons
+NextSwitch(
+  isSelected: true,
+  label: Text('Dark Mode'),
+  startContent: Icon(Icons.dark_mode),
+  thumbIcon: Icon(Icons.check, size: 16, color: Colors.white),
+  onValueChange: (value) {},
+);
+
+// Disabled Switch
+NextSwitch(
+  isSelected: true,
+  isDisabled: true,
+  label: Text('Disabled'),
+);
+
+// Read-only Switch
+NextSwitch(
+  isSelected: true,
+  isReadOnly: true,
+  label: Text('Read-only'),
+);
+
+// Controlled Switch
+bool isEnabled = false;
+
+NextSwitch(
+  isSelected: isEnabled,
+  label: Text('Toggle Feature'),
+  onValueChange: (value) {
+    setState(() {
+      isEnabled = value;
+    });
+  },
 );
 ```
 
@@ -256,8 +329,8 @@ flutter run
 
 The example app features:
 
-- **6 Interactive Tabs**: Buttons, Chips, Checkboxes, Radio Groups, Progress,
-  Typography
+- **7 Interactive Tabs**: Buttons, Chips, Switches, Checkboxes, Radio Groups,
+  Progress, Typography
 - **Live Demonstrations**: All variants, sizes, colors, and states
 - **Interactive Controls**: Real-time component customization
 - **Best Practices**: Proper usage patterns and code examples
@@ -317,6 +390,30 @@ Button.solid(color: ButtonColor.secondary);  // Purple
 | `onClose`      | `Function?`   | Close callback   |
 | `startContent` | `Widget?`     | Leading content  |
 | `endContent`   | `Widget?`     | Trailing content |
+
+### NextSwitch
+
+| Property           | Type                  | Description                |
+| ------------------ | --------------------- | -------------------------- |
+| `value`            | `String?`             | Form field value           |
+| `isSelected`       | `bool?`               | Whether switch is selected |
+| `defaultSelected`  | `bool`                | Default selected state     |
+| `onChanged`        | `ValueChanged<bool>?` | Native change callback     |
+| `onValueChange`    | `ValueChanged<bool>?` | Value change callback      |
+| `size`             | `SwitchSize`          | Switch size (sm, md, lg)   |
+| `color`            | `SwitchColor`         | Color theme                |
+| `label`            | `Widget?`             | Label widget               |
+| `startContent`     | `Widget?`             | Leading content widget     |
+| `endContent`       | `Widget?`             | Trailing content widget    |
+| `thumbIcon`        | `Widget?`             | Icon inside thumb          |
+| `isDisabled`       | `bool`                | Disabled state             |
+| `isReadOnly`       | `bool`                | Read-only state            |
+| `disableAnimation` | `bool`                | Disable animations         |
+| `name`             | `String?`             | Form field name            |
+| `autofocus`        | `bool`                | Auto-focus on mount        |
+| `focusNode`        | `FocusNode?`          | Focus node                 |
+| `margin`           | `EdgeInsetsGeometry?` | External margin            |
+| `padding`          | `EdgeInsetsGeometry?` | Internal padding           |
 
 ### NextCheckbox
 
