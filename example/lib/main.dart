@@ -11,25 +11,25 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Next UI Components Demo',
+      title: 'Next UI Example',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const ComponentsDemoPage(),
+      home: const ComponentShowcasePage(),
     );
   }
 }
 
-class ComponentsDemoPage extends StatefulWidget {
-  const ComponentsDemoPage({super.key});
+class ComponentShowcasePage extends StatefulWidget {
+  const ComponentShowcasePage({super.key});
 
   @override
-  State<ComponentsDemoPage> createState() => _ComponentsDemoPageState();
+  State<ComponentShowcasePage> createState() => _ComponentShowcasePageState();
 }
 
-class _ComponentsDemoPageState extends State<ComponentsDemoPage>
-    with TickerProviderStateMixin {
+class _ComponentShowcasePageState extends State<ComponentShowcasePage>
+    with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
   @override
@@ -73,8 +73,8 @@ class _ComponentsDemoPageState extends State<ComponentsDemoPage>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Next UI Components'),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        title: const Text('Next UI Components'),
         bottom: TabBar(
           controller: _tabController,
           isScrollable: true,
@@ -84,11 +84,9 @@ class _ComponentsDemoPageState extends State<ComponentsDemoPage>
             Tab(text: 'Switches'),
             Tab(text: 'Inputs'),
             Tab(text: 'Switches'),
-            Tab(text: 'Inputs'),
             Tab(text: 'Checkboxes'),
             Tab(text: 'Radio Groups'),
             Tab(text: 'Progress'),
-            Tab(text: 'Typography'),
           ],
         ),
       ),
@@ -100,11 +98,9 @@ class _ComponentsDemoPageState extends State<ComponentsDemoPage>
           _buildSwitchesTab(),
           _buildInputsTab(),
           _buildSwitchesTab(),
-          _buildInputsTab(),
           _buildCheckboxTab(),
           _buildRadioTab(),
           _buildProgressTab(),
-          _buildTypographyTab(),
         ],
       ),
     );
@@ -324,26 +320,9 @@ class _ComponentsDemoPageState extends State<ComponentsDemoPage>
         String textareaValue = '';
         String otpValue = '';
         bool isEmailInvalid = false;
-  Widget _buildSwitchesTab() {
-    return StatefulBuilder(
-      builder: (context, setState) {
-        bool basicSwitch = false;
-        bool notificationSwitch = true;
-        bool darkModeSwitch = false;
-        bool wifiSwitch = true;
-        bool bluetoothSwitch = false;
-        bool airplaneModeSwitch = false;
-  Widget _buildInputsTab() {
-    return StatefulBuilder(
-      builder: (context, setState) {
-        String emailValue = '';
-        String passwordValue = '';
-        String searchValue = '';
-        String textareaValue = '';
-        String otpValue = '';
-        bool isEmailInvalid = false;
 
         return SingleChildScrollView(
+          padding: const EdgeInsets.all(16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -479,22 +458,6 @@ class _ComponentsDemoPageState extends State<ComponentsDemoPage>
                       label: 'Underlined Input',
                       placeholder: 'Enter text...',
                     ),
-                title: 'Basic Switches',
-                children: [
-                  NextSwitch(
-                    isSelected: basicSwitch,
-                    onValueChange: (value) =>
-                        setState(() => basicSwitch = value),
-                  ),
-                  NextSwitch(
-                    isSelected: true,
-                    label: const Text('Switch with Label'),
-                    onValueChange: (value) {},
-                  ),
-                  const NextSwitch(
-                    isSelected: false,
-                    isDisabled: true,
-                    label: Text('Disabled Switch'),
                   ),
                 ],
               ),
@@ -524,22 +487,6 @@ class _ComponentsDemoPageState extends State<ComponentsDemoPage>
                       label: 'Large Input',
                       placeholder: 'Large...',
                     ),
-                title: 'Switch Sizes',
-                children: [
-                  NextSwitch.small(
-                    isSelected: true,
-                    label: const Text('Small Switch'),
-                    onValueChange: (value) {},
-                  ),
-                  NextSwitch.medium(
-                    isSelected: true,
-                    label: const Text('Medium Switch'),
-                    onValueChange: (value) {},
-                  ),
-                  NextSwitch.large(
-                    isSelected: true,
-                    label: const Text('Large Switch'),
-                    onValueChange: (value) {},
                   ),
                 ],
               ),
@@ -585,37 +532,6 @@ class _ComponentsDemoPageState extends State<ComponentsDemoPage>
                       label: 'Danger',
                       placeholder: 'Danger input...',
                     ),
-                title: 'Switch Colors',
-                children: [
-                  NextSwitch(
-                    isSelected: true,
-                    color: SwitchColor.primary,
-                    label: const Text('Primary'),
-                    onValueChange: (value) {},
-                  ),
-                  NextSwitch(
-                    isSelected: true,
-                    color: SwitchColor.secondary,
-                    label: const Text('Secondary'),
-                    onValueChange: (value) {},
-                  ),
-                  NextSwitch(
-                    isSelected: true,
-                    color: SwitchColor.success,
-                    label: const Text('Success'),
-                    onValueChange: (value) {},
-                  ),
-                  NextSwitch(
-                    isSelected: true,
-                    color: SwitchColor.warning,
-                    label: const Text('Warning'),
-                    onValueChange: (value) {},
-                  ),
-                  NextSwitch(
-                    isSelected: true,
-                    color: SwitchColor.danger,
-                    label: const Text('Danger'),
-                    onValueChange: (value) {},
                   ),
                 ],
               ),
@@ -740,74 +656,228 @@ class _ComponentsDemoPageState extends State<ComponentsDemoPage>
                       onChanged: (value) =>
                           setState(() => textareaValue = value),
                     ),
-                title: 'Switches with Icons',
-                children: [
-                  NextSwitch(
-                    isSelected: true,
-                    label: const Text('With Thumb Icon'),
-                    thumbIcon: const Icon(
-                      Icons.check,
-                      size: 16,
-                      color: Colors.white,
-                    ),
-                    onValueChange: (value) {},
-                  ),
-                  NextSwitch(
-                    isSelected: true,
-                    label: const Text('Start & End Content'),
-                    startContent: const Icon(Icons.lightbulb_outline, size: 20),
-                    endContent: const Icon(
-                      Icons.lightbulb,
-                      size: 20,
-                      color: Colors.amber,
-                    ),
-                    onValueChange: (value) {},
-                title: 'Input Variants',
-                children: [
-                  SizedBox(
-                    width: 300,
-                    child: NextInput(
-                      variant: InputVariant.flat,
-                      label: 'Flat Input',
-                      placeholder: 'Enter text...',
-                      onChanged: (value) => setState(() => emailValue = value),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 300,
-                    child: NextInput(
-                      variant: InputVariant.bordered,
-                      label: 'Bordered Input',
-                      placeholder: 'Enter text...',
-                    ),
-                  ),
-                  SizedBox(
-                    width: 300,
-                    child: NextInput(
-                      variant: InputVariant.faded,
-                      label: 'Faded Input',
-                      placeholder: 'Enter text...',
-                    ),
-                  ),
-                  SizedBox(
-                    width: 300,
-                    child: NextInput(
-                      variant: InputVariant.underlined,
-                      label: 'Underlined Input',
-                      placeholder: 'Enter text...',
-                    ),
                   ),
                 ],
               ),
               _buildSection(
-                title: 'Input Sizes',
+                title: 'Input OTP',
                 children: [
-                  SizedBox(
-                    width: 250,
-                    child: NextInput(
-                      size: InputSize.sm,
-                      label: 'Small Input',
-                      placeholder: 'Small...',
+                  Text(
+                    'Input OTP',
+                    style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+
+                  // 6-digit OTP
+                  NextInputOTP(
+                    length: 6,
+                    onChanged: (value) => setState(() => otpValue = value),
+                    onCompleted: (value) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text('OTP Completed: $value'),
+                          duration: const Duration(seconds: 2),
+                        ),
+                      );
+                    },
+                  ),
+                  const SizedBox(height: 16),
+                  Text('Current OTP: $otpValue'),
+
+                  const SizedBox(height: 32),
+
+                  // 4-digit OTP with custom styling
+                  Text(
+                    'Custom 4-digit OTP',
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  NextInputOTP(
+                    length: 4,
+                    size: InputSize.lg,
+                    color: InputColor.success,
+                    spacing: 12,
+                    onCompleted: (value) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text('4-digit OTP: $value'),
+                          backgroundColor: Colors.green,
+                        ),
+                      );
+                    },
+                  ),
+
+                  const SizedBox(height: 32),
+
+                  // OTP with separator
+                  Text(
+                    'OTP with Separator',
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  NextInputOTP(
+                    length: 6,
+                    separator: const Text(
+                      '-',
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    color: InputColor.primary,
+                  ),
+                ],
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _buildSwitchesTab() {
+    return StatefulBuilder(
+      builder: (context, setState) {
+        bool wifiSwitch = false;
+        bool bluetoothSwitch = false;
+        bool airplaneModeSwitch = false;
+
+        return SingleChildScrollView(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _buildSection(
+                title: 'Basic Switches',
+                children: [
+                  NextSwitch(
+                    isSelected: wifiSwitch,
+                    onValueChange: (value) =>
+                        setState(() => wifiSwitch = value),
+                  ),
+                  NextSwitch(
+                    isSelected: bluetoothSwitch,
+                    label: const Text('Bluetooth'),
+                    onValueChange: (value) =>
+                        setState(() => bluetoothSwitch = value),
+                  ),
+                  NextSwitch(
+                    isSelected: airplaneModeSwitch,
+                    label: const Text('Airplane Mode'),
+                    endContent: const Icon(Icons.airplanemode_active, size: 18),
+                    onValueChange: (value) =>
+                        setState(() => airplaneModeSwitch = value),
+                  ),
+                ],
+              ),
+              _buildSection(
+                title: 'Switch Sizes',
+                children: [
+                  NextSwitch.small(
+                    isSelected: false,
+                    label: const Text('Small'),
+                    onValueChange: (value) {},
+                  ),
+                  NextSwitch.medium(
+                    isSelected: false,
+                    label: const Text('Medium'),
+                    onValueChange: (value) {},
+                  ),
+                  NextSwitch.large(
+                    isSelected: false,
+                    label: const Text('Large'),
+                    onValueChange: (value) {},
+                  ),
+                ],
+              ),
+              _buildSection(
+                title: 'Switch Colors',
+                children: [
+                  NextSwitch(
+                    isSelected: true,
+                    color: SwitchColor.defaultColor,
+                    label: const Text('Default'),
+                    onValueChange: (value) {},
+                  ),
+                  NextSwitch(
+                    isSelected: true,
+                    color: SwitchColor.primary,
+                    label: const Text('Primary'),
+                    onValueChange: (value) {},
+                  ),
+                  NextSwitch(
+                    isSelected: true,
+                    color: SwitchColor.secondary,
+                    label: const Text('Secondary'),
+                    onValueChange: (value) {},
+                  ),
+                  NextSwitch(
+                    isSelected: true,
+                    color: SwitchColor.success,
+                    label: const Text('Success'),
+                    onValueChange: (value) {},
+                  ),
+                  NextSwitch(
+                    isSelected: true,
+                    color: SwitchColor.warning,
+                    label: const Text('Warning'),
+                    onValueChange: (value) {},
+                  ),
+                  NextSwitch(
+                    isSelected: true,
+                    color: SwitchColor.danger,
+                    label: const Text('Danger'),
+                    onValueChange: (value) {},
+                  ),
+                ],
+              ),
+              _buildSection(
+                title: 'Switches with Icons',
+                children: [
+                  NextSwitch(
+                    isSelected: true,
+                    startContent: const Icon(Icons.wifi, size: 18),
+                    thumbIcon: const Icon(Icons.check, size: 12),
+                    onValueChange: (value) {},
+                  ),
+                  NextSwitch(
+                    isSelected: false,
+                    startContent: const Icon(Icons.bluetooth, size: 18),
+                    thumbIcon: const Icon(Icons.close, size: 12),
+                    onValueChange: (value) {},
+                  ),
+                ],
+              ),
+              _buildSection(
+                title: 'Switch States',
+                children: [
+                  NextSwitch(
+                    isSelected: false,
+                    isDisabled: true,
+                    label: const Text('Disabled Switch'),
+                    onValueChange: (value) {},
+                  ),
+                  NextSwitch(
+                    isSelected: true,
+                    isReadOnly: true,
+                    label: const Text('Read-only Switch'),
+                    onValueChange: (value) {},
+                  ),
+                ],
+              ),
+              _buildSection(
+                title: 'Settings Example',
+                children: [
+                  Text(
+                    'Settings Example',
+                    style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                   SizedBox(
@@ -1129,232 +1199,46 @@ class _ComponentsDemoPageState extends State<ComponentsDemoPage>
                           SnackBar(
                             content: Text('OTP Completed: $value'),
                             duration: const Duration(seconds: 2),
+                  const SizedBox(height: 16),
+                  Card(
+                    child: Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: Column(
+                        children: [
+                          NextSwitch(
+                            isSelected: wifiSwitch,
+                            label: const Text('Wi-Fi'),
+                            startContent: const Icon(Icons.wifi, size: 20),
+                            color: SwitchColor.primary,
+                            onValueChange: (value) =>
+                                setState(() => wifiSwitch = value),
                           ),
-                        );
-                      },
-                    ),
-                    const SizedBox(height: 16),
-                    Text('Current OTP: $otpValue'),
-
-                    const SizedBox(height: 32),
-
-                    // 4-digit OTP with custom styling
-                    Text(
-                      'Custom 4-digit OTP',
-                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    const SizedBox(height: 16),
-                    NextInputOTP(
-                      length: 4,
-                      size: InputSize.lg,
-                      color: InputColor.success,
-                      spacing: 12,
-                      onCompleted: (value) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text('4-digit OTP: $value'),
-                            backgroundColor: Colors.green,
+                          const Divider(),
+                          NextSwitch(
+                            isSelected: bluetoothSwitch,
+                            label: const Text('Bluetooth'),
+                            startContent: const Icon(Icons.bluetooth, size: 20),
+                            color: SwitchColor.primary,
+                            onValueChange: (value) =>
+                                setState(() => bluetoothSwitch = value),
                           ),
-                        );
-                      },
-                    ),
-
-                    const SizedBox(height: 32),
-
-                    // OTP with separator
-                    Text(
-                      'OTP with Separator',
-                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    const SizedBox(height: 16),
-                    NextInputOTP(
-                      length: 6,
-                      separator: const Text(
-                        '-',
-                        style: TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      color: InputColor.primary,
-                    Card(
-                      child: Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Column(
-                          children: [
-                            NextSwitch(
-                              isSelected: notificationSwitch,
-                              label: const Text('Push Notifications'),
-                              startContent: const Icon(
-                                Icons.notifications_outlined,
-                              ),
-                              onValueChange: (value) {
-                                setState(() => notificationSwitch = value);
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    content: Text(
-                                      value
-                                          ? 'Notifications enabled'
-                                          : 'Notifications disabled',
-                                    ),
-                                    duration: const Duration(seconds: 1),
-                                  ),
-                                );
-                              },
+                          const Divider(),
+                          NextSwitch(
+                            isSelected: airplaneModeSwitch,
+                            label: const Text('Airplane Mode'),
+                            startContent: const Icon(
+                              Icons.airplanemode_active,
+                              size: 20,
                             ),
-                            const Divider(),
-                            NextSwitch(
-                              isSelected: darkModeSwitch,
-                              label: const Text('Dark Mode'),
-                              startContent: const Icon(
-                                Icons.dark_mode_outlined,
-                              ),
-                              color: SwitchColor.secondary,
-                              onValueChange: (value) =>
-                                  setState(() => darkModeSwitch = value),
-                            ),
-                            const Divider(),
-                            NextSwitch(
-                              isSelected: wifiSwitch,
-                              label: const Text('Wi-Fi'),
-                              startContent: const Icon(Icons.wifi),
-                              color: SwitchColor.success,
-                              onValueChange: (value) =>
-                                  setState(() => wifiSwitch = value),
-                            ),
-                            const Divider(),
-                            NextSwitch(
-                              isSelected: bluetoothSwitch,
-                              label: const Text('Bluetooth'),
-                              startContent: const Icon(Icons.bluetooth),
-                              color: SwitchColor.primary,
-                              onValueChange: (value) =>
-                                  setState(() => bluetoothSwitch = value),
-                            ),
-                            const Divider(),
-                            NextSwitch(
-                              isSelected: airplaneModeSwitch,
-                              label: const Text('Airplane Mode'),
-                              startContent: const Icon(
-                                Icons.airplanemode_active,
-                              ),
-                              color: SwitchColor.warning,
-                              onValueChange: (value) =>
-                                  setState(() => airplaneModeSwitch = value),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Switch States',
-                      style: Theme.of(context).textTheme.headlineSmall
-                          ?.copyWith(fontWeight: FontWeight.bold),
-                    ),
-                    const SizedBox(height: 16),
-                    const NextSwitch(
-                      isSelected: false,
-                      label: Text('Normal Switch (Off)'),
-                    ),
-                    const SizedBox(height: 12),
-                    const NextSwitch(
-                      isSelected: true,
-                      label: Text('Normal Switch (On)'),
-                    ),
-                    const SizedBox(height: 12),
-                    const NextSwitch(
-                      isSelected: false,
-                      isDisabled: true,
-                      label: Text('Disabled Switch (Off)'),
-                    ),
-                    const SizedBox(height: 12),
-                    const NextSwitch(
-                      isSelected: true,
-                      isDisabled: true,
-                      label: Text('Disabled Switch (On)'),
-                    ),
-                    const SizedBox(height: 12),
-                    const NextSwitch(
-                      isSelected: true,
-                      isReadOnly: true,
-                      label: Text('Read-only Switch'),
-
-                    // 6-digit OTP
-                    NextInputOTP(
-                      length: 6,
-                      onChanged: (value) => setState(() => otpValue = value),
-                      onCompleted: (value) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text('OTP Completed: $value'),
-                            duration: const Duration(seconds: 2),
+                            color: SwitchColor.warning,
+                            onValueChange: (value) =>
+                                setState(() => airplaneModeSwitch = value),
                           ),
-                        );
-                      },
-                    ),
-                    const SizedBox(height: 16),
-                    Text('Current OTP: $otpValue'),
-
-                    const SizedBox(height: 32),
-
-                    // 4-digit OTP with custom styling
-                    Text(
-                      'Custom 4-digit OTP',
-                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        fontWeight: FontWeight.w600,
+                        ],
                       ),
                     ),
-                    const SizedBox(height: 16),
-                    NextInputOTP(
-                      length: 4,
-                      size: InputSize.lg,
-                      color: InputColor.success,
-                      spacing: 12,
-                      onCompleted: (value) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text('4-digit OTP: $value'),
-                            backgroundColor: Colors.green,
-                          ),
-                        );
-                      },
-                    ),
-
-                    const SizedBox(height: 32),
-
-                    // OTP with separator
-                    Text(
-                      'OTP with Separator',
-                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    const SizedBox(height: 16),
-                    NextInputOTP(
-                      length: 6,
-                      separator: const Text(
-                        '-',
-                        style: TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      color: InputColor.primary,
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ],
           ),

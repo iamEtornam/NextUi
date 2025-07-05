@@ -2,21 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:next_ui/src/base/enums.dart';
 
-/// A customizable input component for text entry.
-///
-/// Based on HeroUI Input component design.
+/// A Material Design-inspired input field component with customizable variants, colors, and sizes.
 class NextInput extends StatefulWidget {
-  /// Creates an input component.
+  /// Creates a NextInput.
   const NextInput({
     super.key,
     this.controller,
     this.value,
     this.onChanged,
     this.onSubmitted,
-    this.onTap,
-    this.onTapOutside,
     this.onClear,
-    this.focusNode,
     this.variant = InputVariant.flat,
     this.color = InputColor.defaultColor,
     this.size = InputSize.md,
@@ -34,31 +29,14 @@ class NextInput extends StatefulWidget {
     this.isInvalid = false,
     this.isClearable = false,
     this.obscureText = false,
-    this.fullWidth = true,
-    this.disableAnimation = false,
     this.maxLines = 1,
-    this.minLines,
-    this.maxLength,
-    this.textInputAction,
     this.keyboardType,
-    this.inputFormatters,
-    this.textCapitalization = TextCapitalization.none,
-    this.textAlign = TextAlign.start,
-    this.autofocus = false,
-    this.autocorrect = true,
-    this.enableSuggestions = true,
-    this.textAlignVertical,
-    this.expands = false,
-    this.padding,
-    this.margin,
-    this.width,
-    this.height,
   });
 
   /// Text editing controller
   final TextEditingController? controller;
 
-  /// Current text value
+  /// Initial text value
   final String? value;
 
   /// Called when the text changes
@@ -67,31 +45,22 @@ class NextInput extends StatefulWidget {
   /// Called when the user submits the text
   final ValueChanged<String>? onSubmitted;
 
-  /// Called when the input is tapped
-  final VoidCallback? onTap;
-
-  /// Called when tapped outside the input
-  final TapRegionCallback? onTapOutside;
-
-  /// Called when clear button is pressed
+  /// Called when the clear button is pressed
   final VoidCallback? onClear;
 
-  /// Focus node for the input
-  final FocusNode? focusNode;
-
-  /// Visual variant of the input
+  /// Visual style variant
   final InputVariant variant;
 
-  /// Color theme of the input
+  /// Color theme
   final InputColor color;
 
-  /// Size of the input
+  /// Input field size
   final InputSize size;
 
-  /// Border radius of the input
+  /// Border radius
   final InputRadius radius;
 
-  /// Placement of the label
+  /// Label position
   final LabelPlacement labelPlacement;
 
   /// Label text
@@ -100,92 +69,41 @@ class NextInput extends StatefulWidget {
   /// Placeholder text
   final String? placeholder;
 
-  /// Description text below the input
+  /// Helper description
   final String? description;
 
-  /// Error message text
+  /// Error message
   final String? errorMessage;
 
-  /// Widget at the start of the input
+  /// Leading widget
   final Widget? startContent;
 
-  /// Widget at the end of the input
+  /// Trailing widget
   final Widget? endContent;
 
-  /// Whether the input is required
+  /// Required field indicator
   final bool isRequired;
 
-  /// Whether the input is disabled
+  /// Disabled state
   final bool isDisabled;
 
-  /// Whether the input is read-only
+  /// Read-only state
   final bool isReadOnly;
 
-  /// Whether the input is in an invalid state
+  /// Invalid state
   final bool isInvalid;
 
-  /// Whether to show a clear button
+  /// Show clear button
   final bool isClearable;
 
-  /// Whether to obscure the text (for passwords)
+  /// Password mode
   final bool obscureText;
 
-  /// Whether the input should take full width
-  final bool fullWidth;
-
-  /// Whether to disable animations
-  final bool disableAnimation;
-
-  /// Maximum number of lines
+  /// Maximum lines
   final int? maxLines;
 
-  /// Minimum number of lines
-  final int? minLines;
-
-  /// Maximum character length
-  final int? maxLength;
-
-  /// Type of action button on the keyboard
-  final TextInputAction? textInputAction;
-
-  /// Type of keyboard to display
+  /// Keyboard type
   final TextInputType? keyboardType;
-
-  /// Input formatters
-  final List<TextInputFormatter>? inputFormatters;
-
-  /// Text capitalization behavior
-  final TextCapitalization textCapitalization;
-
-  /// Text alignment
-  final TextAlign textAlign;
-
-  /// Whether to focus automatically
-  final bool autofocus;
-
-  /// Whether to enable autocorrect
-  final bool autocorrect;
-
-  /// Whether to enable suggestions
-  final bool enableSuggestions;
-
-  /// Vertical alignment of text
-  final TextAlignVertical? textAlignVertical;
-
-  /// Whether the input expands to fill its parent
-  final bool expands;
-
-  /// Internal padding
-  final EdgeInsetsGeometry? padding;
-
-  /// External margin
-  final EdgeInsetsGeometry? margin;
-
-  /// Fixed width
-  final double? width;
-
-  /// Fixed height
-  final double? height;
 
   @override
   State<NextInput> createState() => _NextInputState();
@@ -202,50 +120,52 @@ class _NextInputState extends State<NextInput> {
     super.initState();
     _controller =
         widget.controller ?? TextEditingController(text: widget.value);
-    _focusNode = widget.focusNode ?? FocusNode();
+    _focusNode = FocusNode();
     _obscureText = widget.obscureText;
 
-    _focusNode.addListener(_onFocusChange);
+    _focusNode.addListener(() {
+      setState(() {
+        _isFocused = _focusNode.hasFocus;
+      });
+    });
   }
 
   @override
   void dispose() {
-    if (widget.controller == null) _controller.dispose();
-    if (widget.focusNode == null) _focusNode.dispose();
+    if (widget.controller == null) {
+      _controller.dispose();
+    }
+    _focusNode.dispose();
     super.dispose();
   }
 
-  void _onFocusChange() {
-    setState(() {
-      _isFocused = _focusNode.hasFocus;
-    });
+  Color _getColorForState(ThemeData theme) {
+    if (widget.isDisabled) {
+      return theme.colorScheme.onSurface.withOpacity(0.38);
+    }
+    if (widget.isInvalid) {
+      return theme.colorScheme.error;
+    }
+    if (_isFocused) {
+      return _getThemeColor(theme);
+    }
+    return theme.colorScheme.onSurface.withOpacity(0.6);
   }
 
-  void _onClear() {
-    _controller.clear();
-    widget.onChanged?.call('');
-    widget.onClear?.call();
-  }
-
-  Color _getColorTheme(BuildContext context) {
-    final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
-
-    if (widget.isInvalid) return colorScheme.error;
-
+  Color _getThemeColor(ThemeData theme) {
     switch (widget.color) {
-      case InputColor.defaultColor:
-        return colorScheme.outline;
       case InputColor.primary:
-        return colorScheme.primary;
+        return theme.colorScheme.primary;
       case InputColor.secondary:
-        return colorScheme.secondary;
+        return theme.colorScheme.secondary;
       case InputColor.success:
-        return Colors.green;
+        return const Color(0xFF4CAF50);
       case InputColor.warning:
-        return Colors.orange;
+        return const Color(0xFFFF9800);
       case InputColor.danger:
-        return colorScheme.error;
+        return theme.colorScheme.error;
+      case InputColor.defaultColor:
+        return theme.colorScheme.primary;
     }
   }
 
@@ -257,17 +177,6 @@ class _NextInputState extends State<NextInput> {
         return 40;
       case InputSize.lg:
         return 48;
-    }
-  }
-
-  double _getInputPadding() {
-    switch (widget.size) {
-      case InputSize.sm:
-        return 8;
-      case InputSize.md:
-        return 12;
-      case InputSize.lg:
-        return 16;
     }
   }
 
@@ -286,31 +195,58 @@ class _NextInputState extends State<NextInput> {
     }
   }
 
-  InputDecoration _buildDecoration(BuildContext context) {
-    final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
-    final colorTheme = _getColorTheme(context);
+  InputDecoration _buildDecoration(ThemeData theme) {
+    final color = _getColorForState(theme);
+    final borderRadius = _getBorderRadius();
 
-    String? labelText;
-    Widget? label;
-
-    if (widget.label != null) {
-      labelText = widget.isRequired ? '${widget.label} *' : widget.label;
-      if (widget.labelPlacement == LabelPlacement.inside) {
-        label = Text(labelText!);
+    InputBorder getBorder(Color borderColor, {double width = 1.0}) {
+      switch (widget.variant) {
+        case InputVariant.flat:
+          return OutlineInputBorder(
+            borderRadius: borderRadius,
+            borderSide: BorderSide.none,
+          );
+        case InputVariant.bordered:
+          return OutlineInputBorder(
+            borderRadius: borderRadius,
+            borderSide: BorderSide(color: borderColor, width: width),
+          );
+        case InputVariant.faded:
+          return OutlineInputBorder(
+            borderRadius: borderRadius,
+            borderSide: BorderSide.none,
+          );
+        case InputVariant.underlined:
+          return UnderlineInputBorder(
+            borderSide: BorderSide(color: borderColor, width: width),
+          );
       }
     }
 
-    Widget? suffixIcon;
-    final suffixWidgets = <Widget>[];
+    Color? fillColor;
+    switch (widget.variant) {
+      case InputVariant.flat:
+        fillColor = theme.colorScheme.surfaceContainerHighest.withOpacity(0.6);
+      case InputVariant.faded:
+        fillColor = _getThemeColor(theme).withOpacity(0.1);
+      case InputVariant.bordered:
+      case InputVariant.underlined:
+        fillColor = Colors.transparent;
+    }
+
+    final suffixIcons = <Widget>[];
 
     if (widget.isClearable &&
         _controller.text.isNotEmpty &&
         !widget.isReadOnly) {
-      suffixWidgets.add(
+      suffixIcons.add(
         IconButton(
           icon: const Icon(Icons.clear, size: 16),
-          onPressed: _onClear,
+          onPressed: () {
+            _controller.clear();
+            widget.onChanged?.call('');
+            widget.onClear?.call();
+          },
           padding: EdgeInsets.zero,
           constraints: const BoxConstraints(minWidth: 24, minHeight: 24),
         ),
@@ -318,11 +254,15 @@ class _NextInputState extends State<NextInput> {
     }
 
     if (widget.obscureText) {
-      suffixWidgets.add(
+      suffixIcons.add(
         IconButton(
           icon: Icon(_obscureText ? Icons.visibility : Icons.visibility_off,
               size: 16),
-          onPressed: () => setState(() => _obscureText = !_obscureText),
+          onPressed: () {
+            setState(() {
+              _obscureText = !_obscureText;
+            });
+          },
           padding: EdgeInsets.zero,
           constraints: const BoxConstraints(minWidth: 24, minHeight: 24),
         ),
@@ -330,240 +270,147 @@ class _NextInputState extends State<NextInput> {
     }
 
     if (widget.endContent != null) {
-      suffixWidgets.add(widget.endContent!);
-    }
-
-    if (suffixWidgets.isNotEmpty) {
-      suffixIcon = Row(
-        mainAxisSize: MainAxisSize.min,
-        children: suffixWidgets,
-      );
-    }
-
-    final borderColor = widget.isInvalid ? colorScheme.error : colorTheme;
-    var fillColor = colorScheme.surface;
-
-    switch (widget.variant) {
-      case InputVariant.flat:
-        fillColor = colorScheme.surfaceContainerHighest.withValues(alpha: 0.5);
-      case InputVariant.faded:
-        fillColor = colorTheme.withValues(alpha: 0.1);
-      case InputVariant.bordered:
-      case InputVariant.underlined:
-        fillColor = Colors.transparent;
-    }
-
-    InputBorder border;
-    switch (widget.variant) {
-      case InputVariant.flat:
-      case InputVariant.faded:
-        border = OutlineInputBorder(
-          borderRadius: _getBorderRadius(),
-          borderSide: BorderSide.none,
-        );
-      case InputVariant.bordered:
-        border = OutlineInputBorder(
-          borderRadius: _getBorderRadius(),
-          borderSide: BorderSide(color: borderColor),
-        );
-      case InputVariant.underlined:
-        border = UnderlineInputBorder(
-          borderSide: BorderSide(color: borderColor),
-        );
-    }
-
-    InputBorder focusedBorder;
-    switch (widget.variant) {
-      case InputVariant.flat:
-      case InputVariant.faded:
-        focusedBorder = OutlineInputBorder(
-          borderRadius: _getBorderRadius(),
-          borderSide: BorderSide(color: colorTheme, width: 2),
-        );
-      case InputVariant.bordered:
-        focusedBorder = OutlineInputBorder(
-          borderRadius: _getBorderRadius(),
-          borderSide: BorderSide(color: colorTheme, width: 2),
-        );
-      case InputVariant.underlined:
-        focusedBorder = UnderlineInputBorder(
-          borderSide: BorderSide(color: colorTheme, width: 2),
-        );
+      suffixIcons.add(widget.endContent!);
     }
 
     return InputDecoration(
       labelText:
-          widget.labelPlacement == LabelPlacement.inside ? labelText : null,
+          widget.labelPlacement == LabelPlacement.inside ? widget.label : null,
       hintText: widget.placeholder,
       helperText: widget.description,
       errorText: widget.isInvalid ? widget.errorMessage : null,
       prefixIcon: widget.startContent,
-      suffixIcon: suffixIcon,
+      suffixIcon: suffixIcons.isNotEmpty
+          ? Row(
+              mainAxisSize: MainAxisSize.min,
+              children: suffixIcons,
+            )
+          : null,
       filled: true,
       fillColor: fillColor,
-      border: border,
-      enabledBorder: border,
-      focusedBorder: focusedBorder,
-      errorBorder: widget.variant == InputVariant.underlined
-          ? UnderlineInputBorder(
-              borderSide: BorderSide(color: colorScheme.error))
-          : OutlineInputBorder(
-              borderRadius: _getBorderRadius(),
-              borderSide: BorderSide(color: colorScheme.error),
-            ),
-      focusedErrorBorder: widget.variant == InputVariant.underlined
-          ? UnderlineInputBorder(
-              borderSide: BorderSide(color: colorScheme.error, width: 2))
-          : OutlineInputBorder(
-              borderRadius: _getBorderRadius(),
-              borderSide: BorderSide(color: colorScheme.error, width: 2),
-            ),
-      contentPadding: EdgeInsets.all(_getInputPadding()),
-      isDense: widget.size == InputSize.sm,
+      border: getBorder(color),
+      enabledBorder: getBorder(theme.colorScheme.outline.withOpacity(0.5)),
+      focusedBorder: getBorder(_getThemeColor(theme), width: 2),
+      errorBorder: getBorder(theme.colorScheme.error),
+      focusedErrorBorder: getBorder(theme.colorScheme.error, width: 2),
+      disabledBorder: getBorder(theme.colorScheme.onSurface.withOpacity(0.12)),
+      contentPadding: EdgeInsets.symmetric(
+        horizontal: 12,
+        vertical: widget.size == InputSize.sm
+            ? 6
+            : (widget.size == InputSize.lg ? 12 : 8),
+      ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    Widget inputField = TextField(
-      controller: _controller,
-      focusNode: _focusNode,
-      onChanged: widget.onChanged,
-      onSubmitted: widget.onSubmitted,
-      onTap: widget.onTap,
-      onTapOutside: widget.onTapOutside,
-      decoration: _buildDecoration(context),
-      enabled: !widget.isDisabled,
-      readOnly: widget.isReadOnly,
-      obscureText: _obscureText,
-      maxLines: widget.maxLines,
-      minLines: widget.minLines,
-      maxLength: widget.maxLength,
-      textInputAction: widget.textInputAction,
-      keyboardType: widget.keyboardType,
-      inputFormatters: widget.inputFormatters,
-      textCapitalization: widget.textCapitalization,
-      textAlign: widget.textAlign,
-      autofocus: widget.autofocus,
-      autocorrect: widget.autocorrect,
-      enableSuggestions: widget.enableSuggestions,
-      textAlignVertical: widget.textAlignVertical,
-      expands: widget.expands,
+    final theme = Theme.of(context);
+
+    Widget input = SizedBox(
+      height: widget.maxLines == 1 ? _getInputHeight() : null,
+      child: TextField(
+        controller: _controller,
+        focusNode: _focusNode,
+        onChanged: widget.onChanged,
+        onSubmitted: widget.onSubmitted,
+        enabled: !widget.isDisabled,
+        readOnly: widget.isReadOnly,
+        obscureText: widget.obscureText && _obscureText,
+        maxLines: widget.maxLines,
+        keyboardType: widget.keyboardType,
+        decoration: _buildDecoration(theme),
+      ),
     );
 
-    if (widget.labelPlacement == LabelPlacement.outside ||
-        widget.labelPlacement == LabelPlacement.outsideLeft) {
-      Widget? labelWidget;
-      if (widget.label != null) {
-        final labelText =
-            widget.isRequired ? '${widget.label} *' : widget.label!;
-        labelWidget = Text(
-          labelText,
-          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+    if (widget.labelPlacement == LabelPlacement.outside &&
+        widget.label != null) {
+      input = Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            widget.label! + (widget.isRequired ? ' *' : ''),
+            style: theme.textTheme.bodyMedium?.copyWith(
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          const SizedBox(height: 6),
+          input,
+        ],
+      );
+    } else if (widget.labelPlacement == LabelPlacement.outsideLeft &&
+        widget.label != null) {
+      input = Row(
+        children: [
+          SizedBox(
+            width: 120,
+            child: Text(
+              widget.label! + (widget.isRequired ? ' *' : ''),
+              style: theme.textTheme.bodyMedium?.copyWith(
                 fontWeight: FontWeight.w500,
               ),
-        );
-      }
-
-      if (widget.labelPlacement == LabelPlacement.outsideLeft) {
-        inputField = Row(
-          children: [
-            if (labelWidget != null) ...[
-              labelWidget,
-              const SizedBox(width: 12),
-            ],
-            Expanded(child: inputField),
-          ],
-        );
-      } else {
-        inputField = Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            if (labelWidget != null) ...[
-              labelWidget,
-              const SizedBox(height: 8),
-            ],
-            inputField,
-          ],
-        );
-      }
+            ),
+          ),
+          const SizedBox(width: 12),
+          Expanded(child: input),
+        ],
+      );
     }
 
-    return Container(
-      margin: widget.margin,
-      width: widget.fullWidth ? double.infinity : widget.width,
-      height: widget.height,
-      child: inputField,
-    );
+    return input;
   }
 }
 
-/// A specialized input for One-Time Passwords (OTP)
+/// An OTP (One-Time Password) input component with customizable length and styling.
 class NextInputOTP extends StatefulWidget {
-  /// Creates an OTP input component.
+  /// Creates a NextInputOTP.
   const NextInputOTP({
+    required this.length,
     super.key,
-    this.length = 6,
     this.onChanged,
     this.onCompleted,
     this.separator,
     this.size = InputSize.md,
-    this.color = InputColor.primary,
+    this.color = InputColor.defaultColor,
+    this.spacing = 8.0,
     this.isDisabled = false,
     this.isInvalid = false,
-    this.autoFocus = true,
     this.obscureText = false,
     this.keyboardType = TextInputType.number,
-    this.inputFormatters,
-    this.spacing = 8.0,
-    this.width,
-    this.height,
   });
 
   /// Number of OTP digits
   final int length;
 
-  /// Called when any digit changes
+  /// Called when the OTP value changes
   final ValueChanged<String>? onChanged;
 
-  /// Called when all digits are entered
+  /// Called when the OTP is completed
   final ValueChanged<String>? onCompleted;
 
-  /// Widget to display between input fields
+  /// Custom separator widget between fields
   final Widget? separator;
 
-  /// Size of the input fields
+  /// Input field size
   final InputSize size;
 
   /// Color theme
   final InputColor color;
 
-  /// Whether the inputs are disabled
+  /// Spacing between fields
+  final double spacing;
+
+  /// Disabled state
   final bool isDisabled;
 
-  /// Whether the inputs are in an invalid state
+  /// Invalid state
   final bool isInvalid;
 
-  /// Whether to auto-focus the first field
-  final bool autoFocus;
-
-  /// Whether to obscure the text
+  /// Hide input text
   final bool obscureText;
 
   /// Keyboard type
   final TextInputType keyboardType;
-
-  /// Input formatters
-  final List<TextInputFormatter>? inputFormatters;
-
-  /// Spacing between input fields
-  final double spacing;
-
-  /// Fixed width
-  final double? width;
-
-  /// Fixed height
-  final double? height;
 
   @override
   State<NextInputOTP> createState() => _NextInputOTPState();
@@ -572,20 +419,14 @@ class NextInputOTP extends StatefulWidget {
 class _NextInputOTPState extends State<NextInputOTP> {
   late List<TextEditingController> _controllers;
   late List<FocusNode> _focusNodes;
-  String _value = '';
+  String _otpValue = '';
 
   @override
   void initState() {
     super.initState();
-    _controllers = List.generate(widget.length, (_) => TextEditingController());
+    _controllers =
+        List.generate(widget.length, (index) => TextEditingController());
     _focusNodes = List.generate(widget.length, (index) => FocusNode());
-
-    // Auto focus first field
-    if (widget.autoFocus && _focusNodes.isNotEmpty) {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        _focusNodes[0].requestFocus();
-      });
-    }
   }
 
   @override
@@ -599,43 +440,32 @@ class _NextInputOTPState extends State<NextInputOTP> {
     super.dispose();
   }
 
-  void _onChanged(int index, String value) {
-    if (value.length > 1) {
-      // Handle pasted content
-      final chars = value.split('');
-      for (var i = 0; i < chars.length && (index + i) < widget.length; i++) {
-        _controllers[index + i].text = chars[i];
-      }
-      // Focus the next empty field or the last field
-      final nextIndex = (index + chars.length).clamp(0, widget.length - 1);
-      _focusNodes[nextIndex].requestFocus();
-    } else if (value.isNotEmpty) {
-      // Move to next field
-      if (index < widget.length - 1) {
-        _focusNodes[index + 1].requestFocus();
-      }
-    }
-
-    _updateValue();
-  }
-
-  void _onKeyPressed(int index, String value) {
-    if (value.isEmpty && index > 0) {
-      // Move to previous field on backspace
-      _focusNodes[index - 1].requestFocus();
-    }
-    _updateValue();
-  }
-
-  void _updateValue() {
+  void _updateOTPValue() {
     final newValue = _controllers.map((c) => c.text).join();
-    if (newValue != _value) {
-      _value = newValue;
-      widget.onChanged?.call(_value);
+    if (newValue != _otpValue) {
+      _otpValue = newValue;
+      widget.onChanged?.call(_otpValue);
 
-      if (_value.length == widget.length) {
-        widget.onCompleted?.call(_value);
+      if (_otpValue.length == widget.length) {
+        widget.onCompleted?.call(_otpValue);
       }
+    }
+  }
+
+  Color _getThemeColor(ThemeData theme) {
+    switch (widget.color) {
+      case InputColor.primary:
+        return theme.colorScheme.primary;
+      case InputColor.secondary:
+        return theme.colorScheme.secondary;
+      case InputColor.success:
+        return const Color(0xFF4CAF50);
+      case InputColor.warning:
+        return const Color(0xFFFF9800);
+      case InputColor.danger:
+        return theme.colorScheme.error;
+      case InputColor.defaultColor:
+        return theme.colorScheme.primary;
     }
   }
 
@@ -652,50 +482,89 @@ class _NextInputOTPState extends State<NextInputOTP> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     final fieldSize = _getFieldSize();
 
-    final children = <Widget>[];
+    final fields = <Widget>[];
+
     for (var i = 0; i < widget.length; i++) {
-      children.add(
+      if (i > 0 && widget.separator != null) {
+        fields.add(widget.separator!);
+      }
+
+      fields.add(
         SizedBox(
           width: fieldSize,
           height: fieldSize,
-          child: NextInput(
+          child: TextField(
             controller: _controllers[i],
             focusNode: _focusNodes[i],
-            onChanged: (value) => _onChanged(i, value),
-            textAlign: TextAlign.center,
-            keyboardType: widget.keyboardType,
-            inputFormatters: [
-              LengthLimitingTextInputFormatter(1),
-              ...?widget.inputFormatters,
-            ],
-            isDisabled: widget.isDisabled,
-            isInvalid: widget.isInvalid,
+            enabled: !widget.isDisabled,
             obscureText: widget.obscureText,
-            color: widget.color,
-            size: widget.size,
-            fullWidth: false,
+            keyboardType: widget.keyboardType,
+            textAlign: TextAlign.center,
+            maxLength: 1,
+            inputFormatters: [
+              FilteringTextInputFormatter.deny(RegExp(r'\s')), // No spaces
+            ],
+            onChanged: (value) {
+              if (value.isNotEmpty) {
+                if (i < widget.length - 1) {
+                  _focusNodes[i + 1].requestFocus();
+                } else {
+                  _focusNodes[i].unfocus();
+                }
+              } else if (value.isEmpty && i > 0) {
+                _focusNodes[i - 1].requestFocus();
+              }
+              _updateOTPValue();
+            },
+            decoration: InputDecoration(
+              counterText: '',
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8),
+                borderSide: BorderSide(
+                  color: widget.isInvalid
+                      ? theme.colorScheme.error
+                      : theme.colorScheme.outline.withOpacity(0.5),
+                ),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8),
+                borderSide: BorderSide(
+                  color: widget.isInvalid
+                      ? theme.colorScheme.error
+                      : _getThemeColor(theme),
+                  width: 2,
+                ),
+              ),
+              errorBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8),
+                borderSide: BorderSide(color: theme.colorScheme.error),
+              ),
+              focusedErrorBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8),
+                borderSide:
+                    BorderSide(color: theme.colorScheme.error, width: 2),
+              ),
+              filled: true,
+              fillColor: widget.isDisabled
+                  ? theme.colorScheme.onSurface.withOpacity(0.05)
+                  : theme.colorScheme.surface,
+              contentPadding: EdgeInsets.zero,
+            ),
           ),
         ),
       );
 
-      if (i < widget.length - 1) {
-        if (widget.separator != null) {
-          children.add(widget.separator!);
-        } else {
-          children.add(SizedBox(width: widget.spacing));
-        }
+      if (i < widget.length - 1 && widget.separator == null) {
+        fields.add(SizedBox(width: widget.spacing));
       }
     }
 
-    return SizedBox(
-      width: widget.width,
-      height: widget.height,
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: children,
-      ),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: fields,
     );
   }
 }

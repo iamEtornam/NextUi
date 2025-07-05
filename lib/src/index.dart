@@ -1,3 +1,6 @@
+/// Next UI Components Library
+library next_ui;
+
 export 'package:next_ui/src/base/colors.dart';
 export 'package:next_ui/src/base/enums.dart';
 export 'package:next_ui/src/base/text_typography.dart';

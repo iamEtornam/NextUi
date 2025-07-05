@@ -111,7 +111,6 @@ class MyApp extends StatelessWidget {
 | **Switch**            | 3 sizes, 6 colors, label support, icons, disabled states | ✅ Complete |
 | **Input**             | 4 variants, 3 sizes, 6 colors, validation, OTP support   | ✅ Complete |
 | **Switch**            | 3 sizes, 6 colors, label support, icons, disabled states | ✅ Complete |
-| **Input**             | 4 variants, 3 sizes, 6 colors, validation, OTP support   | ✅ Complete |
 | **Checkbox**          | 3 sizes, 6 colors, indeterminate state, validation       | ✅ Complete |
 | **Checkbox Group**    | Multi-selection, validation, orientation control         | ✅ Complete |
 | **Radio Group**       | Single selection, validation, horizontal/vertical layout | ✅ Complete |
@@ -326,7 +325,7 @@ NextInput(
 
 ### Input OTP
 
-```dart
+````dart
 // Basic 6-digit OTP
 NextInputOTP(
   length: 6,
@@ -471,7 +470,7 @@ NextInput(
   labelPlacement: LabelPlacement.outside,
   label: 'Outside Label',
 );
-```
+````
 
 ### Input OTP
 
@@ -593,6 +592,8 @@ The example app features:
 - **7 Interactive Tabs**: Buttons, Chips, Inputs, Checkboxes, Radio Groups,
 - **7 Interactive Tabs**: Buttons, Chips, Switches, Inputs, Checkboxes, Radio Groups,
   Progress, Typography
+- **7 Interactive Tabs**: Buttons, Chips, Switches, Inputs, Checkboxes, Radio
+  Groups, Progress, Typography
 - **Live Demonstrations**: All variants, sizes, colors, and states
 - **Interactive Controls**: Real-time component customization
 - **Best Practices**: Proper usage patterns and code examples
@@ -720,6 +721,7 @@ Button.solid(color: ButtonColor.secondary);  // Purple
 | `isInvalid`    | `bool`                  | Invalid state           |
 | `obscureText`  | `bool`                  | Hide input text         |
 | `keyboardType` | `TextInputType`         | Keyboard type           |
+
 ### NextSwitch
 
 | Property           | Type                  | Description                |
@@ -743,6 +745,7 @@ Button.solid(color: ButtonColor.secondary);  // Purple
 | `focusNode`        | `FocusNode?`          | Focus node                 |
 | `margin`           | `EdgeInsetsGeometry?` | External margin            |
 | `padding`          | `EdgeInsetsGeometry?` | Internal padding           |
+
 ### NextInput
 
 | Property         | Type                     | Description              |

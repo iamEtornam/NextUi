@@ -1,3 +1,6 @@
+/// Base enums for Next UI components
+library;
+
 /// Next UI Button size
 enum ButtonSize {
   /// small button
@@ -206,37 +209,6 @@ enum InputVariant {
 
 /// Input color options
 enum InputColor {
-/// Switch size options
-enum SwitchSize {
-  /// Small switch size
-  sm,
-
-  /// Medium switch size
-  md,
-
-  /// Large switch size
-  lg,
-}
-
-/// Switch color options
-enum SwitchColor {
-/// Input variant options
-enum InputVariant {
-  /// Flat variant
-  flat,
-
-  /// Bordered variant
-  bordered,
-
-  /// Faded variant
-  faded,
-
-  /// Underlined variant
-  underlined,
-}
-
-/// Input color options
-enum InputColor {
   /// Default color
   defaultColor,
 
@@ -296,4 +268,37 @@ enum LabelPlacement {
 
   /// Outside to the left of the input
   outsideLeft,
+}
+
+/// Switch size options
+enum SwitchSize {
+  /// Small switch size
+  sm,
+
+  /// Medium switch size
+  md,
+
+  /// Large switch size
+  lg,
+}
+
+/// Switch color options
+enum SwitchColor {
+  /// Default color
+  defaultColor,
+
+  /// Primary color
+  primary,
+
+  /// Secondary color
+  secondary,
+
+  /// Success color
+  success,
+
+  /// Warning color
+  warning,
+
+  /// Danger color
+  danger,
 }

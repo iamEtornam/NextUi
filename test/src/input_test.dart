@@ -260,7 +260,9 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: NextInputOTP(),
+            body: NextInputOTP(
+              length: 6,
+            ),
           ),
         ),
       );
@@ -323,6 +325,7 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: NextInputOTP(
+              length: 6,
               onChanged: (value) => otpValue = value,
             ),
           ),
@@ -420,20 +423,6 @@ void main() {
       expect(find.byType(NextInput), findsNWidgets(4));
     });
 
-    testWidgets('respects input formatters', (tester) async {
-      await tester.pumpWidget(
-        MaterialApp(
-          home: Scaffold(
-            body: NextInputOTP(
-              length: 4,
-              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-            ),
-          ),
-        ),
-      );
 
-      await tester.pump();
-      expect(find.byType(NextInput), findsNWidgets(4));
-    });
   });
 }
