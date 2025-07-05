@@ -82,6 +82,7 @@ class _ComponentsDemoPageState extends State<ComponentsDemoPage>
             Tab(text: 'Buttons'),
             Tab(text: 'Chips'),
             Tab(text: 'Switches'),
+            Tab(text: 'Inputs'),
             Tab(text: 'Checkboxes'),
             Tab(text: 'Radio Groups'),
             Tab(text: 'Progress'),
@@ -95,6 +96,7 @@ class _ComponentsDemoPageState extends State<ComponentsDemoPage>
           _buildButtonsTab(),
           _buildChipsTab(),
           _buildSwitchesTab(),
+          _buildInputsTab(),
           _buildCheckboxTab(),
           _buildRadioTab(),
           _buildProgressTab(),
@@ -309,6 +311,15 @@ class _ComponentsDemoPageState extends State<ComponentsDemoPage>
         bool wifiSwitch = true;
         bool bluetoothSwitch = false;
         bool airplaneModeSwitch = false;
+  Widget _buildInputsTab() {
+    return StatefulBuilder(
+      builder: (context, setState) {
+        String emailValue = '';
+        String passwordValue = '';
+        String searchValue = '';
+        String textareaValue = '';
+        String otpValue = '';
+        bool isEmailInvalid = false;
 
         return SingleChildScrollView(
           child: Column(
@@ -412,6 +423,238 @@ class _ComponentsDemoPageState extends State<ComponentsDemoPage>
                       color: Colors.amber,
                     ),
                     onValueChange: (value) {},
+                title: 'Input Variants',
+                children: [
+                  SizedBox(
+                    width: 300,
+                    child: NextInput(
+                      variant: InputVariant.flat,
+                      label: 'Flat Input',
+                      placeholder: 'Enter text...',
+                      onChanged: (value) => setState(() => emailValue = value),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 300,
+                    child: NextInput(
+                      variant: InputVariant.bordered,
+                      label: 'Bordered Input',
+                      placeholder: 'Enter text...',
+                    ),
+                  ),
+                  SizedBox(
+                    width: 300,
+                    child: NextInput(
+                      variant: InputVariant.faded,
+                      label: 'Faded Input',
+                      placeholder: 'Enter text...',
+                    ),
+                  ),
+                  SizedBox(
+                    width: 300,
+                    child: NextInput(
+                      variant: InputVariant.underlined,
+                      label: 'Underlined Input',
+                      placeholder: 'Enter text...',
+                    ),
+                  ),
+                ],
+              ),
+              _buildSection(
+                title: 'Input Sizes',
+                children: [
+                  SizedBox(
+                    width: 250,
+                    child: NextInput(
+                      size: InputSize.sm,
+                      label: 'Small Input',
+                      placeholder: 'Small...',
+                    ),
+                  ),
+                  SizedBox(
+                    width: 250,
+                    child: NextInput(
+                      size: InputSize.md,
+                      label: 'Medium Input',
+                      placeholder: 'Medium...',
+                    ),
+                  ),
+                  SizedBox(
+                    width: 250,
+                    child: NextInput(
+                      size: InputSize.lg,
+                      label: 'Large Input',
+                      placeholder: 'Large...',
+                    ),
+                  ),
+                ],
+              ),
+              _buildSection(
+                title: 'Input Colors',
+                children: [
+                  SizedBox(
+                    width: 250,
+                    child: NextInput(
+                      color: InputColor.primary,
+                      label: 'Primary',
+                      placeholder: 'Primary input...',
+                    ),
+                  ),
+                  SizedBox(
+                    width: 250,
+                    child: NextInput(
+                      color: InputColor.secondary,
+                      label: 'Secondary',
+                      placeholder: 'Secondary input...',
+                    ),
+                  ),
+                  SizedBox(
+                    width: 250,
+                    child: NextInput(
+                      color: InputColor.success,
+                      label: 'Success',
+                      placeholder: 'Success input...',
+                    ),
+                  ),
+                  SizedBox(
+                    width: 250,
+                    child: NextInput(
+                      color: InputColor.warning,
+                      label: 'Warning',
+                      placeholder: 'Warning input...',
+                    ),
+                  ),
+                  SizedBox(
+                    width: 250,
+                    child: NextInput(
+                      color: InputColor.danger,
+                      label: 'Danger',
+                      placeholder: 'Danger input...',
+                    ),
+                  ),
+                ],
+              ),
+              _buildSection(
+                title: 'Label Placements',
+                children: [
+                  SizedBox(
+                    width: 280,
+                    child: NextInput(
+                      labelPlacement: LabelPlacement.inside,
+                      label: 'Inside Label',
+                      placeholder: 'Placeholder text...',
+                    ),
+                  ),
+                  SizedBox(
+                    width: 280,
+                    child: NextInput(
+                      labelPlacement: LabelPlacement.outside,
+                      label: 'Outside Label',
+                      placeholder: 'Placeholder text...',
+                    ),
+                  ),
+                  SizedBox(
+                    width: 280,
+                    child: NextInput(
+                      labelPlacement: LabelPlacement.outsideLeft,
+                      label: 'Outside Left',
+                      placeholder: 'Placeholder text...',
+                    ),
+                  ),
+                ],
+              ),
+              _buildSection(
+                title: 'Input States',
+                children: [
+                  SizedBox(
+                    width: 280,
+                    child: NextInput(
+                      isRequired: true,
+                      label: 'Required Input',
+                      placeholder: 'This field is required',
+                    ),
+                  ),
+                  SizedBox(
+                    width: 280,
+                    child: NextInput(
+                      isDisabled: true,
+                      label: 'Disabled Input',
+                      placeholder: 'This input is disabled',
+                    ),
+                  ),
+                  SizedBox(
+                    width: 280,
+                    child: NextInput(
+                      isReadOnly: true,
+                      label: 'Read Only Input',
+                      value: 'Read only value',
+                    ),
+                  ),
+                  SizedBox(
+                    width: 280,
+                    child: NextInput(
+                      isInvalid: true,
+                      label: 'Invalid Input',
+                      placeholder: 'This input has an error',
+                      errorMessage: 'This field is invalid',
+                    ),
+                  ),
+                ],
+              ),
+              _buildSection(
+                title: 'Special Input Types',
+                children: [
+                  SizedBox(
+                    width: 300,
+                    child: NextInput(
+                      label: 'Email',
+                      placeholder: 'Enter your email',
+                      keyboardType: TextInputType.emailAddress,
+                      startContent: const Icon(Icons.email, size: 20),
+                      isInvalid: isEmailInvalid,
+                      errorMessage: isEmailInvalid
+                          ? 'Please enter a valid email'
+                          : null,
+                      onChanged: (value) {
+                        setState(() {
+                          emailValue = value;
+                          isEmailInvalid =
+                              value.isNotEmpty && !value.contains('@');
+                        });
+                      },
+                    ),
+                  ),
+                  SizedBox(
+                    width: 300,
+                    child: NextInput(
+                      label: 'Password',
+                      placeholder: 'Enter your password',
+                      obscureText: true,
+                      startContent: const Icon(Icons.lock, size: 20),
+                      onChanged: (value) =>
+                          setState(() => passwordValue = value),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 300,
+                    child: NextInput(
+                      label: 'Search',
+                      placeholder: 'Search...',
+                      isClearable: true,
+                      startContent: const Icon(Icons.search, size: 20),
+                      onChanged: (value) => setState(() => searchValue = value),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 300,
+                    child: NextInput(
+                      label: 'Message',
+                      placeholder: 'Enter your message...',
+                      maxLines: 4,
+                      description: 'Tell us what you think',
+                      onChanged: (value) =>
+                          setState(() => textareaValue = value),
+                    ),
                   ),
                 ],
               ),
@@ -422,6 +665,7 @@ class _ComponentsDemoPageState extends State<ComponentsDemoPage>
                   children: [
                     Text(
                       'Settings Example',
+                      'Input OTP',
                       style: Theme.of(context).textTheme.headlineSmall
                           ?.copyWith(fontWeight: FontWeight.bold),
                     ),
@@ -535,6 +779,68 @@ class _ComponentsDemoPageState extends State<ComponentsDemoPage>
                       isSelected: true,
                       isReadOnly: true,
                       label: Text('Read-only Switch'),
+
+                    // 6-digit OTP
+                    NextInputOTP(
+                      length: 6,
+                      onChanged: (value) => setState(() => otpValue = value),
+                      onCompleted: (value) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text('OTP Completed: $value'),
+                            duration: const Duration(seconds: 2),
+                          ),
+                        );
+                      },
+                    ),
+                    const SizedBox(height: 16),
+                    Text('Current OTP: $otpValue'),
+
+                    const SizedBox(height: 32),
+
+                    // 4-digit OTP with custom styling
+                    Text(
+                      'Custom 4-digit OTP',
+                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                    NextInputOTP(
+                      length: 4,
+                      size: InputSize.lg,
+                      color: InputColor.success,
+                      spacing: 12,
+                      onCompleted: (value) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text('4-digit OTP: $value'),
+                            backgroundColor: Colors.green,
+                          ),
+                        );
+                      },
+                    ),
+
+                    const SizedBox(height: 32),
+
+                    // OTP with separator
+                    Text(
+                      'OTP with Separator',
+                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                    NextInputOTP(
+                      length: 6,
+                      separator: const Text(
+                        '-',
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      color: InputColor.primary,
                     ),
                   ],
                 ),
