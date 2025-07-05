@@ -70,6 +70,14 @@ class MyApp extends StatelessWidget {
               ),
               SizedBox(height: 16),
               
+              // Input Example
+              NextInput(
+                label: 'Email',
+                placeholder: 'Enter your email',
+                startContent: Icon(Icons.email),
+              ),
+              SizedBox(height: 16),
+              
               // Chip Example
               NextChip.solid(
                 child: Text('Success'),
@@ -103,6 +111,7 @@ class MyApp extends StatelessWidget {
 | **Switch**            | 3 sizes, 6 colors, label support, icons, disabled states | ✅ Complete |
 | **Input**             | 4 variants, 3 sizes, 6 colors, validation, OTP support   | ✅ Complete |
 | **Switch**            | 3 sizes, 6 colors, label support, icons, disabled states | ✅ Complete |
+| **Input**             | 4 variants, 3 sizes, 6 colors, validation, OTP support   | ✅ Complete |
 | **Checkbox**          | 3 sizes, 6 colors, indeterminate state, validation       | ✅ Complete |
 | **Checkbox Group**    | Multi-selection, validation, orientation control         | ✅ Complete |
 | **Radio Group**       | Single selection, validation, horizontal/vertical layout | ✅ Complete |
@@ -118,6 +127,7 @@ class MyApp extends StatelessWidget {
 | Input/TextField    | 🔄 Planned |
 | Switch             | 🔄 Planned |
 | Input/TextField    | 🔄 Planned |
+| Switch             | 🔄 Planned |
 | Avatar             | 🔄 Planned |
 | Badge              | 🔄 Planned |
 | Modal              | 🔄 Planned |
@@ -404,6 +414,93 @@ NextSwitch(
       isEnabled = value;
     });
   },
+### Input
+
+```dart
+// Basic Input
+NextInput(
+  label: 'Username',
+  placeholder: 'Enter your username',
+);
+
+// Input Variants
+NextInput(variant: InputVariant.flat);      // Default
+NextInput(variant: InputVariant.bordered);  // With border
+NextInput(variant: InputVariant.faded);     // Faded background
+NextInput(variant: InputVariant.underlined);// Underlined
+
+// Colors and Sizes
+NextInput(
+  color: InputColor.primary,
+  size: InputSize.lg,
+  label: 'Large Primary Input',
+);
+
+// Password Input
+NextInput(
+  label: 'Password',
+  obscureText: true,
+  startContent: Icon(Icons.lock),
+);
+
+// Input with Validation
+NextInput(
+  label: 'Email',
+  isRequired: true,
+  isInvalid: emailError,
+  errorMessage: 'Please enter a valid email',
+  keyboardType: TextInputType.emailAddress,
+);
+
+// Clearable Input
+NextInput(
+  label: 'Search',
+  isClearable: true,
+  startContent: Icon(Icons.search),
+);
+
+// Textarea
+NextInput(
+  label: 'Message',
+  maxLines: 4,
+  description: 'Tell us what you think',
+);
+
+// Label Placements
+NextInput(
+  labelPlacement: LabelPlacement.outside,
+  label: 'Outside Label',
+);
+```
+
+### Input OTP
+
+```dart
+// Basic 6-digit OTP
+NextInputOTP(
+  length: 6,
+  onCompleted: (value) => print('OTP: $value'),
+);
+
+// Custom 4-digit OTP
+NextInputOTP(
+  length: 4,
+  size: InputSize.lg,
+  color: InputColor.success,
+  spacing: 12,
+);
+
+// OTP with Separator
+NextInputOTP(
+  length: 6,
+  separator: Text('-', style: TextStyle(fontSize: 24)),
+);
+
+// Secure OTP
+NextInputOTP(
+  length: 4,
+  obscureText: true,
+  keyboardType: TextInputType.number,
 );
 ```
 
@@ -646,6 +743,50 @@ Button.solid(color: ButtonColor.secondary);  // Purple
 | `focusNode`        | `FocusNode?`          | Focus node                 |
 | `margin`           | `EdgeInsetsGeometry?` | External margin            |
 | `padding`          | `EdgeInsetsGeometry?` | Internal padding           |
+### NextInput
+
+| Property         | Type                     | Description              |
+| ---------------- | ------------------------ | ------------------------ |
+| `controller`     | `TextEditingController?` | Text editing controller  |
+| `value`          | `String?`                | Initial text value       |
+| `onChanged`      | `ValueChanged<String>?`  | Text change callback     |
+| `onSubmitted`    | `ValueChanged<String>?`  | Submit callback          |
+| `onClear`        | `VoidCallback?`          | Clear button callback    |
+| `variant`        | `InputVariant`           | Visual style variant     |
+| `color`          | `InputColor`             | Color theme              |
+| `size`           | `InputSize`              | Input field size         |
+| `radius`         | `InputRadius`            | Border radius            |
+| `labelPlacement` | `LabelPlacement`         | Label position           |
+| `label`          | `String?`                | Label text               |
+| `placeholder`    | `String?`                | Placeholder text         |
+| `description`    | `String?`                | Helper description       |
+| `errorMessage`   | `String?`                | Error message            |
+| `startContent`   | `Widget?`                | Leading widget           |
+| `endContent`     | `Widget?`                | Trailing widget          |
+| `isRequired`     | `bool`                   | Required field indicator |
+| `isDisabled`     | `bool`                   | Disabled state           |
+| `isReadOnly`     | `bool`                   | Read-only state          |
+| `isInvalid`      | `bool`                   | Invalid state            |
+| `isClearable`    | `bool`                   | Show clear button        |
+| `obscureText`    | `bool`                   | Password mode            |
+| `maxLines`       | `int?`                   | Maximum lines            |
+| `keyboardType`   | `TextInputType?`         | Keyboard type            |
+
+### NextInputOTP
+
+| Property       | Type                    | Description             |
+| -------------- | ----------------------- | ----------------------- |
+| `length`       | `int`                   | Number of OTP digits    |
+| `onChanged`    | `ValueChanged<String>?` | Value change callback   |
+| `onCompleted`  | `ValueChanged<String>?` | Completion callback     |
+| `separator`    | `Widget?`               | Custom separator widget |
+| `size`         | `InputSize`             | Input field size        |
+| `color`        | `InputColor`            | Color theme             |
+| `spacing`      | `double`                | Spacing between fields  |
+| `isDisabled`   | `bool`                  | Disabled state          |
+| `isInvalid`    | `bool`                  | Invalid state           |
+| `obscureText`  | `bool`                  | Hide input text         |
+| `keyboardType` | `TextInputType`         | Keyboard type           |
 
 ### NextCheckbox
 

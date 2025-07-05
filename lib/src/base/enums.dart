@@ -220,6 +220,23 @@ enum SwitchSize {
 
 /// Switch color options
 enum SwitchColor {
+/// Input variant options
+enum InputVariant {
+  /// Flat variant
+  flat,
+
+  /// Bordered variant
+  bordered,
+
+  /// Faded variant
+  faded,
+
+  /// Underlined variant
+  underlined,
+}
+
+/// Input color options
+enum InputColor {
   /// Default color
   defaultColor,
 
