@@ -192,6 +192,25 @@ enum SwitchSize {
 
 /// Switch color options
 enum SwitchColor {
+  /// Default color
+  defaultColor,
+
+  /// Primary color
+  primary,
+
+  /// Secondary color
+  secondary,
+
+  /// Success color
+  success,
+
+  /// Warning color
+  warning,
+
+  /// Danger color
+  danger,
+}
+
 /// Input variant options
 enum InputVariant {
   /// Flat variant
@@ -268,37 +287,4 @@ enum LabelPlacement {
 
   /// Outside to the left of the input
   outsideLeft,
-}
-
-/// Switch size options
-enum SwitchSize {
-  /// Small switch size
-  sm,
-
-  /// Medium switch size
-  md,
-
-  /// Large switch size
-  lg,
-}
-
-/// Switch color options
-enum SwitchColor {
-  /// Default color
-  defaultColor,
-
-  /// Primary color
-  primary,
-
-  /// Secondary color
-  secondary,
-
-  /// Success color
-  success,
-
-  /// Warning color
-  warning,
-
-  /// Danger color
-  danger,
 }

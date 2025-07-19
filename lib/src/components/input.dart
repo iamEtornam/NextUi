@@ -274,8 +274,11 @@ class _NextInputState extends State<NextInput> {
     }
 
     return InputDecoration(
-      labelText:
-          widget.labelPlacement == LabelPlacement.inside ? widget.label : null,
+      labelText: widget.labelPlacement == LabelPlacement.inside
+          ? (widget.label != null
+              ? widget.label! + (widget.isRequired ? ' *' : '')
+              : null)
+          : null,
       hintText: widget.placeholder,
       helperText: widget.description,
       errorText: widget.isInvalid ? widget.errorMessage : null,

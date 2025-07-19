@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:next_ui/next_ui.dart';
 
@@ -267,8 +266,8 @@ void main() {
         ),
       );
 
-      // Should find 6 NextInput widgets
-      expect(find.byType(NextInput), findsNWidgets(6));
+      // Should find 6 TextField widgets
+      expect(find.byType(TextField), findsNWidgets(6));
     });
 
     testWidgets('handles input and auto-focuses next field', (tester) async {
@@ -286,7 +285,7 @@ void main() {
       );
 
       // Enter digit in first field
-      final firstField = find.byType(NextInput).first;
+      final firstField = find.byType(TextField).first;
       await tester.enterText(firstField, '1');
       await tester.pump();
 
@@ -308,7 +307,7 @@ void main() {
       );
 
       // Fill all fields
-      final fields = find.byType(NextInput);
+      final fields = find.byType(TextField);
       await tester.enterText(fields.at(0), '1');
       await tester.enterText(fields.at(1), '2');
       await tester.enterText(fields.at(2), '3');
@@ -333,7 +332,7 @@ void main() {
       );
 
       // Simulate pasting "123456" in the first field
-      final firstField = find.byType(NextInput).first;
+      final firstField = find.byType(TextField).first;
       await tester.enterText(firstField, '123456');
       await tester.pump();
 
@@ -370,7 +369,7 @@ void main() {
 
       // All input fields should be disabled
       await tester.pump();
-      expect(find.byType(NextInput), findsNWidgets(4));
+      expect(find.byType(TextField), findsNWidgets(4));
     });
 
     testWidgets('handles different sizes', (tester) async {
@@ -387,7 +386,7 @@ void main() {
         );
 
         await tester.pump();
-        expect(find.byType(NextInput), findsNWidgets(4));
+        expect(find.byType(TextField), findsNWidgets(4));
       }
     });
 
@@ -404,7 +403,7 @@ void main() {
       );
 
       await tester.pump();
-      expect(find.byType(NextInput), findsNWidgets(4));
+      expect(find.byType(TextField), findsNWidgets(4));
     });
 
     testWidgets('handles custom keyboard type', (tester) async {
@@ -420,9 +419,7 @@ void main() {
       );
 
       await tester.pump();
-      expect(find.byType(NextInput), findsNWidgets(4));
+      expect(find.byType(TextField), findsNWidgets(4));
     });
-
-
   });
 }
