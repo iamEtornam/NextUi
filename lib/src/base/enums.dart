@@ -178,6 +178,40 @@ enum SpinnerPlacement {
   end,
 }
 
+/// Card shadow options
+enum CardShadow {
+  /// No shadow
+  none,
+  /// Small shadow
+  sm,
+  /// Medium shadow
+  md,
+  /// Large shadow
+  lg,
+}
+
+/// Card radius options
+enum CardRadius {
+  /// No border radius
+  none,
+  /// Small border radius
+  sm,
+  /// Medium border radius
+  md,
+  /// Large border radius
+  lg,
+}
+
+/// Card size options
+enum CardSize {
+  /// Small card size
+  sm,
+  /// Medium card size
+  md,
+  /// Large card size
+  lg,
+}
+
 /// Switch size options
 enum SwitchSize {
   /// Small switch size

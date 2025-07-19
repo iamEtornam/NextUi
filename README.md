@@ -85,6 +85,17 @@ class MyApp extends StatelessWidget {
               ),
               SizedBox(height: 16),
               
+              // Card Example
+              NextCard(
+                header: Text('Welcome'),
+                body: Text('This is a beautiful card component.'),
+                footer: ElevatedButton(
+                  onPressed: () {},
+                  child: Text('Action'),
+                ),
+              ),
+              SizedBox(height: 16),
+              
               // Progress Example
               NextCircularProgress(
                 value: 0.7,
@@ -107,6 +118,7 @@ class MyApp extends StatelessWidget {
 | Component             | Features                                                 | Status      |
 | --------------------- | -------------------------------------------------------- | ----------- |
 | **Button**            | 7 variants, 3 sizes, 6 colors, loading states, icons     | ✅ Complete |
+| **Card**              | Header/body/footer structure, shadows, radius, interactive | ✅ Complete |
 | **Chip**              | 7 variants, 3 sizes, 6 colors, closable, avatar support  | ✅ Complete |
 | **Switch**            | 3 sizes, 6 colors, label support, icons, disabled states | ✅ Complete |
 | **Input**             | 4 variants, 3 sizes, 6 colors, validation, OTP support   | ✅ Complete |
@@ -117,12 +129,12 @@ class MyApp extends StatelessWidget {
 | **Circular Progress** | Determinate/indeterminate, custom labels, stroke width   | ✅ Complete |
 | **Typography**        | H1-H6, paragraph, caption, multiple weights              | ✅ Complete |
 
+
 ### 🚧 Roadmap
 
 | Planned Components | Status     |
 | ------------------ | ---------- |
 | Button Group       | 🔄 Planned |
-| Card               | 🔄 Planned |
 | Input/TextField    | 🔄 Planned |
 | Switch             | 🔄 Planned |
 | Input/TextField    | 🔄 Planned |
@@ -174,6 +186,69 @@ Button.solid(
   startContent: Icon(Icons.download),
   child: Text('Download'),
   onPressed: () {},
+);
+```
+
+### Card
+
+```dart
+// Basic Card
+NextCard(
+  header: Text('Card Title', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+  body: Text('This is the card body content.'),
+  footer: Row(
+    mainAxisAlignment: MainAxisAlignment.end,
+    children: [
+      TextButton(onPressed: () {}, child: Text('Cancel')),
+      SizedBox(width: 8),
+      ElevatedButton(onPressed: () {}, child: Text('Save')),
+    ],
+  ),
+);
+
+// Pressable Card
+NextCard(
+  isPressable: true,
+  onPressed: () => print('Card pressed'),
+  body: Column(
+    children: [
+      Icon(Icons.favorite, size: 48, color: Colors.red),
+      SizedBox(height: 8),
+      Text('Tap this card'),
+    ],
+  ),
+);
+
+// Different Shadows and Radius
+NextCard(
+  shadow: CardShadow.lg,
+  radius: CardRadius.md,
+  body: Text('Large shadow, medium radius'),
+);
+
+// Blurred Footer
+NextCard(
+  header: Text('Settings'),
+  body: Text('Configure your preferences here.'),
+  footer: Text('Footer with blur effect'),
+  isFooterBlurred: true,
+);
+
+// Using CardHeader, CardBody, CardFooter directly
+NextCard(
+  children: [
+    CardHeader(
+      padding: EdgeInsets.all(20),
+      child: Text('Custom Header'),
+    ),
+    CardBody(
+      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+      child: Text('Custom body content with custom padding.'),
+    ),
+    CardFooter(
+      child: Icon(Icons.star, color: Colors.amber),
+    ),
+  ],
 );
 ```
 
@@ -588,11 +663,7 @@ flutter run
 
 The example app features:
 
-- **7 Interactive Tabs**: Buttons, Chips, Switches, Checkboxes, Radio Groups,
-- **7 Interactive Tabs**: Buttons, Chips, Inputs, Checkboxes, Radio Groups,
-- **7 Interactive Tabs**: Buttons, Chips, Switches, Inputs, Checkboxes, Radio Groups,
-  Progress, Typography
-- **7 Interactive Tabs**: Buttons, Chips, Switches, Inputs, Checkboxes, Radio
+- **7 Interactive Tabs**: Buttons,Cards, Chips, Switches, Inputs, Checkboxes, Radio
   Groups, Progress, Typography
 - **Live Demonstrations**: All variants, sizes, colors, and states
 - **Interactive Controls**: Real-time component customization
@@ -640,6 +711,37 @@ Button.solid(color: ButtonColor.secondary);  // Purple
 | `isDisabled`   | `bool`          | Disabled state |
 | `startContent` | `Widget?`       | Leading icon   |
 | `endContent`   | `Widget?`       | Trailing icon  |
+
+### NextCard
+
+| Property                    | Type                  | Description                   |
+| --------------------------- | --------------------- | ----------------------------- |
+| `header`                    | `Widget?`             | Header content widget         |
+| `body`                      | `Widget?`             | Body content widget           |
+| `footer`                    | `Widget?`             | Footer content widget         |
+| `children`                  | `List<Widget>?`       | Alternative content children  |
+| `shadow`                    | `CardShadow`          | Shadow depth                  |
+| `radius`                    | `CardRadius`          | Border radius                 |
+| `fullWidth`                 | `bool`                | Take full width               |
+| `isHoverable`               | `bool`                | Enable hover effects          |
+| `isPressable`               | `bool`                | Make card pressable           |
+| `isBlurred`                 | `bool`                | Apply blur effect             |
+| `isFooterBlurred`           | `bool`                | Blur footer only              |
+| `isDisabled`                | `bool`                | Disable interactions          |
+| `disableAnimation`          | `bool`                | Disable animations            |
+| `disableRipple`             | `bool`                | Disable ripple effects        |
+| `allowTextSelectionOnPress` | `bool`                | Allow text selection on press |
+| `onPressed`                 | `VoidCallback?`       | Press callback                |
+| `onPressStart`              | `VoidCallback?`       | Press start callback          |
+| `onPressEnd`                | `VoidCallback?`       | Press end callback            |
+| `onPressChange`             | `ValueChanged<bool>?` | Press state change callback   |
+| `onPressUp`                 | `VoidCallback?`       | Press up callback             |
+| `padding`                   | `EdgeInsetsGeometry?` | Internal padding              |
+| `margin`                    | `EdgeInsetsGeometry?` | External margin               |
+| `height`                    | `double?`             | Fixed height                  |
+| `width`                     | `double?`             | Fixed width                   |
+| `decoration`                | `BoxDecoration?`      | Custom decoration             |
+| `constraints`               | `BoxConstraints?`     | Size constraints              |
 
 ### NextChip
 
