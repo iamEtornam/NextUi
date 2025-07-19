@@ -1,3 +1,6 @@
+/// Base enums for Next UI components
+library;
+
 /// Next UI Button size
 enum ButtonSize {
   /// small button
@@ -206,4 +209,82 @@ enum SwitchColor {
 
   /// Danger color
   danger,
+}
+
+/// Input variant options
+enum InputVariant {
+  /// Flat variant
+  flat,
+
+  /// Bordered variant
+  bordered,
+
+  /// Faded variant
+  faded,
+
+  /// Underlined variant
+  underlined,
+}
+
+/// Input color options
+enum InputColor {
+  /// Default color
+  defaultColor,
+
+  /// Primary color
+  primary,
+
+  /// Secondary color
+  secondary,
+
+  /// Success color
+  success,
+
+  /// Warning color
+  warning,
+
+  /// Danger color
+  danger,
+}
+
+/// Input size options
+enum InputSize {
+  /// Small input size
+  sm,
+
+  /// Medium input size
+  md,
+
+  /// Large input size
+  lg,
+}
+
+/// Input radius options
+enum InputRadius {
+  /// No border radius
+  none,
+
+  /// Small border radius
+  sm,
+
+  /// Medium border radius
+  md,
+
+  /// Large border radius
+  lg,
+
+  /// Full border radius
+  full,
+}
+
+/// Input label placement options
+enum LabelPlacement {
+  /// Inside the input
+  inside,
+
+  /// Outside above the input
+  outside,
+
+  /// Outside to the left of the input
+  outsideLeft,
 }

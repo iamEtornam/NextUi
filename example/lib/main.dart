@@ -11,25 +11,25 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Next UI Components Demo',
+      title: 'Next UI Example',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const ComponentsDemoPage(),
+      home: const ComponentShowcasePage(),
     );
   }
 }
 
-class ComponentsDemoPage extends StatefulWidget {
-  const ComponentsDemoPage({super.key});
+class ComponentShowcasePage extends StatefulWidget {
+  const ComponentShowcasePage({super.key});
 
   @override
-  State<ComponentsDemoPage> createState() => _ComponentsDemoPageState();
+  State<ComponentShowcasePage> createState() => _ComponentShowcasePageState();
 }
 
-class _ComponentsDemoPageState extends State<ComponentsDemoPage>
-    with TickerProviderStateMixin {
+class _ComponentShowcasePageState extends State<ComponentShowcasePage>
+    with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
   @override
@@ -48,24 +48,21 @@ class _ComponentsDemoPageState extends State<ComponentsDemoPage>
     required String title,
     required List<Widget> children,
   }) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Text(
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
             title,
             style: Theme.of(
               context,
             ).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold),
           ),
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          child: Wrap(spacing: 16, runSpacing: 16, children: children),
-        ),
-        const SizedBox(height: 24),
-      ],
+          const SizedBox(height: 16),
+          Wrap(spacing: 12, runSpacing: 12, children: children),
+        ],
+      ),
     );
   }
 
@@ -74,18 +71,17 @@ class _ComponentsDemoPageState extends State<ComponentsDemoPage>
     return Scaffold(
       appBar: AppBar(
         title: const Text('Next UI Components'),
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         bottom: TabBar(
           controller: _tabController,
           isScrollable: true,
           tabs: const [
             Tab(text: 'Buttons'),
             Tab(text: 'Chips'),
+            Tab(text: 'Inputs'),
             Tab(text: 'Switches'),
             Tab(text: 'Checkboxes'),
             Tab(text: 'Radio Groups'),
             Tab(text: 'Progress'),
-            Tab(text: 'Typography'),
           ],
         ),
       ),
@@ -94,11 +90,11 @@ class _ComponentsDemoPageState extends State<ComponentsDemoPage>
         children: [
           _buildButtonsTab(),
           _buildChipsTab(),
+          _buildInputsTab(),
           _buildSwitchesTab(),
           _buildCheckboxTab(),
           _buildRadioTab(),
           _buildProgressTab(),
-          _buildTypographyTab(),
         ],
       ),
     );
@@ -117,15 +113,35 @@ class _ComponentsDemoPageState extends State<ComponentsDemoPage>
               Button.light(child: const Text('Light'), onPressed: () {}),
               Button.flat(child: const Text('Flat'), onPressed: () {}),
               Button.ghost(child: const Text('Ghost'), onPressed: () {}),
-              Button(
-                variant: ButtonVariant.faded,
-                child: const Text('Faded'),
+            ],
+          ),
+          _buildSection(
+            title: 'Button Colors',
+            children: [
+              Button.solid(
+                child: const Text('Primary'),
                 onPressed: () {},
+                color: ButtonColor.primary,
               ),
-              Button(
-                variant: ButtonVariant.shadow,
-                child: const Text('Shadow'),
+              Button.solid(
+                child: const Text('Secondary'),
                 onPressed: () {},
+                color: ButtonColor.secondary,
+              ),
+              Button.solid(
+                child: const Text('Success'),
+                onPressed: () {},
+                color: ButtonColor.success,
+              ),
+              Button.solid(
+                child: const Text('Warning'),
+                onPressed: () {},
+                color: ButtonColor.warning,
+              ),
+              Button.solid(
+                child: const Text('Danger'),
+                onPressed: () {},
+                color: ButtonColor.danger,
               ),
             ],
           ),
@@ -133,84 +149,19 @@ class _ComponentsDemoPageState extends State<ComponentsDemoPage>
             title: 'Button Sizes',
             children: [
               Button.solid(
-                size: ButtonSize.sm,
                 child: const Text('Small'),
                 onPressed: () {},
+                size: ButtonSize.sm,
               ),
               Button.solid(
-                size: ButtonSize.md,
                 child: const Text('Medium'),
                 onPressed: () {},
+                size: ButtonSize.md,
               ),
               Button.solid(
-                size: ButtonSize.lg,
                 child: const Text('Large'),
                 onPressed: () {},
-              ),
-            ],
-          ),
-          _buildSection(
-            title: 'Button Colors',
-            children: [
-              Button.solid(
-                color: ButtonColor.primary,
-                child: const Text('Primary'),
-                onPressed: () {},
-              ),
-              Button.solid(
-                color: ButtonColor.secondary,
-                child: const Text('Secondary'),
-                onPressed: () {},
-              ),
-              Button.solid(
-                color: ButtonColor.success,
-                child: const Text('Success'),
-                onPressed: () {},
-              ),
-              Button.solid(
-                color: ButtonColor.warning,
-                child: const Text('Warning'),
-                onPressed: () {},
-              ),
-              Button.solid(
-                color: ButtonColor.danger,
-                child: const Text('Danger'),
-                onPressed: () {},
-              ),
-            ],
-          ),
-          _buildSection(
-            title: 'Button States',
-            children: [
-              Button.solid(child: const Text('Normal'), onPressed: () {}),
-              Button.solid(
-                isLoading: true,
-                onPressed: () {},
-                child: const Text('Loading'),
-              ),
-              Button.solid(
-                isDisabled: true,
-                onPressed: () {},
-                child: const Text('Disabled'),
-              ),
-            ],
-          ),
-          _buildSection(
-            title: 'Button with Icons',
-            children: [
-              Button.solid(
-                startContent: const Icon(Icons.download, size: 16),
-                child: const Text('Download'),
-                onPressed: () {},
-              ),
-              Button.solid(
-                endContent: const Icon(Icons.arrow_forward, size: 16),
-                child: const Text('Next'),
-                onPressed: () {},
-              ),
-              Button.iconOnly(
-                icon: const Icon(Icons.favorite),
-                onPressed: () {},
+                size: ButtonSize.lg,
               ),
             ],
           ),
@@ -237,66 +188,166 @@ class _ComponentsDemoPageState extends State<ComponentsDemoPage>
             ],
           ),
           _buildSection(
-            title: 'Chip Sizes',
-            children: [
-              NextChip.solid(size: ChipSize.sm, child: const Text('Small')),
-              NextChip.solid(size: ChipSize.md, child: const Text('Medium')),
-              NextChip.solid(size: ChipSize.lg, child: const Text('Large')),
-            ],
-          ),
-          _buildSection(
             title: 'Chip Colors',
             children: [
               NextChip.solid(
-                color: ChipColor.primary,
                 child: const Text('Primary'),
+                color: ChipColor.primary,
               ),
               NextChip.solid(
-                color: ChipColor.secondary,
                 child: const Text('Secondary'),
+                color: ChipColor.secondary,
               ),
               NextChip.solid(
-                color: ChipColor.success,
                 child: const Text('Success'),
+                color: ChipColor.success,
               ),
               NextChip.solid(
-                color: ChipColor.warning,
                 child: const Text('Warning'),
+                color: ChipColor.warning,
               ),
               NextChip.solid(
-                color: ChipColor.danger,
                 child: const Text('Danger'),
-              ),
-            ],
-          ),
-          _buildSection(
-            title: 'Chip with Close Button',
-            children: [
-              NextChip.solid(
-                child: const Text('Closable'),
-                onClose: (event) {},
-              ),
-              NextChip.bordered(
-                child: const Text('Remove Me'),
-                onClose: (event) {},
-              ),
-            ],
-          ),
-          _buildSection(
-            title: 'Chip with Avatar',
-            children: [
-              NextChip.solid(
-                avatar: const CircleAvatar(radius: 10, child: Text('A')),
-                child: const Text('With Avatar'),
-              ),
-              NextChip.light(
-                avatar: const Icon(Icons.person, size: 16),
-                child: const Text('User Chip'),
+                color: ChipColor.danger,
               ),
             ],
           ),
         ],
       ),
+    );
+  }
+
+  Widget _buildInputsTab() {
+    return StatefulBuilder(
+      builder: (context, setState) {
+        String emailValue = '';
+        String passwordValue = '';
+        String searchValue = '';
+        String textareaValue = '';
+        String otpValue = '';
+        bool isEmailInvalid = false;
+
+        return SingleChildScrollView(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _buildSection(
+                title: 'Input Variants',
+                children: [
+                  SizedBox(
+                    width: 300,
+                    child: NextInput(
+                      variant: InputVariant.flat,
+                      label: 'Flat Input',
+                      placeholder: 'Enter text...',
+                      onChanged: (value) => setState(() => emailValue = value),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 300,
+                    child: NextInput(
+                      variant: InputVariant.bordered,
+                      label: 'Bordered Input',
+                      placeholder: 'Enter text...',
+                    ),
+                  ),
+                  SizedBox(
+                    width: 300,
+                    child: NextInput(
+                      variant: InputVariant.faded,
+                      label: 'Faded Input',
+                      placeholder: 'Enter text...',
+                    ),
+                  ),
+                  SizedBox(
+                    width: 300,
+                    child: NextInput(
+                      variant: InputVariant.underlined,
+                      label: 'Underlined Input',
+                      placeholder: 'Enter text...',
+                    ),
+                  ),
+                ],
+              ),
+              _buildSection(
+                title: 'Input Examples',
+                children: [
+                  SizedBox(
+                    width: 300,
+                    child: NextInput(
+                      label: 'Email',
+                      placeholder: 'Enter your email',
+                      keyboardType: TextInputType.emailAddress,
+                      startContent: const Icon(Icons.email, size: 20),
+                      isInvalid: isEmailInvalid,
+                      errorMessage: isEmailInvalid
+                          ? 'Please enter a valid email'
+                          : null,
+                      onChanged: (value) {
+                        setState(() {
+                          emailValue = value;
+                          isEmailInvalid =
+                              value.isNotEmpty && !value.contains('@');
+                        });
+                      },
+                    ),
+                  ),
+                  SizedBox(
+                    width: 300,
+                    child: NextInput(
+                      label: 'Password',
+                      placeholder: 'Enter your password',
+                      obscureText: true,
+                      startContent: const Icon(Icons.lock, size: 20),
+                      onChanged: (value) =>
+                          setState(() => passwordValue = value),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 300,
+                    child: NextInput(
+                      label: 'Search',
+                      placeholder: 'Search...',
+                      isClearable: true,
+                      startContent: const Icon(Icons.search, size: 20),
+                      onChanged: (value) => setState(() => searchValue = value),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 300,
+                    child: NextInput(
+                      label: 'Message',
+                      placeholder: 'Enter your message...',
+                      maxLines: 4,
+                      description: 'Tell us what you think',
+                      onChanged: (value) =>
+                          setState(() => textareaValue = value),
+                    ),
+                  ),
+                ],
+              ),
+              _buildSection(
+                title: 'OTP Input',
+                children: [
+                  NextInputOTP(
+                    length: 6,
+                    onChanged: (value) => setState(() => otpValue = value),
+                    onCompleted: (value) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text('OTP Completed: $value'),
+                          duration: const Duration(seconds: 2),
+                        ),
+                      );
+                    },
+                  ),
+                ],
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 
@@ -311,6 +362,7 @@ class _ComponentsDemoPageState extends State<ComponentsDemoPage>
         bool airplaneModeSwitch = false;
 
         return SingleChildScrollView(
+          padding: const EdgeInsets.all(16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -337,19 +389,22 @@ class _ComponentsDemoPageState extends State<ComponentsDemoPage>
               _buildSection(
                 title: 'Switch Sizes',
                 children: [
-                  NextSwitch.small(
+                  NextSwitch(
                     isSelected: true,
-                    label: const Text('Small Switch'),
+                    size: SwitchSize.sm,
+                    label: const Text('Small'),
                     onValueChange: (value) {},
                   ),
-                  NextSwitch.medium(
+                  NextSwitch(
                     isSelected: true,
-                    label: const Text('Medium Switch'),
+                    size: SwitchSize.md,
+                    label: const Text('Medium'),
                     onValueChange: (value) {},
                   ),
-                  NextSwitch.large(
+                  NextSwitch(
                     isSelected: true,
-                    label: const Text('Large Switch'),
+                    size: SwitchSize.lg,
+                    label: const Text('Large'),
                     onValueChange: (value) {},
                   ),
                 ],
@@ -389,156 +444,6 @@ class _ComponentsDemoPageState extends State<ComponentsDemoPage>
                   ),
                 ],
               ),
-              _buildSection(
-                title: 'Switches with Icons',
-                children: [
-                  NextSwitch(
-                    isSelected: true,
-                    label: const Text('With Thumb Icon'),
-                    thumbIcon: const Icon(
-                      Icons.check,
-                      size: 16,
-                      color: Colors.white,
-                    ),
-                    onValueChange: (value) {},
-                  ),
-                  NextSwitch(
-                    isSelected: true,
-                    label: const Text('Start & End Content'),
-                    startContent: const Icon(Icons.lightbulb_outline, size: 20),
-                    endContent: const Icon(
-                      Icons.lightbulb,
-                      size: 20,
-                      color: Colors.amber,
-                    ),
-                    onValueChange: (value) {},
-                  ),
-                ],
-              ),
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Settings Example',
-                      style: Theme.of(context).textTheme.headlineSmall
-                          ?.copyWith(fontWeight: FontWeight.bold),
-                    ),
-                    const SizedBox(height: 16),
-                    Card(
-                      child: Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Column(
-                          children: [
-                            NextSwitch(
-                              isSelected: notificationSwitch,
-                              label: const Text('Push Notifications'),
-                              startContent: const Icon(
-                                Icons.notifications_outlined,
-                              ),
-                              onValueChange: (value) {
-                                setState(() => notificationSwitch = value);
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    content: Text(
-                                      value
-                                          ? 'Notifications enabled'
-                                          : 'Notifications disabled',
-                                    ),
-                                    duration: const Duration(seconds: 1),
-                                  ),
-                                );
-                              },
-                            ),
-                            const Divider(),
-                            NextSwitch(
-                              isSelected: darkModeSwitch,
-                              label: const Text('Dark Mode'),
-                              startContent: const Icon(
-                                Icons.dark_mode_outlined,
-                              ),
-                              color: SwitchColor.secondary,
-                              onValueChange: (value) =>
-                                  setState(() => darkModeSwitch = value),
-                            ),
-                            const Divider(),
-                            NextSwitch(
-                              isSelected: wifiSwitch,
-                              label: const Text('Wi-Fi'),
-                              startContent: const Icon(Icons.wifi),
-                              color: SwitchColor.success,
-                              onValueChange: (value) =>
-                                  setState(() => wifiSwitch = value),
-                            ),
-                            const Divider(),
-                            NextSwitch(
-                              isSelected: bluetoothSwitch,
-                              label: const Text('Bluetooth'),
-                              startContent: const Icon(Icons.bluetooth),
-                              color: SwitchColor.primary,
-                              onValueChange: (value) =>
-                                  setState(() => bluetoothSwitch = value),
-                            ),
-                            const Divider(),
-                            NextSwitch(
-                              isSelected: airplaneModeSwitch,
-                              label: const Text('Airplane Mode'),
-                              startContent: const Icon(
-                                Icons.airplanemode_active,
-                              ),
-                              color: SwitchColor.warning,
-                              onValueChange: (value) =>
-                                  setState(() => airplaneModeSwitch = value),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Switch States',
-                      style: Theme.of(context).textTheme.headlineSmall
-                          ?.copyWith(fontWeight: FontWeight.bold),
-                    ),
-                    const SizedBox(height: 16),
-                    const NextSwitch(
-                      isSelected: false,
-                      label: Text('Normal Switch (Off)'),
-                    ),
-                    const SizedBox(height: 12),
-                    const NextSwitch(
-                      isSelected: true,
-                      label: Text('Normal Switch (On)'),
-                    ),
-                    const SizedBox(height: 12),
-                    const NextSwitch(
-                      isSelected: false,
-                      isDisabled: true,
-                      label: Text('Disabled Switch (Off)'),
-                    ),
-                    const SizedBox(height: 12),
-                    const NextSwitch(
-                      isSelected: true,
-                      isDisabled: true,
-                      label: Text('Disabled Switch (On)'),
-                    ),
-                    const SizedBox(height: 12),
-                    const NextSwitch(
-                      isSelected: true,
-                      isReadOnly: true,
-                      label: Text('Read-only Switch'),
-                    ),
-                  ],
-                ),
-              ),
             ],
           ),
         );
@@ -547,11 +452,14 @@ class _ComponentsDemoPageState extends State<ComponentsDemoPage>
   }
 
   Widget _buildCheckboxTab() {
-    bool checkbox1 = false;
-
     return StatefulBuilder(
       builder: (context, setState) {
+        bool isChecked1 = false;
+        bool isChecked2 = true;
+        List<String> selectedItems = ['option1'];
+
         return SingleChildScrollView(
+          padding: const EdgeInsets.all(16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -559,132 +467,46 @@ class _ComponentsDemoPageState extends State<ComponentsDemoPage>
                 title: 'Basic Checkboxes',
                 children: [
                   NextCheckbox(
-                    isSelected: checkbox1,
-                    onValueChange: (value) {
-                      setState(() {
-                        checkbox1 = value;
-                      });
-                    },
-                    children: const Text('Checkbox'),
+                    isSelected: isChecked1,
+                    onValueChange: (value) =>
+                        setState(() => isChecked1 = value),
+                  ),
+                  NextCheckbox(
+                    isSelected: isChecked2,
+                    children: const Text('Checkbox with Label'),
+                    onValueChange: (value) =>
+                        setState(() => isChecked2 = value),
                   ),
                   const NextCheckbox(
-                    isSelected: true,
-                    children: Text('Checked'),
-                  ),
-                  const NextCheckbox(
-                    isIndeterminate: true,
-                    children: Text('Indeterminate'),
-                  ),
-                ],
-              ),
-              _buildSection(
-                title: 'Checkbox Sizes',
-                children: [
-                  NextCheckbox(
-                    size: CheckboxSize.sm,
-                    isSelected: true,
-                    onValueChange: (value) {},
-                    children: const Text('Small'),
-                  ),
-                  NextCheckbox(
-                    size: CheckboxSize.md,
-                    isSelected: true,
-                    onValueChange: (value) {},
-                    children: const Text('Medium'),
-                  ),
-                  NextCheckbox(
-                    size: CheckboxSize.lg,
-                    isSelected: true,
-                    onValueChange: (value) {},
-                    children: const Text('Large'),
-                  ),
-                ],
-              ),
-              _buildSection(
-                title: 'Checkbox Colors',
-                children: [
-                  NextCheckbox(
-                    color: CheckboxColor.primary,
-                    isSelected: true,
-                    onValueChange: (value) {},
-                    children: const Text('Primary'),
-                  ),
-                  NextCheckbox(
-                    color: CheckboxColor.success,
-                    isSelected: true,
-                    onValueChange: (value) {},
-                    children: const Text('Success'),
-                  ),
-                  NextCheckbox(
-                    color: CheckboxColor.warning,
-                    isSelected: true,
-                    onValueChange: (value) {},
-                    children: const Text('Warning'),
-                  ),
-                  NextCheckbox(
-                    color: CheckboxColor.danger,
-                    isSelected: true,
-                    onValueChange: (value) {},
-                    children: const Text('Danger'),
-                  ),
-                ],
-              ),
-              _buildSection(
-                title: 'Checkbox States',
-                children: [
-                  const NextCheckbox(
+                    isSelected: false,
                     isDisabled: true,
-                    children: Text('Disabled'),
-                  ),
-                  const NextCheckbox(
-                    isReadOnly: true,
-                    isSelected: true,
-                    children: Text('Read Only'),
-                  ),
-                  const NextCheckbox(
-                    isInvalid: true,
-                    children: Text('Invalid'),
+                    children: Text('Disabled Checkbox'),
                   ),
                 ],
               ),
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Checkbox Group',
-                      style: Theme.of(context).textTheme.headlineSmall
-                          ?.copyWith(fontWeight: FontWeight.bold),
-                    ),
-                    const SizedBox(height: 16),
-                    NextCheckboxGroup(
-                      label: 'Select your interests',
-                      value: const ['option1'],
-                      onValueChange: (values) {
-                        // Handle checkbox group changes
-                      },
-                      children: const [
-                        NextGroupCheckbox(
-                          value: 'option1',
-                          children: Text('Sports'),
-                        ),
-                        NextGroupCheckbox(
-                          value: 'option2',
-                          children: Text('Music'),
-                        ),
-                        NextGroupCheckbox(
-                          value: 'option3',
-                          children: Text('Travel'),
-                        ),
-                        NextGroupCheckbox(
-                          value: 'option4',
-                          children: Text('Reading'),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
+              _buildSection(
+                title: 'Checkbox Group',
+                children: [
+                  NextCheckboxGroup(
+                    value: selectedItems,
+                    onValueChange: (values) =>
+                        setState(() => selectedItems = values),
+                    children: const [
+                      NextCheckbox(
+                        value: 'option1',
+                        children: Text('Option 1'),
+                      ),
+                      NextCheckbox(
+                        value: 'option2',
+                        children: Text('Option 2'),
+                      ),
+                      NextCheckbox(
+                        value: 'option3',
+                        children: Text('Option 3'),
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ],
           ),
@@ -694,75 +516,31 @@ class _ComponentsDemoPageState extends State<ComponentsDemoPage>
   }
 
   Widget _buildRadioTab() {
-    String radioValue = 'option1';
-
     return StatefulBuilder(
       builder: (context, setState) {
+        String selectedValue = 'option1';
+
         return SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Basic Radio Group',
-                  style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                    fontWeight: FontWeight.bold,
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _buildSection(
+                title: 'Radio Group',
+                children: [
+                  RadioGroup(
+                    value: selectedValue,
+                    onValueChange: (value) =>
+                        setState(() => selectedValue = value ?? ''),
+                    children: const [
+                      NextRadio(value: 'option1', child: Text('Option 1')),
+                      NextRadio(value: 'option2', child: Text('Option 2')),
+                      NextRadio(value: 'option3', child: Text('Option 3')),
+                    ],
                   ),
-                ),
-                const SizedBox(height: 16),
-                RadioGroup(
-                  label: const Text('Choose your favorite framework'),
-                  value: radioValue,
-                  onValueChange: (value) {
-                    setState(() {
-                      radioValue = value ?? '';
-                    });
-                  },
-                  children: const [
-                    NextRadio(value: 'option1', child: Text('Flutter')),
-                    NextRadio(value: 'option2', child: Text('React Native')),
-                    NextRadio(value: 'option3', child: Text('Native')),
-                  ],
-                ),
-                const SizedBox(height: 32),
-                Text(
-                  'Radio Group - Different Sizes',
-                  style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const SizedBox(height: 16),
-                RadioGroup(
-                  label: const Text('Select size'),
-                  size: RadioSize.lg,
-                  color: RadioColor.success,
-                  children: const [
-                    NextRadio(value: 'size_sm', child: Text('Small')),
-                    NextRadio(value: 'size_md', child: Text('Medium')),
-                    NextRadio(value: 'size_lg', child: Text('Large')),
-                  ],
-                ),
-                const SizedBox(height: 32),
-                Text(
-                  'Horizontal Radio Group',
-                  style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const SizedBox(height: 16),
-                RadioGroup(
-                  label: const Text('Select payment method'),
-                  orientation: RadioGroupOrientation.horizontal,
-                  color: RadioColor.warning,
-                  children: const [
-                    NextRadio(value: 'credit', child: Text('Credit Card')),
-                    NextRadio(value: 'paypal', child: Text('PayPal')),
-                    NextRadio(value: 'crypto', child: Text('Crypto')),
-                  ],
-                ),
-              ],
-            ),
+                ],
+              ),
+            ],
           ),
         );
       },
@@ -771,151 +549,25 @@ class _ComponentsDemoPageState extends State<ComponentsDemoPage>
 
   Widget _buildProgressTab() {
     return SingleChildScrollView(
+      padding: const EdgeInsets.all(16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _buildSection(
-            title: 'Basic Circular Progress',
+            title: 'Circular Progress',
             children: [
-              const NextCircularProgress(label: Text('Loading...')),
+              const NextCircularProgress(value: 0.3, label: Text('30%')),
               const NextCircularProgress(
                 value: 0.7,
-                isIndeterminate: false,
-                label: Text('70% Complete'),
-              ),
-            ],
-          ),
-          _buildSection(
-            title: 'Progress Sizes',
-            children: [
-              const NextCircularProgress(
-                size: CircularProgressSize.sm,
-                value: 0.6,
-                isIndeterminate: false,
-                label: Text('Small'),
-              ),
-              const NextCircularProgress(
-                size: CircularProgressSize.md,
-                value: 0.6,
-                isIndeterminate: false,
-                label: Text('Medium'),
-              ),
-              const NextCircularProgress(
-                size: CircularProgressSize.lg,
-                value: 0.6,
-                isIndeterminate: false,
-                label: Text('Large'),
-              ),
-            ],
-          ),
-          _buildSection(
-            title: 'Progress Colors',
-            children: [
-              const NextCircularProgress(
-                color: CircularProgressColor.primary,
-                value: 0.8,
-                isIndeterminate: false,
-                label: Text('Primary'),
-              ),
-              const NextCircularProgress(
                 color: CircularProgressColor.success,
-                value: 0.8,
-                isIndeterminate: false,
-                label: Text('Success'),
               ),
               const NextCircularProgress(
-                color: CircularProgressColor.warning,
-                value: 0.8,
-                isIndeterminate: false,
-                label: Text('Warning'),
-              ),
-              const NextCircularProgress(
-                color: CircularProgressColor.danger,
-                value: 0.8,
-                isIndeterminate: false,
-                label: Text('Danger'),
-              ),
-            ],
-          ),
-          _buildSection(
-            title: 'Custom Stroke Width',
-            children: [
-              const NextCircularProgress(
-                value: 0.6,
-                isIndeterminate: false,
-                strokeWidth: 1,
-                label: Text('Thin'),
-              ),
-              const NextCircularProgress(
-                value: 0.6,
-                isIndeterminate: false,
-                strokeWidth: 4,
-                label: Text('Thick'),
-              ),
-              const NextCircularProgress(
-                value: 0.6,
-                isIndeterminate: false,
-                strokeWidth: 8,
-                label: Text('Extra Thick'),
+                isIndeterminate: true,
+                color: CircularProgressColor.primary,
               ),
             ],
           ),
         ],
-      ),
-    );
-  }
-
-  Widget _buildTypographyTab() {
-    return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Typography Components',
-              style: Theme.of(
-                context,
-              ).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 24),
-
-            // Using NextUiText static methods
-            NextUiText.h1Bold('H1 Bold Text'),
-            const SizedBox(height: 8),
-            NextUiText.h2Medium('H2 Medium Text'),
-            const SizedBox(height: 8),
-            NextUiText.h3Regular('H3 Regular Text'),
-            const SizedBox(height: 8),
-            NextUiText.h4Bold('H4 Bold Text'),
-            const SizedBox(height: 8),
-            NextUiText.paragraphRegular(
-              'This is regular paragraph text suitable for most content.',
-            ),
-            const SizedBox(height: 8),
-            NextUiText.descriptionMedium(
-              'This is medium description text for secondary content.',
-            ),
-            const SizedBox(height: 8),
-            NextUiText.captionRegular('Caption text for small details'),
-            const SizedBox(height: 8),
-            NextUiText.subHeadingBold('Subheading Bold'),
-            const SizedBox(height: 24),
-
-            // Text with custom colors
-            NextUiText.h4Bold('Colored Text Examples', textColor: Colors.blue),
-            const SizedBox(height: 8),
-            NextUiText.paragraphRegular(
-              'This paragraph has custom color.',
-              textColor: Colors.green,
-            ),
-            const SizedBox(height: 8),
-            NextUiText.captionMedium(
-              'Warning caption text.',
-              textColor: Colors.orange,
-            ),
-          ],
-        ),
       ),
     );
   }
