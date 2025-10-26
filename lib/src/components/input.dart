@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:next_ui/src/base/enums.dart';
 
-/// A Material Design-inspired input field component with customizable variants, colors, and sizes.
+/// A Material Design-inspired input field component
+/// with customizable variants, colors, and sizes.
 class NextInput extends StatefulWidget {
   /// Creates a NextInput.
   const NextInput({
@@ -141,7 +142,7 @@ class _NextInputState extends State<NextInput> {
 
   Color _getColorForState(ThemeData theme) {
     if (widget.isDisabled) {
-      return theme.colorScheme.onSurface.withOpacity(0.38);
+      return theme.colorScheme.onSurface.withValues(alpha: 0.38);
     }
     if (widget.isInvalid) {
       return theme.colorScheme.error;
@@ -149,7 +150,7 @@ class _NextInputState extends State<NextInput> {
     if (_isFocused) {
       return _getThemeColor(theme);
     }
-    return theme.colorScheme.onSurface.withOpacity(0.6);
+    return theme.colorScheme.onSurface.withValues(alpha: 0.6);
   }
 
   Color _getThemeColor(ThemeData theme) {
@@ -226,9 +227,10 @@ class _NextInputState extends State<NextInput> {
     Color? fillColor;
     switch (widget.variant) {
       case InputVariant.flat:
-        fillColor = theme.colorScheme.surfaceContainerHighest.withOpacity(0.6);
+        fillColor =
+            theme.colorScheme.surfaceContainerHighest.withValues(alpha: 0.6);
       case InputVariant.faded:
-        fillColor = _getThemeColor(theme).withOpacity(0.1);
+        fillColor = _getThemeColor(theme).withValues(alpha: 0.1);
       case InputVariant.bordered:
       case InputVariant.underlined:
         fillColor = Colors.transparent;
@@ -256,8 +258,10 @@ class _NextInputState extends State<NextInput> {
     if (widget.obscureText) {
       suffixIcons.add(
         IconButton(
-          icon: Icon(_obscureText ? Icons.visibility : Icons.visibility_off,
-              size: 16),
+          icon: Icon(
+            _obscureText ? Icons.visibility : Icons.visibility_off,
+            size: 16,
+          ),
           onPressed: () {
             setState(() {
               _obscureText = !_obscureText;
@@ -292,11 +296,13 @@ class _NextInputState extends State<NextInput> {
       filled: true,
       fillColor: fillColor,
       border: getBorder(color),
-      enabledBorder: getBorder(theme.colorScheme.outline.withOpacity(0.5)),
+      enabledBorder:
+          getBorder(theme.colorScheme.outline.withValues(alpha: 0.5)),
       focusedBorder: getBorder(_getThemeColor(theme), width: 2),
       errorBorder: getBorder(theme.colorScheme.error),
       focusedErrorBorder: getBorder(theme.colorScheme.error, width: 2),
-      disabledBorder: getBorder(theme.colorScheme.onSurface.withOpacity(0.12)),
+      disabledBorder:
+          getBorder(theme.colorScheme.onSurface.withValues(alpha: 0.12)),
       contentPadding: EdgeInsets.symmetric(
         horizontal: 12,
         vertical: widget.size == InputSize.sm
@@ -364,7 +370,8 @@ class _NextInputState extends State<NextInput> {
   }
 }
 
-/// An OTP (One-Time Password) input component with customizable length and styling.
+/// An OTP (One-Time Password) input component 
+/// with customizable length and styling.
 class NextInputOTP extends StatefulWidget {
   /// Creates a NextInputOTP.
   const NextInputOTP({
@@ -529,7 +536,7 @@ class _NextInputOTPState extends State<NextInputOTP> {
                 borderSide: BorderSide(
                   color: widget.isInvalid
                       ? theme.colorScheme.error
-                      : theme.colorScheme.outline.withOpacity(0.5),
+                      : theme.colorScheme.outline.withValues(alpha: 0.5),
                 ),
               ),
               focusedBorder: OutlineInputBorder(
@@ -552,7 +559,7 @@ class _NextInputOTPState extends State<NextInputOTP> {
               ),
               filled: true,
               fillColor: widget.isDisabled
-                  ? theme.colorScheme.onSurface.withOpacity(0.05)
+                  ? theme.colorScheme.onSurface.withValues(alpha: 0.05)
                   : theme.colorScheme.surface,
               contentPadding: EdgeInsets.zero,
             ),

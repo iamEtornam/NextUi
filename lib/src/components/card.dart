@@ -145,9 +145,7 @@ class NextCard extends StatelessWidget {
 
     if (body != null) {
       cardChildren.add(
-        Expanded(
-          child: CardBody(child: body!),
-        ),
+        CardBody(child: body!),
       );
     }
 

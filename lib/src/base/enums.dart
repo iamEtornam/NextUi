@@ -182,10 +182,13 @@ enum SpinnerPlacement {
 enum CardShadow {
   /// No shadow
   none,
+
   /// Small shadow
   sm,
+
   /// Medium shadow
   md,
+
   /// Large shadow
   lg,
 }
@@ -194,10 +197,13 @@ enum CardShadow {
 enum CardRadius {
   /// No border radius
   none,
+
   /// Small border radius
   sm,
+
   /// Medium border radius
   md,
+
   /// Large border radius
   lg,
 }
@@ -206,8 +212,10 @@ enum CardRadius {
 enum CardSize {
   /// Small card size
   sm,
+
   /// Medium card size
   md,
+
   /// Large card size
   lg,
 }
@@ -321,4 +329,340 @@ enum LabelPlacement {
 
   /// Outside to the left of the input
   outsideLeft,
+}
+
+/// Badge variant options
+enum BadgeVariant {
+  /// Solid background with contrasting text
+  solid,
+
+  /// Flat with subtle background
+  flat,
+
+  /// Faded with low opacity background
+  faded,
+
+  /// Shadow with elevation
+  shadow,
+}
+
+/// Badge color options (reusing button colors)
+typedef BadgeColor = ButtonColor;
+
+/// Badge size options (reusing button size)
+typedef BadgeSize = ButtonSize;
+
+/// Badge shape options
+enum BadgeShape {
+  /// Circle shape
+  circle,
+
+  /// Rectangle shape
+  rectangle,
+}
+
+/// Badge placement options
+enum BadgePlacement {
+  /// Top right corner
+  topRight,
+
+  /// Top left corner
+  topLeft,
+
+  /// Bottom right corner
+  bottomRight,
+
+  /// Bottom left corner
+  bottomLeft,
+}
+
+/// Avatar color options (reusing button colors)
+typedef AvatarColor = ButtonColor;
+
+/// Avatar size options (reusing button size)
+typedef AvatarSize = ButtonSize;
+
+/// Avatar radius options (reusing button radius)
+typedef AvatarRadius = ButtonRadius;
+
+/// Modal size options
+enum ModalSize {
+  /// Extra small modal
+  xs,
+
+  /// Small modal
+  sm,
+
+  /// Medium modal
+  md,
+
+  /// Large modal
+  lg,
+
+  /// Extra large modal
+  xl,
+
+  /// 2X large modal
+  xxl,
+
+  /// 3X large modal
+  xxxl,
+
+  /// 4X large modal
+  xxxxl,
+
+  /// 5X large modal
+  xxxxxl,
+
+  /// Full screen modal
+  full,
+}
+
+/// Modal radius options (reusing button radius)
+typedef ModalRadius = ButtonRadius;
+
+/// Modal shadow options (reusing card shadow)
+typedef ModalShadow = CardShadow;
+
+/// Modal backdrop options
+enum ModalBackdrop {
+  /// Transparent backdrop
+  transparent,
+
+  /// Opaque backdrop
+  opaque,
+
+  /// Blurred backdrop
+  blur,
+}
+
+/// Modal scroll behavior options
+enum ModalScrollBehavior {
+  /// Normal scroll behavior
+  normal,
+
+  /// Inside scroll behavior
+  inside,
+
+  /// Outside scroll behavior
+  outside,
+}
+
+/// Modal placement options
+enum ModalPlacement {
+  /// Auto placement (center on desktop, bottom on mobile)
+  auto,
+
+  /// Top placement
+  top,
+
+  /// Top center placement
+  topCenter,
+
+  /// Center placement
+  center,
+
+  /// Bottom placement
+  bottom,
+
+  /// Bottom center placement
+  bottomCenter,
+}
+
+/// Dropdown variant options
+enum DropdownVariant {
+  /// Solid background with contrasting text
+  solid,
+
+  /// Bordered with transparent background
+  bordered,
+
+  /// Light background with colored text
+  light,
+
+  /// Flat with subtle background
+  flat,
+
+  /// Faded with low opacity background
+  faded,
+
+  /// Shadow with elevation
+  shadow,
+}
+
+/// Dropdown color options (reusing button colors)
+typedef DropdownColor = ButtonColor;
+
+/// Dropdown trigger type
+enum DropdownTrigger {
+  /// Trigger on press (click/tap)
+  press,
+
+  /// Trigger on long press
+  longPress,
+}
+
+/// Dropdown selection mode
+enum DropdownSelectionMode {
+  /// No selection allowed
+  none,
+
+  /// Single item selection
+  single,
+
+  /// Multiple items selection
+  multiple,
+}
+
+/// Dropdown auto focus option
+enum DropdownAutoFocus {
+  /// No auto focus
+  none,
+
+  /// Focus first item
+  first,
+
+  /// Focus last item
+  last,
+}
+
+/// Toast variant options
+enum ToastVariant {
+  /// Solid background with contrasting text
+  solid,
+
+  /// Bordered with transparent background
+  bordered,
+
+  /// Flat with subtle background
+  flat,
+}
+
+/// Toast color options (reusing button colors)
+typedef ToastColor = ButtonColor;
+
+/// Toast radius options (reusing button radius)
+typedef ToastRadius = ButtonRadius;
+
+/// Toast placement options
+enum ToastPlacement {
+  /// Bottom right corner
+  bottomRight,
+
+  /// Bottom left corner
+  bottomLeft,
+
+  /// Bottom center
+  bottomCenter,
+
+  /// Top right corner
+  topRight,
+
+  /// Top left corner
+  topLeft,
+
+  /// Top center
+  topCenter,
+}
+
+/// Table selection mode
+enum TableSelectionMode {
+  /// No selection allowed
+  none,
+
+  /// Single row selection
+  single,
+
+  /// Multiple rows selection
+  multiple,
+}
+
+/// Table selection behavior
+enum TableSelectionBehavior {
+  /// Toggle selection like checkbox
+  toggle,
+
+  /// Replace selection on click
+  replace,
+}
+
+/// Table content placement
+enum TableContentPlacement {
+  /// Inside the table wrapper
+  inside,
+
+  /// Outside the table wrapper
+  outside,
+}
+
+/// Table column alignment
+enum TableColumnAlign {
+  /// Start alignment
+  start,
+
+  /// Center alignment
+  center,
+
+  /// End alignment
+  end,
+}
+
+/// Tooltip size options
+enum TooltipSize {
+  /// Small tooltip
+  sm,
+
+  /// Medium tooltip
+  md,
+
+  /// Large tooltip
+  lg,
+}
+
+/// Tooltip color options (reusing button colors)
+typedef TooltipColor = ButtonColor;
+
+/// Tooltip radius options (reusing button radius)
+typedef TooltipRadius = ButtonRadius;
+
+/// Tooltip shadow options (reusing card shadow)
+typedef TooltipShadow = CardShadow;
+
+/// Tooltip placement options
+enum TooltipPlacement {
+  /// Top placement
+  top,
+
+  /// Top start
+  topStart,
+
+  /// Top end
+  topEnd,
+
+  /// Bottom placement
+  bottom,
+
+  /// Bottom start
+  bottomStart,
+
+  /// Bottom end
+  bottomEnd,
+
+  /// Left placement
+  left,
+
+  /// Left start
+  leftStart,
+
+  /// Left end
+  leftEnd,
+
+  /// Right placement
+  right,
+
+  /// Right start
+  rightStart,
+
+  /// Right end
+  rightEnd,
 }

@@ -264,7 +264,7 @@ void main() {
 
         final switch_ = tester.widget<Switch>(find.byType(Switch));
         expect(
-          switch_.activeColor,
+          switch_.activeThumbColor,
           Colors.green,
         ); // Success color should be green
       });

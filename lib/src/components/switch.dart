@@ -297,7 +297,7 @@ class _NextSwitchState extends State<NextSwitch> {
         value: _isSelected,
         onChanged:
             widget.isDisabled || widget.isReadOnly ? null : _handleChanged,
-        activeColor: activeColor,
+        activeThumbColor: activeColor,
         activeTrackColor: activeColor.withValues(alpha: 0.5),
         inactiveThumbColor: Theme.of(context).colorScheme.outline,
         inactiveTrackColor:
