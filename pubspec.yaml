@@ -1,6 +1,6 @@
 name: next_ui
 description: Open source, Beautiful, modern and fast Flutter UI library.
-version: 0.1.0
+version: 0.1.1
 repository: https://github.com/iamEtornam/NextUi
 
 environment:
@@ -8,6 +8,7 @@ environment:
   flutter: ">=3.10.0"
 
 dependencies:
+  cached_network_image: ^3.4.1
   flutter:
     sdk: flutter
 
@@ -15,4 +16,4 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   mocktail: ^1.0.4
-  very_good_analysis: ^9.0.0
+  very_good_analysis: ^10.0.0
