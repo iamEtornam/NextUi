@@ -1,0 +1,133 @@
+# Input OTP
+
+A specialized input component for One-Time Passwords (OTP) with individual digit fields. Following HeroUI design principles.
+
+## Basic Usage
+
+```dart
+NextInputOTP(
+  length: 6,
+  onCompleted: (otp) => print('OTP: $otp'),
+)
+```
+
+## Custom Length
+
+Specify the number of OTP digits:
+
+```dart
+// 4-digit OTP
+NextInputOTP(
+  length: 4,
+  onCompleted: (value) => print('4-digit OTP: $value'),
+)
+
+// 8-digit OTP
+NextInputOTP(
+  length: 8,
+  onCompleted: (value) => print('8-digit OTP: $value'),
+)
+```
+
+## With Separator
+
+Add separators between OTP fields:
+
+```dart
+NextInputOTP(
+  length: 6,
+  separator: Text('-'),
+  onCompleted: (value) => print('OTP: $value'),
+)
+```
+
+## Sizes
+
+Choose between different field sizes:
+
+```dart
+NextInputOTP(
+  length: 4,
+  size: InputSize.sm, // sm, md, lg
+  onCompleted: (value) => print('Small OTP: $value'),
+)
+```
+
+## Colors
+
+Style the OTP fields with different colors:
+
+```dart
+NextInputOTP(
+  length: 6,
+  color: InputColor.primary,
+  onCompleted: (value) => print('Primary OTP: $value'),
+)
+```
+
+## Spacing
+
+Customize the spacing between fields:
+
+```dart
+NextInputOTP(
+  length: 4,
+  spacing: 16.0, // Default is 8.0
+  onCompleted: (value) => print('Spaced OTP: $value'),
+)
+```
+
+## Secure Input
+
+Hide the entered digits:
+
+```dart
+NextInputOTP(
+  length: 6,
+  obscureText: true,
+  onCompleted: (value) => print('Secure OTP entered'),
+)
+```
+
+## Validation
+
+Handle invalid states:
+
+```dart
+NextInputOTP(
+  length: 6,
+  isInvalid: true,
+  onCompleted: (value) => print('Invalid OTP: $value'),
+)
+```
+
+## Disabled State
+
+Disable the entire OTP input:
+
+```dart
+NextInputOTP(
+  length: 6,
+  isDisabled: true,
+  onCompleted: (value) => print('Disabled OTP: $value'),
+)
+```
+
+## API Reference
+
+### NextInputOTP Properties
+
+| Property | Type | Default | Description |
+| --- | --- | --- | --- |
+| `length` | `int` | - | Number of OTP digits (required) |
+| `onChanged` | `ValueChanged<String>?` | - | Called when OTP value changes |
+| `onCompleted` | `ValueChanged<String>?` | - | Called when OTP is fully entered |
+| `separator` | `Widget?` | - | Widget between OTP fields |
+| `size` | `InputSize` | `md` | Size of individual fields |
+| `color` | `InputColor` | `defaultColor` | Color theme |
+| `spacing` | `double` | `8.0` | Spacing between fields |
+| `isDisabled` | `bool` | `false` | Disables the input |
+| `isInvalid` | `bool` | `false` | Shows error state |
+| `obscureText` | `bool` | `false` | Hides entered digits |
+| `keyboardType` | `TextInputType` | `number` | Keyboard type |
+

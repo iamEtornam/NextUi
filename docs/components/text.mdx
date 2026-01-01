@@ -1,15 +1,27 @@
-# Text
+# Typography (Text)
 
 A comprehensive text widget that provides both traditional heading styles (h1-h6) and Material Design 3 typography scale.
 
 ## Traditional Headings
 
-Quickly apply standard heading styles:
+Quickly apply standard heading styles with weight variants:
 
 ```dart
+// Bold headings
 NextText.h1Bold('Main Heading')
-NextText.h2Medium('Sub-heading')
-NextText.h3Regular('Smaller Title')
+NextText.h2Bold('Sub-heading')
+NextText.h3Bold('Section Title')
+NextText.h4Bold('Subsection')
+NextText.h5Bold('Minor Title')
+NextText.h6Bold('Small Title')
+
+// Medium weight headings
+NextText.h1Medium('Medium Weight H1')
+NextText.h2Medium('Medium Weight H2')
+
+// Regular weight headings
+NextText.h1Regular('Regular Weight H1')
+NextText.h2Regular('Regular Weight H2')
 ```
 
 ## Material Design 3 Scale
@@ -17,10 +29,29 @@ NextText.h3Regular('Smaller Title')
 Follow the official Material 3 typography guidelines:
 
 ```dart
+// Display - Largest text on screen
 NextText.displayLarge('Display Large')
+NextText.displayMedium('Display Medium')
+NextText.displaySmall('Display Small')
+
+// Headline - High-emphasis text
+NextText.headlineLarge('Headline Large')
 NextText.headlineMedium('Headline Medium')
+NextText.headlineSmall('Headline Small')
+
+// Title - Medium-emphasis text
 NextText.titleLarge('Title Large')
+NextText.titleMedium('Title Medium')
+NextText.titleSmall('Title Small')
+
+// Body - Regular body text
+NextText.bodyLarge('Body Large')
 NextText.bodyMedium('Body Medium')
+NextText.bodySmall('Body Small')
+
+// Label - Call-to-action text
+NextText.labelLarge('Label Large')
+NextText.labelMedium('Label Medium')
 NextText.labelSmall('Label Small')
 ```
 
@@ -29,9 +60,30 @@ NextText.labelSmall('Label Small')
 Styles for paragraphs, descriptions, and captions:
 
 ```dart
-NextText.paragraphRegular('This is a full paragraph of text.')
-NextText.descriptionMedium('A shorter description text.')
-NextText.captionRegular('Small caption text.')
+// Paragraph styles
+NextText.paragraphBold('Bold paragraph text')
+NextText.paragraphMedium('Medium paragraph text')
+NextText.paragraphRegular('Regular paragraph text')
+
+// Description styles
+NextText.descriptionBold('Bold description text')
+NextText.descriptionMedium('Medium description text')
+NextText.descriptionRegular('Regular description text')
+
+// Caption styles
+NextText.captionBold('Bold caption text')
+NextText.captionMedium('Medium caption text')
+NextText.captionRegular('Regular caption text')
+
+// Subheading styles
+NextText.subHeadingBold('Bold subheading')
+NextText.subHeadingMedium('Medium subheading')
+NextText.subHeadingRegular('Regular subheading')
+
+// Extra small styles
+NextText.xsmBold('Bold extra small text')
+NextText.xsmMedium('Medium extra small text')
+NextText.xsmRegular('Regular extra small text')
 ```
 
 ## Customization
@@ -52,6 +104,19 @@ NextText.bodyLarge(
 )
 ```
 
+## Basic Usage
+
+You can also use the base NextText widget for custom styling:
+
+```dart
+NextText(
+  'Custom styled text',
+  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+  textColor: Colors.red,
+  textAlign: TextAlign.center,
+)
+```
+
 ## API Reference
 
 ### Text Static Methods
@@ -65,18 +130,63 @@ Next UI Text provides static methods for all typography levels. Each method acce
 | `maxLines` | `int?` | Maximum number of lines |
 | `overflow` | `TextOverflow?`| Overflow behavior |
 
-### Traditional Styles
-- `h1Bold`, `h1Medium`, `h1Regular` (40sp)
-- `h2Bold`, `h2Medium`, `h2Regular` (34sp)
-- `h3Bold`, `h3Medium`, `h3Regular` (24sp)
-- `h4Bold`, `h4Medium`, `h4Regular` (20sp)
-- `h5Bold`, `h5Medium`, `h5Regular` (20sp)
-- `h6Bold`, `h6Medium`, `h6Regular` (18sp)
+### Traditional Heading Styles
+| Method | Size | Weight | Use Case |
+| --- | --- | --- | --- |
+| `h1Bold` | 40sp | Bold | Main page titles |
+| `h1Medium` | 40sp | Medium | Main page titles |
+| `h1Regular` | 40sp | Regular | Main page titles |
+| `h2Bold` | 34sp | Bold | Section headings |
+| `h2Medium` | 34sp | Medium | Section headings |
+| `h2Regular` | 34sp | Regular | Section headings |
+| `h3Bold` | 24sp | Bold | Subsection headings |
+| `h3Medium` | 24sp | Medium | Subsection headings |
+| `h3Regular` | 24sp | Regular | Subsection headings |
+| `h4Bold` | 20sp | Bold | Minor headings |
+| `h4Medium` | 20sp | Medium | Minor headings |
+| `h4Regular` | 20sp | Regular | Minor headings |
+| `h5Bold` | 20sp | Bold | Small headings |
+| `h5Medium` | 20sp | Medium | Small headings |
+| `h5Regular` | 20sp | Regular | Small headings |
+| `h6Bold` | 18sp | Bold | Smallest headings |
+| `h6Medium` | 18sp | Medium | Smallest headings |
+| `h6Regular` | 18sp | Regular | Smallest headings |
 
-### Material 3 Styles
-- `displayLarge`, `displayMedium`, `displaySmall`
-- `headlineLarge`, `headlineMedium`, `headlineSmall`
-- `titleLarge`, `titleMedium`, `titleSmall`
-- `bodyLarge`, `bodyMedium`, `bodySmall`
-- `labelLarge`, `labelMedium`, `labelSmall`
+### Material Design 3 Styles
+| Method | Size | Use Case |
+| --- | --- | --- |
+| `displayLarge` | 57sp | Largest text on screen |
+| `displayMedium` | 45sp | Large display text |
+| `displaySmall` | 36sp | Medium-large display text |
+| `headlineLarge` | 32sp | High-emphasis headlines |
+| `headlineMedium` | 28sp | High-emphasis headlines |
+| `headlineSmall` | 24sp | High-emphasis headlines |
+| `titleLarge` | 22sp | Medium-emphasis titles |
+| `titleMedium` | 16sp | Medium-emphasis titles |
+| `titleSmall` | 14sp | Medium-emphasis titles |
+| `bodyLarge` | 16sp | Regular body text |
+| `bodyMedium` | 14sp | Regular body text |
+| `bodySmall` | 12sp | Regular body text |
+| `labelLarge` | 14sp | Call-to-action labels |
+| `labelMedium` | 12sp | Call-to-action labels |
+| `labelSmall` | 11sp | Call-to-action labels |
+
+### Additional Body Styles
+| Method | Size | Weight | Use Case |
+| --- | --- | --- | --- |
+| `paragraphBold` | 15sp | Bold | Full paragraph text |
+| `paragraphMedium` | 15sp | Medium | Full paragraph text |
+| `paragraphRegular` | 15sp | Regular | Full paragraph text |
+| `descriptionBold` | 14sp | Bold | Supporting descriptions |
+| `descriptionMedium` | 14sp | Medium | Supporting descriptions |
+| `descriptionRegular` | 14sp | Regular | Supporting descriptions |
+| `captionBold` | 12sp | Bold | Small captions |
+| `captionMedium` | 12sp | Medium | Small captions |
+| `captionRegular` | 12sp | Regular | Small captions |
+| `subHeadingBold` | 12sp | Bold | Subheadings |
+| `subHeadingMedium` | 12sp | Medium | Subheadings |
+| `subHeadingRegular` | 12sp | Regular | Subheadings |
+| `xsmBold` | 11sp | Bold | Extra small text |
+| `xsmMedium` | 11sp | Medium | Extra small text |
+| `xsmRegular` | 11sp | Regular | Extra small text |
 

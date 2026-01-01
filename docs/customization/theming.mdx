@@ -1,0 +1,64 @@
+# Theming
+
+Next UI is designed to be highly customizable and integrates seamlessly with Flutter's Material Design theming system.
+
+## Colors
+
+Next UI provides a comprehensive set of colors through the `NextUiColors` class. These colors are based on the HeroUI color palette.
+
+### Using NextUiColors
+
+You can access the predefined color palettes directly:
+
+```dart
+import 'package:next_ui/next_ui.dart';
+
+final primary500 = NextUiColors.primary[500];
+final success700 = NextUiColors.success[700];
+```
+
+The following color palettes are available:
+- `NextUiColors.primary`
+- `NextUiColors.secondary`
+- `NextUiColors.success`
+- `NextUiColors.warning`
+- `NextUiColors.danger`
+
+Each palette includes shades from 50 to 900.
+
+## Integrating with ThemeData
+
+To ensure a consistent look and feel across your application, you should configure your `ThemeData` to use Next UI colors:
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:next_ui/next_ui.dart';
+
+void main() {
+  runApp(MaterialApp(
+    theme: ThemeData(
+      colorScheme: ColorScheme.fromSeed(
+        seedColor: NextUiColors.primary,
+        primary: NextUiColors.primary,
+        secondary: NextUiColors.secondary,
+        error: NextUiColors.danger,
+      ),
+      // Other theme configurations...
+    ),
+    home: const MyApp(),
+  ));
+}
+```
+
+## Component Colors
+
+Most Next UI components support a `color` property that accepts enums like `ButtonColor`, `ChipColor`, etc. These enums map directly to the `NextUiColors` palettes.
+
+```dart
+Button(
+  color: ButtonColor.success, // Uses NextUiColors.success
+  onPressed: () {},
+  child: const Text('Success'),
+)
+```
+
