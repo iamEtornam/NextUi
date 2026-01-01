@@ -1,0 +1,178 @@
+# Button
+
+Next UI Button component is a comprehensive button widget that supports various variants, colors, sizes, and states following HeroUI design patterns.
+
+## Basic Usage
+
+```dart
+Button(
+  onPressed: () => print('Button pressed'),
+  child: Text('Click me'),
+)
+```
+
+## Variants
+
+Next UI supports several button variants to match your design needs:
+
+```dart
+// Solid button (default)
+Button.solid(
+  onPressed: () {},
+  child: Text('Solid'),
+)
+
+// Bordered button
+Button.bordered(
+  onPressed: () {},
+  child: Text('Bordered'),
+)
+
+// Light button
+Button.light(
+  onPressed: () {},
+  child: Text('Light'),
+)
+
+// Flat button
+Button.flat(
+  onPressed: () {},
+  child: Text('Flat'),
+)
+
+// Ghost button
+Button.ghost(
+  onPressed: () {},
+  child: Text('Ghost'),
+)
+```
+
+## Colors
+
+Buttons can be styled with predefined colors:
+
+```dart
+Button(
+  color: ButtonColor.primary,
+  onPressed: () {},
+  child: Text('Primary'),
+)
+
+Button(
+  color: ButtonColor.success,
+  onPressed: () {},
+  child: Text('Success'),
+)
+
+Button(
+  color: ButtonColor.danger,
+  onPressed: () {},
+  child: Text('Danger'),
+)
+```
+
+## Sizes
+
+Choose between different button sizes:
+
+```dart
+Button(
+  size: ButtonSize.sm,
+  onPressed: () {},
+  child: Text('Small'),
+)
+
+Button(
+  size: ButtonSize.md,
+  onPressed: () {},
+  child: Text('Medium'),
+)
+
+Button(
+  size: ButtonSize.lg,
+  onPressed: () {},
+  child: Text('Large'),
+)
+```
+
+## Loading State
+
+Buttons can show a loading spinner:
+
+```dart
+Button(
+  isLoading: true,
+  onPressed: () {},
+  child: Text('Loading...'),
+)
+
+// Custom spinner
+Button(
+  isLoading: true,
+  spinner: Icon(Icons.refresh),
+  onPressed: () {},
+  child: Text('Custom Loading'),
+)
+```
+
+## With Icons
+
+Add icons to the start or end of the button:
+
+```dart
+Button(
+  startContent: Icon(Icons.add),
+  onPressed: () {},
+  child: Text('Add Item'),
+)
+
+Button(
+  endContent: Icon(Icons.arrow_forward),
+  onPressed: () {},
+  child: Text('Next'),
+)
+```
+
+## Icon Only Button
+
+For buttons that only contain an icon:
+
+```dart
+Button.iconOnly(
+  icon: Icon(Icons.favorite),
+  onPressed: () {},
+)
+```
+
+## Button Group
+
+Group multiple buttons together with consistent styling:
+
+```dart
+ButtonGroup(
+  children: [
+    Button(child: Text('Left'), onPressed: () {}),
+    Button(child: Text('Center'), onPressed: () {}),
+    Button(child: Text('Right'), onPressed: () {}),
+  ],
+)
+```
+
+## API Reference
+
+### Button Properties
+
+| Property | Type | Default | Description |
+| --- | --- | --- | --- |
+| `onPressed` | `VoidCallback?` | - | Callback when button is pressed |
+| `variant` | `ButtonVariant` | `solid` | Button variant styling |
+| `color` | `ButtonColor` | `defaultColor` | Predefined color theme |
+| `size` | `ButtonSize` | `md` | Size of the button |
+| `radius` | `ButtonRadius` | `md` | Border radius |
+| `startContent` | `Widget?` | - | Icon/Widget at the start |
+| `endContent` | `Widget?` | - | Icon/Widget at the end |
+| `isLoading` | `bool` | `false` | Shows loading spinner |
+| `isDisabled` | `bool` | `false` | Disables interaction |
+| `fullWidth` | `bool` | `false` | Takes full available width |
+| `isIconOnly` | `bool` | `false` | Optimized for icon content |
+

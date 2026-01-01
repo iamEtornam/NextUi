@@ -1,0 +1,90 @@
+# Checkbox
+
+Checkboxes allow users to select multiple items from a list of individual items, or to mark one individual item as selected. Following HeroUI design principles.
+
+## Basic Usage
+
+```dart
+NextCheckbox(
+  children: Text('Accept terms and conditions'),
+  onValueChange: (isSelected) {
+    print('Selected: $isSelected');
+  },
+)
+```
+
+## Sizes
+
+Choose between different checkbox sizes:
+
+```dart
+NextCheckbox(size: CheckboxSize.sm, children: Text('Small'))
+NextCheckbox(size: CheckboxSize.md, children: Text('Medium'))
+NextCheckbox(size: CheckboxSize.lg, children: Text('Large'))
+```
+
+## Colors
+
+Style checkboxes with predefined colors:
+
+```dart
+NextCheckbox(color: CheckboxColor.primary, defaultSelected: true)
+NextCheckbox(color: CheckboxColor.success, defaultSelected: true)
+NextCheckbox(color: CheckboxColor.warning, defaultSelected: true)
+NextCheckbox(color: CheckboxColor.danger, defaultSelected: true)
+```
+
+## Radius
+
+Customize the border radius of the checkbox:
+
+```dart
+NextCheckbox(radius: CheckboxRadius.none)
+NextCheckbox(radius: CheckboxRadius.sm)
+NextCheckbox(radius: CheckboxRadius.md)
+NextCheckbox(radius: CheckboxRadius.lg)
+NextCheckbox(radius: CheckboxRadius.full)
+```
+
+## Line Through
+
+Add a strike-through effect to the label when the checkbox is selected:
+
+```dart
+NextCheckbox(
+  lineThrough: true,
+  children: Text('Strike through when checked'),
+)
+```
+
+## Indeterminate State
+
+Represent a state that is neither selected nor unselected:
+
+```dart
+NextCheckbox(
+  isIndeterminate: true,
+  children: Text('Indeterminate state'),
+)
+```
+
+## API Reference
+
+### Checkbox Properties
+
+| Property | Type | Default | Description |
+| --- | --- | --- | --- |
+| `children` | `Widget?` | - | Label content next to checkbox |
+| `isSelected` | `bool?` | - | Controlled selection state |
+| `defaultSelected` | `bool?` | - | Initial state for uncontrolled |
+| `onValueChange` | `ValueChanged<bool>?` | - | Callback for state changes |
+| `size` | `CheckboxSize` | `md` | Size of the component |
+| `color` | `CheckboxColor` | `primary` | Color theme |
+| `radius` | `CheckboxRadius` | `sm` | Border radius styling |
+| `lineThrough` | `bool` | `false` | Strike-through label on check |
+| `isIndeterminate` | `bool` | `false` | Shows a horizontal line icon |
+| `isDisabled` | `bool` | `false` | Disables interaction |
+| `isInvalid` | `bool` | `false` | Shows error state |
+| `isRequired` | `bool` | `false` | Shows required indicator |
+| `icon` | `Widget?` | - | Custom check icon |
+

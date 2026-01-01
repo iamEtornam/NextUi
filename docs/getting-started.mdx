@@ -1,0 +1,67 @@
+# Getting Started
+
+Learn how to install and set up Next UI in your Flutter project.
+
+## Installation
+
+Add `next_ui` to your `pubspec.yaml` file:
+
+```yaml
+dependencies:
+  next_ui:
+    git:
+      url: https://github.com/etornam/NextUi.git
+```
+
+Then run:
+
+```bash
+flutter pub get
+```
+
+## Setup
+
+Next UI components use various Flutter features and some external packages like `cached_network_image`. Ensure your app is properly configured.
+
+### Basic Usage
+
+Import the package in your Dart code:
+
+```dart
+import 'package:next_ui/next_ui.dart';
+```
+
+Now you can start using the components:
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:next_ui/next_ui.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        body: Center(
+          child: Button(
+            color: ButtonColor.primary,
+            onPressed: () => print('Hello Next UI!'),
+            child: const Text('Click Me'),
+          ),
+        ),
+      ),
+    );
+  }
+}
+```
+
+## Next Steps
+
+Explore the [Components](/components/avatar) section to see all available widgets and their customization options.
+

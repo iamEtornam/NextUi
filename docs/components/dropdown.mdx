@@ -1,0 +1,119 @@
+# Dropdown
+
+Displays a list of actions or options that a user can choose. Following HeroUI design patterns.
+
+## Basic Usage
+
+```dart
+NextDropdown(
+  trigger: NextDropdownTrigger(
+    child: Button.solid(
+      child: Text('Actions'),
+    ),
+  ),
+  menu: NextDropdownMenu(
+    children: [
+      NextDropdownItem(
+        itemKey: 'new',
+        title: 'New file',
+        startContent: Icon(Icons.add),
+      ),
+      NextDropdownItem(
+        itemKey: 'copy',
+        title: 'Copy link',
+        startContent: Icon(Icons.link),
+      ),
+      NextDropdownItem(
+        itemKey: 'edit',
+        title: 'Edit file',
+        startContent: Icon(Icons.edit),
+        showDivider: true,
+      ),
+      NextDropdownItem(
+        itemKey: 'delete',
+        title: 'Delete file',
+        color: DropdownColor.danger,
+        startContent: Icon(Icons.delete),
+      ),
+    ],
+  ),
+)
+```
+
+## Trigger Types
+
+You can trigger the dropdown with different interactions:
+
+```dart
+// Press (default)
+NextDropdown(
+  triggerType: DropdownTrigger.press,
+  // ...
+)
+
+// Long Press
+NextDropdown(
+  triggerType: DropdownTrigger.longPress,
+  // ...
+)
+```
+
+## Selection Modes
+
+Support for single or multiple selection:
+
+```dart
+NextDropdownMenu(
+  selectionMode: DropdownSelectionMode.single,
+  onSelectionChange: (keys) => print('Selected: $keys'),
+  children: [ /* ... */ ],
+)
+```
+
+## Sections
+
+Group related items using sections:
+
+```dart
+NextDropdownMenu(
+  children: [
+    NextDropdownSection(
+      title: 'Actions',
+      children: [
+        NextDropdownItem(title: 'New'),
+        NextDropdownItem(title: 'Edit'),
+      ],
+    ),
+    NextDropdownSection(
+      title: 'Danger Zone',
+      children: [
+        NextDropdownItem(title: 'Delete', color: DropdownColor.danger),
+      ],
+    ),
+  ],
+)
+```
+
+## API Reference
+
+### Dropdown Properties
+
+| Property | Type | Default | Description |
+| --- | --- | --- | --- |
+| `trigger` | `NextDropdownTrigger` | - | The widget that opens the dropdown |
+| `menu` | `NextDropdownMenu` | - | The menu content |
+| `triggerType` | `DropdownTrigger` | `press` | How the dropdown is opened |
+| `isDisabled` | `bool` | `false` | Disables the trigger |
+| `closeOnSelect` | `bool` | `true` | Closes menu after selection |
+
+### DropdownItem Properties
+
+| Property | Type | Default | Description |
+| --- | --- | --- | --- |
+| `title` | `String?` | - | Main text of the item |
+| `description` | `String?` | - | Supporting text |
+| `startContent` | `Widget?` | - | Icon/Widget at the start |
+| `endContent` | `Widget?` | - | Icon/Widget at the end |
+| `color` | `DropdownColor` | `defaultColor` | Item color theme |
+| `showDivider` | `bool` | `false` | Shows a line below the item |
+

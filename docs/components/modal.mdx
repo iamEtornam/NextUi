@@ -1,0 +1,108 @@
+# Modal
+
+Displays a dialog with custom content that requires attention or provides additional information. Following HeroUI design patterns.
+
+## Basic Usage
+
+```dart
+NextModal(
+  isOpen: _isModalOpen,
+  onClose: () => setState(() => _isModalOpen = false),
+  child: NextModalContent(
+    header: NextModalHeader(child: Text('Modal Title')),
+    body: NextModalBody(child: Text('This is the content of the modal.')),
+    footer: NextModalFooter(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          Button.light(
+            child: Text('Cancel'),
+            onPressed: () => setState(() => _isModalOpen = false),
+          ),
+          SizedBox(width: 8),
+          Button.solid(
+            child: Text('Action'),
+            onPressed: () {
+              // Perform action
+              setState(() => _isModalOpen = false);
+            },
+          ),
+        ],
+      ),
+    ),
+  ),
+)
+```
+
+## Sizes
+
+Choose from a wide range of predefined sizes:
+
+```dart
+NextModal(
+  size: ModalSize.md, // xs, sm, md, lg, xl, xxl, full, etc.
+  // ...
+)
+```
+
+## Backdrop Types
+
+Customize the background overlay:
+
+```dart
+// Opaque (default)
+NextModal(backdrop: ModalBackdrop.opaque, /* ... */)
+
+// Blur
+NextModal(backdrop: ModalBackdrop.blur, /* ... */)
+
+// Transparent
+NextModal(backdrop: ModalBackdrop.transparent, /* ... */)
+```
+
+## Placements
+
+Position the modal on the screen:
+
+```dart
+// Auto (default) - Center on desktop, Bottom on mobile
+NextModal(placement: ModalPlacement.auto, /* ... */)
+
+// Top
+NextModal(placement: ModalPlacement.top, /* ... */)
+
+// Center
+NextModal(placement: ModalPlacement.center, /* ... */)
+
+// Bottom
+NextModal(placement: ModalPlacement.bottom, /* ... */)
+```
+
+## Scroll Behavior
+
+Control how content scrolls when it exceeds the modal height:
+
+```dart
+// Inside - Body scrolls independently
+NextModal(scrollBehavior: ModalScrollBehavior.inside, /* ... */)
+
+// Normal (default) - Entire modal scrolls
+NextModal(scrollBehavior: ModalScrollBehavior.normal, /* ... */)
+```
+
+## API Reference
+
+### Modal Properties
+
+| Property | Type | Default | Description |
+| --- | --- | --- | --- |
+| `isOpen` | `bool` | `false` | Whether the modal is visible |
+| `child` | `Widget` | - | Content of the modal |
+| `size` | `ModalSize` | `md` | Width of the modal |
+| `radius` | `ModalRadius` | `lg` | Border radius |
+| `backdrop` | `ModalBackdrop` | `opaque` | Background overlay style |
+| `placement` | `ModalPlacement` | `auto` | Screen position |
+| `isDismissable` | `bool` | `true` | Close when clicking backdrop |
+| `hideCloseButton` | `bool` | `false` | Removes the top-right X button |
+| `onClose` | `VoidCallback?` | - | Callback when modal closes |
+

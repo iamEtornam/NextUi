@@ -1,0 +1,94 @@
+# Radio Group
+
+Radio Groups allow users to select a single option from a list of mutually exclusive options. Following HeroUI design patterns.
+
+## Basic Usage
+
+```dart
+RadioGroup(
+  children: [
+    NextRadio(value: 'option1', child: Text('Option 1')),
+    NextRadio(value: 'option2', child: Text('Option 2')),
+    NextRadio(value: 'option3', child: Text('Option 3')),
+  ],
+)
+```
+
+## With Labels and Descriptions
+
+Add extra context to the group and individual options:
+
+```dart
+RadioGroup(
+  label: Text('Select your favorite framework'),
+  description: Text('Choose the one you like most'),
+  children: [
+    NextRadio(
+      value: 'react',
+      label: Text('React'),
+      description: Text('A JavaScript library for building user interfaces'),
+    ),
+    NextRadio(
+      value: 'vue',
+      label: Text('Vue'),
+      description: Text('The progressive JavaScript framework'),
+    ),
+  ],
+)
+```
+
+## Horizontal Orientation
+
+Change the layout direction of the options:
+
+```dart
+RadioGroup(
+  orientation: RadioGroupOrientation.horizontal,
+  children: [
+    NextRadio(value: 'yes', child: Text('Yes')),
+    NextRadio(value: 'no', child: Text('No')),
+  ],
+)
+```
+
+## Colors and Sizes
+
+```dart
+RadioGroup(
+  color: RadioColor.success,
+  size: RadioSize.lg,
+  children: [
+    NextRadio(value: 'opt1', child: Text('Large Success')),
+    NextRadio(value: 'opt2', child: Text('Another Option')),
+  ],
+)
+```
+
+## API Reference
+
+### RadioGroup Properties
+
+| Property | Type | Default | Description |
+| --- | --- | --- | --- |
+| `children` | `List<NextRadio>` | - | The radio options |
+| `value` | `String?` | - | Controlled selected value |
+| `defaultValue` | `String?` | - | Initial value for uncontrolled |
+| `onValueChange` | `ValueChanged<String?>?` | - | Callback when selection changes |
+| `label` | `Widget?` | - | Group label |
+| `description` | `Widget?` | - | Group description text |
+| `orientation` | `RadioGroupOrientation` | `vertical` | Layout direction |
+| `color` | `RadioColor` | `primary` | Color theme for all radios |
+| `size` | `RadioSize` | `md` | Size for all radios |
+| `isDisabled` | `bool` | `false` | Disables the entire group |
+| `isInvalid` | `bool` | `false` | Shows error state |
+| `errorMessage` | `Widget?` | - | Error message to display |
+
+### Radio Properties
+
+| Property | Type | Default | Description |
+| --- | --- | --- | --- |
+| `value` | `String` | - | Unique value for this option |
+| `child` | `Widget?` | - | Main label content |
+| `description` | `Widget?` | - | Secondary supporting text |
+| `isDisabled` | `bool` | `false` | Disables this specific option |
+

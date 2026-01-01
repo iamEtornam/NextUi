@@ -1,0 +1,134 @@
+# Avatar
+
+The Avatar component is used to represent a user, and displays the profile picture, initials or fallback icon.
+
+## Basic Usage
+
+```dart
+NextAvatar(
+  src: 'https://i.pravatar.cc/150?u=a042581f4e29026024d',
+)
+```
+
+## Sizes
+
+Avatars come in different sizes:
+
+```dart
+NextAvatar(
+  size: AvatarSize.sm,
+  src: 'https://i.pravatar.cc/150?u=a042581f4e29026024d',
+)
+
+NextAvatar(
+  size: AvatarSize.lg,
+  src: 'https://i.pravatar.cc/150?u=a042581f4e29026024d',
+)
+```
+
+## Colors
+
+Set a color theme for the avatar, especially useful when showing initials:
+
+```dart
+NextAvatar(
+  color: AvatarColor.primary,
+  name: 'John Doe',
+)
+
+NextAvatar(
+  color: AvatarColor.success,
+  name: 'Jane Smith',
+)
+```
+
+## With Initials
+
+Automatically generate initials from a name:
+
+```dart
+NextAvatar(
+  name: 'John Doe',
+  showFallback: true,
+)
+```
+
+## Bordered
+
+Add a white border around the avatar:
+
+```dart
+NextAvatar(
+  isBordered: true,
+  src: 'https://i.pravatar.cc/150?u=a042581f4e29026024d',
+)
+```
+
+## Disabled State
+
+Dim the avatar's appearance:
+
+```dart
+NextAvatar(
+  isDisabled: true,
+  src: 'https://i.pravatar.cc/150?u=a042581f4e29026024d',
+)
+```
+
+## Custom Fallback
+
+Provide a custom widget to show when the image fails to load:
+
+```dart
+NextAvatar(
+  fallback: Icon(Icons.person),
+  showFallback: true,
+)
+```
+
+## Avatar Group
+
+Display multiple avatars together:
+
+```dart
+NextAvatarGroup(
+  children: [
+    NextAvatar(src: 'https://i.pravatar.cc/150?u=a042581f4e29026024d'),
+    NextAvatar(src: 'https://i.pravatar.cc/150?u=a04258114e29026702d'),
+    NextAvatar(src: 'https://i.pravatar.cc/150?u=a048581f4e29026701d'),
+  ],
+)
+```
+
+### Max Count
+
+Limit the number of visible avatars in a group:
+
+```dart
+NextAvatarGroup(
+  max: 3,
+  children: [
+    NextAvatar(src: 'https://i.pravatar.cc/150?u=a042581f4e29026024d'),
+    NextAvatar(src: 'https://i.pravatar.cc/150?u=a04258114e29026702d'),
+    NextAvatar(src: 'https://i.pravatar.cc/150?u=a048581f4e29026701d'),
+    NextAvatar(src: 'https://i.pravatar.cc/150?u=a092581d4ef9026700d'),
+  ],
+)
+```
+
+## API Reference
+
+### Avatar Properties
+
+| Property | Type | Default | Description |
+| --- | --- | --- | --- |
+| `src` | `String?` | - | Image source URL |
+| `name` | `String?` | - | Name for initials generation |
+| `size` | `AvatarSize` | `md` | Size of the avatar |
+| `color` | `AvatarColor` | `defaultColor` | Background color theme |
+| `radius` | `AvatarRadius` | `full` | Border radius styling |
+| `isBordered` | `bool` | `false` | Shows a white border |
+| `isDisabled` | `bool` | `false` | Dims the appearance |
+| `showFallback` | `bool` | `false` | Shows initials/icon if image fails |
+| `fallback` | `Widget?` | - | Custom fallback widget |
+

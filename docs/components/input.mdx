@@ -1,0 +1,138 @@
+# Input
+
+A Material Design-inspired input field component with customizable variants, colors, and sizes.
+
+## Basic Usage
+
+```dart
+NextInput(
+  label: 'Email',
+  placeholder: 'Enter your email',
+  onChanged: (value) => print(value),
+)
+```
+
+## Variants
+
+Next UI supports several input variants:
+
+```dart
+// Flat (default)
+NextInput(
+  variant: InputVariant.flat,
+  label: 'Flat Input',
+)
+
+// Bordered
+NextInput(
+  variant: InputVariant.bordered,
+  label: 'Bordered Input',
+)
+
+// Underlined
+NextInput(
+  variant: InputVariant.underlined,
+  label: 'Underlined Input',
+)
+
+// Faded
+NextInput(
+  variant: InputVariant.faded,
+  label: 'Faded Input',
+)
+```
+
+## Colors
+
+Style inputs with predefined colors (visible when focused or invalid):
+
+```dart
+NextInput(
+  color: InputColor.primary,
+  label: 'Primary Color',
+)
+
+NextInput(
+  color: InputColor.success,
+  label: 'Success Color',
+)
+```
+
+## Label Placements
+
+Position the label inside or outside the input field:
+
+```dart
+// Inside (default)
+NextInput(
+  labelPlacement: LabelPlacement.inside,
+  label: 'Inside Label',
+)
+
+// Outside
+NextInput(
+  labelPlacement: LabelPlacement.outside,
+  label: 'Outside Label',
+)
+
+// Outside Left
+NextInput(
+  labelPlacement: LabelPlacement.outsideLeft,
+  label: 'Left Label',
+)
+```
+
+## Clearable Input
+
+Add a clear button that appears when the input has text:
+
+```dart
+NextInput(
+  isClearable: true,
+  label: 'Clearable Input',
+)
+```
+
+## Password Input
+
+Easily handle password fields with visibility toggle:
+
+```dart
+NextInput(
+  obscureText: true,
+  label: 'Password',
+)
+```
+
+## OTP Input
+
+A specialized input for One-Time Passwords:
+
+```dart
+NextInputOTP(
+  length: 6,
+  onCompleted: (otp) => print('OTP: $otp'),
+)
+```
+
+## API Reference
+
+### Input Properties
+
+| Property | Type | Default | Description |
+| --- | --- | --- | --- |
+| `label` | `String?` | - | Label text |
+| `placeholder` | `String?` | - | Placeholder text |
+| `variant` | `InputVariant` | `flat` | Visual style variant |
+| `color` | `InputColor` | `defaultColor` | Color theme |
+| `size` | `InputSize` | `md` | Size of the input |
+| `radius` | `InputRadius` | `md` | Border radius |
+| `labelPlacement` | `LabelPlacement` | `inside` | Position of the label |
+| `isClearable` | `bool` | `false` | Shows a clear button |
+| `obscureText` | `bool` | `false` | Password mode |
+| `isInvalid` | `bool` | `false` | Shows error state |
+| `errorMessage` | `String?` | - | Message for error state |
+| `startContent` | `Widget?` | - | Icon/Widget at the start |
+| `endContent` | `Widget?` | - | Icon/Widget at the end |
+| `isDisabled` | `bool` | `false` | Disables interaction |
+

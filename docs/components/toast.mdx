@@ -1,0 +1,103 @@
+# Toast
+
+Toast notifications provide brief messages about app processes at the edges of the screen.
+
+## Setup
+
+To use toasts, you must wrap your app (or the relevant subtree) with the `NextToastProvider`:
+
+```dart
+NextToastProvider(
+  child: MaterialApp(
+    home: MyHomePage(),
+  ),
+)
+```
+
+## Basic Usage
+
+Trigger a toast notification using the `showToast` helper function:
+
+```dart
+import 'package:next_ui/next_ui.dart';
+
+// ... inside a widget callback
+showToast(
+  context,
+  title: 'Notification',
+  description: 'This is a toast message.',
+);
+```
+
+## Specialized Toasts
+
+Use these helper functions for common notification types:
+
+```dart
+showSuccessToast(context, title: 'Changes saved successfully');
+showErrorToast(context, title: 'Failed to upload image');
+showWarningToast(context, title: 'Storage is almost full');
+showInfoToast(context, title: 'New update available');
+```
+
+## Variants
+
+Next UI supports several toast variants:
+
+```dart
+showToast(
+  context,
+  title: 'Solid Toast',
+  variant: ToastVariant.solid,
+);
+
+showToast(
+  context,
+  title: 'Flat Toast',
+  variant: ToastVariant.flat,
+);
+
+showToast(
+  context,
+  title: 'Bordered Toast',
+  variant: ToastVariant.bordered,
+);
+```
+
+## Progress Bar
+
+Show a progress bar indicating the remaining time before the toast disappears:
+
+```dart
+showToast(
+  context,
+  title: 'Auto-dismissing',
+  shouldShowTimeoutProgress: true,
+  timeout: 5000, // 5 seconds
+);
+```
+
+## API Reference
+
+### showToast Parameters
+
+| Parameter | Type | Default | Description |
+| --- | --- | --- | --- |
+| `title` | `String?` | - | Bold title text |
+| `description` | `String?` | - | Secondary message text |
+| `color` | `ToastColor` | `defaultColor` | Color theme |
+| `variant` | `ToastVariant` | `flat` | Visual style |
+| `timeout` | `int` | `6000` | Duration in ms (0 to stay) |
+| `shouldShowTimeoutProgress` | `bool` | `false` | Shows a progress bar |
+| `icon` | `Widget?` | - | Leading icon |
+| `hideIcon` | `bool` | `false` | Removes the icon |
+| `hideCloseButton` | `bool` | `false` | Removes the X button |
+
+### NextToastProvider Properties
+
+| Property | Type | Default | Description |
+| --- | --- | --- | --- |
+| `placement` | `ToastPlacement` | `bottomRight` | Position on screen |
+| `maxVisibleToasts` | `int` | `3` | Limit of simultaneous toasts |
+| `toastOffset` | `double` | `0` | Spacing from edges |
+

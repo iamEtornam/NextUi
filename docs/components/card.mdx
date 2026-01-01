@@ -1,0 +1,96 @@
+# Card
+
+A card component for displaying content in a container with optional header, body, and footer sections. Inspired by HeroUI's design.
+
+## Basic Usage
+
+```dart
+NextCard(
+  header: Text('Card Header'),
+  body: Text('This is the main content of the card.'),
+  footer: Text('Card Footer'),
+)
+```
+
+## Sectioned Content
+
+You can provide `header`, `body`, and `footer` separately for automatic layout:
+
+```dart
+NextCard(
+  header: Row(
+    children: [
+      Icon(Icons.person),
+      SizedBox(width: 8),
+      Text('John Doe'),
+    ],
+  ),
+  body: Column(
+    children: [
+      Image.network('https://example.com/image.jpg'),
+      Text('User Profile Details...'),
+    ],
+  ),
+  footer: Row(
+    mainAxisAlignment: MainAxisAlignment.end,
+    children: [
+      Button(child: Text('View Profile'), onPressed: () {}),
+    ],
+  ),
+)
+```
+
+## Pressable Card
+
+Cards can be made interactive:
+
+```dart
+NextCard(
+  isPressable: true,
+  onPressed: () => print('Card pressed'),
+  body: Text('Click me!'),
+)
+```
+
+## Blurred Footer
+
+Apply a blur effect to the footer section:
+
+```dart
+NextCard(
+  isFooterBlurred: true,
+  body: Image.network('https://example.com/image.jpg'),
+  footer: Text('Image Overlay Footer'),
+)
+```
+
+## Custom Styling
+
+Customize the shadow and radius:
+
+```dart
+NextCard(
+  shadow: CardShadow.lg,
+  radius: CardRadius.lg,
+  body: Text('Card with large shadow and radius'),
+)
+```
+
+## API Reference
+
+### Card Properties
+
+| Property | Type | Default | Description |
+| --- | --- | --- | --- |
+| `header` | `Widget?` | - | Content for the top section |
+| `body` | `Widget?` | - | Content for the middle section |
+| `footer` | `Widget?` | - | Content for the bottom section |
+| `children` | `List<Widget>?` | - | Alternative way to provide content |
+| `shadow` | `CardShadow` | `md` | Depth of the card's shadow |
+| `radius` | `CardRadius` | `lg` | Border radius styling |
+| `fullWidth` | `bool` | `false` | Whether to take full width |
+| `isPressable` | `bool` | `false` | Makes the card interactive |
+| `onPressed` | `VoidCallback?` | - | Callback for card press |
+| `isFooterBlurred` | `bool` | `false` | Applies blur to the footer |
+| `isDisabled` | `bool` | `false` | Disables interaction |
+

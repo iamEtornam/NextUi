@@ -1,0 +1,95 @@
+# Tooltip
+
+Tooltips display a brief, informative message that appears when a user interacts with an element. Following HeroUI design patterns.
+
+## Basic Usage
+
+```dart
+NextTooltip(
+  content: 'This is a helpful message',
+  child: Button.solid(
+    child: Text('Hover me'),
+    onPressed: () {},
+  ),
+)
+```
+
+## Colors
+
+Style tooltips with predefined colors:
+
+```dart
+NextTooltip(
+  content: 'Primary message',
+  color: TooltipColor.primary,
+  child: Icon(Icons.info),
+)
+
+NextTooltip(
+  content: 'Success message',
+  color: TooltipColor.success,
+  child: Icon(Icons.check_circle),
+)
+```
+
+## Placements
+
+Position the tooltip relative to its child:
+
+```dart
+NextTooltip(
+  content: 'Top tooltip',
+  placement: TooltipPlacement.top,
+  child: Text('Above'),
+)
+
+NextTooltip(
+  content: 'Right tooltip',
+  placement: TooltipPlacement.right,
+  child: Text('To the right'),
+)
+```
+
+## With Arrow
+
+Add a pointer arrow to the tooltip:
+
+```dart
+NextTooltip(
+  content: 'Look at me!',
+  showArrow: true,
+  child: Icon(Icons.arrow_upward),
+)
+```
+
+## Delays
+
+Control how quickly the tooltip appears or disappears:
+
+```dart
+NextTooltip(
+  content: 'Slow to show',
+  delay: 1000, // 1 second
+  closeDelay: 2000, // 2 seconds
+  child: Text('Hover for a while'),
+)
+```
+
+## API Reference
+
+### Tooltip Properties
+
+| Property | Type | Default | Description |
+| --- | --- | --- | --- |
+| `content` | `String` | - | Text message to display |
+| `child` | `Widget` | - | Widget that triggers the tooltip |
+| `size` | `TooltipSize` | `md` | Size of the tooltip |
+| `color` | `TooltipColor` | `defaultColor` | Color theme |
+| `radius` | `TooltipRadius` | `md` | Border radius |
+| `placement` | `TooltipPlacement` | `top` | Position relative to child |
+| `showArrow` | `bool` | `false` | Shows a pointer arrow |
+| `delay` | `int` | `0` | Appearance delay in ms |
+| `closeDelay` | `int` | `500` | Disappearance delay in ms |
+| `offset` | `double` | `7` | Spacing from child widget |
+| `isDisabled` | `bool` | `false` | Prevents showing the tooltip |
+

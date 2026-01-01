@@ -1,0 +1,82 @@
+# Text
+
+A comprehensive text widget that provides both traditional heading styles (h1-h6) and Material Design 3 typography scale.
+
+## Traditional Headings
+
+Quickly apply standard heading styles:
+
+```dart
+NextText.h1Bold('Main Heading')
+NextText.h2Medium('Sub-heading')
+NextText.h3Regular('Smaller Title')
+```
+
+## Material Design 3 Scale
+
+Follow the official Material 3 typography guidelines:
+
+```dart
+NextText.displayLarge('Display Large')
+NextText.headlineMedium('Headline Medium')
+NextText.titleLarge('Title Large')
+NextText.bodyMedium('Body Medium')
+NextText.labelSmall('Label Small')
+```
+
+## Body Text Variants
+
+Styles for paragraphs, descriptions, and captions:
+
+```dart
+NextText.paragraphRegular('This is a full paragraph of text.')
+NextText.descriptionMedium('A shorter description text.')
+NextText.captionRegular('Small caption text.')
+```
+
+## Customization
+
+Easily override colors and other text properties:
+
+```dart
+NextText.h1Bold(
+  'Colored Text',
+  textColor: Colors.blue,
+  textAlign: TextAlign.center,
+)
+
+NextText.bodyLarge(
+  'Limited text content...',
+  maxLines: 1,
+  overflow: TextOverflow.ellipsis,
+)
+```
+
+## API Reference
+
+### Text Static Methods
+
+Next UI Text provides static methods for all typography levels. Each method accepts the following optional parameters:
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `textColor` | `Color?` | Color override |
+| `textAlign` | `TextAlign?` | Text alignment |
+| `maxLines` | `int?` | Maximum number of lines |
+| `overflow` | `TextOverflow?`| Overflow behavior |
+
+### Traditional Styles
+- `h1Bold`, `h1Medium`, `h1Regular` (40sp)
+- `h2Bold`, `h2Medium`, `h2Regular` (34sp)
+- `h3Bold`, `h3Medium`, `h3Regular` (24sp)
+- `h4Bold`, `h4Medium`, `h4Regular` (20sp)
+- `h5Bold`, `h5Medium`, `h5Regular` (20sp)
+- `h6Bold`, `h6Medium`, `h6Regular` (18sp)
+
+### Material 3 Styles
+- `displayLarge`, `displayMedium`, `displaySmall`
+- `headlineLarge`, `headlineMedium`, `headlineSmall`
+- `titleLarge`, `titleMedium`, `titleSmall`
+- `bodyLarge`, `bodyMedium`, `bodySmall`
+- `labelLarge`, `labelMedium`, `labelSmall`
+

@@ -1,0 +1,84 @@
+# Switch
+
+A customizable switch component for toggling between two states. Based on HeroUI design.
+
+## Basic Usage
+
+```dart
+NextSwitch(
+  label: Text('Automatic updates'),
+  onChanged: (isSelected) => print('Switch: $isSelected'),
+)
+```
+
+## Sizes
+
+Choose between different switch sizes:
+
+```dart
+NextSwitch.small(label: Text('Small'))
+NextSwitch.medium(label: Text('Medium'))
+NextSwitch.large(label: Text('Large'))
+```
+
+## Colors
+
+Style switches with predefined colors:
+
+```dart
+NextSwitch(
+  color: SwitchColor.primary,
+  defaultSelected: true,
+)
+
+NextSwitch(
+  color: SwitchColor.success,
+  defaultSelected: true,
+)
+
+NextSwitch(
+  color: SwitchColor.danger,
+  defaultSelected: true,
+)
+```
+
+## Custom Content
+
+Add icons or widgets inside the switch thumb:
+
+```dart
+NextSwitch(
+  thumbIcon: Icon(Icons.sunny),
+  onChanged: (isSelected) {
+    // Toggle theme
+  },
+)
+```
+
+Add content to the start or end of the switch:
+
+```dart
+NextSwitch(
+  startContent: Icon(Icons.notifications_off),
+  endContent: Icon(Icons.notifications_active),
+)
+```
+
+## API Reference
+
+### Switch Properties
+
+| Property | Type | Default | Description |
+| --- | --- | --- | --- |
+| `isSelected` | `bool?` | - | Controlled selection state |
+| `defaultSelected` | `bool` | `false` | Initial state for uncontrolled |
+| `onChanged` | `ValueChanged<bool>?` | - | Callback for state changes |
+| `label` | `Widget?` | - | Text label next to the switch |
+| `size` | `SwitchSize` | `md` | Size of the component |
+| `color` | `SwitchColor` | `primary` | Color theme |
+| `thumbIcon` | `Widget?` | - | Icon inside the circular thumb |
+| `isDisabled` | `bool` | `false` | Disables interaction |
+| `isReadOnly` | `bool` | `false` | Prevents changes but keeps style |
+| `startContent` | `Widget?` | - | Content before the switch |
+| `endContent` | `Widget?` | - | Content after the switch |
+

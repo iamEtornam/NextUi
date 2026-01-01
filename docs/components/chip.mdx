@@ -1,0 +1,124 @@
+# Chip
+
+A small block of essential information that represents an input, attribute, or action. Following HeroUI design patterns.
+
+## Basic Usage
+
+```dart
+NextChip(
+  child: Text('Basic Chip'),
+)
+```
+
+## Variants
+
+Next UI supports several chip variants:
+
+```dart
+// Solid chip (default)
+NextChip.solid(
+  child: Text('Solid'),
+)
+
+// Bordered chip
+NextChip.bordered(
+  child: Text('Bordered'),
+)
+
+// Light chip
+NextChip.light(
+  child: Text('Light'),
+)
+
+// Dot chip with indicator
+NextChip.dot(
+  child: Text('Status'),
+)
+```
+
+## Colors
+
+Style chips with predefined colors:
+
+```dart
+NextChip(
+  color: ChipColor.primary,
+  child: Text('Primary'),
+)
+
+NextChip(
+  color: ChipColor.success,
+  child: Text('Success'),
+)
+
+NextChip(
+  color: ChipColor.danger,
+  child: Text('Danger'),
+)
+```
+
+## Sizes
+
+Choose between different chip sizes:
+
+```dart
+NextChip(
+  size: ChipSize.sm,
+  child: Text('Small'),
+)
+
+NextChip(
+  size: ChipSize.md,
+  child: Text('Medium'),
+)
+
+NextChip(
+  size: ChipSize.lg,
+  child: Text('Large'),
+)
+```
+
+## Closable Chip
+
+Add a close button to the chip:
+
+```dart
+NextChip(
+  onClose: (event) => print('Chip closed'),
+  child: Text('Closable'),
+)
+```
+
+## With Content
+
+Add icons or avatars to the chip:
+
+```dart
+NextChip(
+  avatar: NextAvatar(src: 'https://i.pravatar.cc/150'),
+  child: Text('User Chip'),
+)
+
+NextChip(
+  startContent: Icon(Icons.star, size: 16),
+  child: Text('Starred'),
+)
+```
+
+## API Reference
+
+### Chip Properties
+
+| Property | Type | Default | Description |
+| --- | --- | --- | --- |
+| `child` | `Widget?` | - | Main content of the chip |
+| `variant` | `ChipVariant` | `solid` | Chip variant styling |
+| `color` | `ChipColor` | `defaultColor` | Color theme |
+| `size` | `ChipSize` | `md` | Size of the chip |
+| `radius` | `ChipRadius` | `full` | Border radius styling |
+| `avatar` | `Widget?` | - | Avatar widget at the start |
+| `startContent` | `Widget?` | - | Icon/Widget at the start |
+| `endContent` | `Widget?` | - | Icon/Widget at the end |
+| `onClose` | `Function(dynamic)?` | - | Callback for close button |
+| `isDisabled` | `bool` | `false` | Disables interaction |
+

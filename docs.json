@@ -1,0 +1,29 @@
+{
+  "name": "Next UI",
+  "theme": "indigo",
+  "sidebar": [
+    ["Introduction", "/"],
+    ["Getting Started", "/getting-started"],
+    {
+      "title": "Components",
+      "children": [
+        ["Avatar", "/components/avatar"],
+        ["Badge", "/components/badge"],
+        ["Button", "/components/button"],
+        ["Card", "/components/card"],
+        ["Checkbox", "/components/checkbox"],
+        ["Chip", "/components/chip"],
+        ["Circular Progress", "/components/circular-progress"],
+        ["Dropdown", "/components/dropdown"],
+        ["Input", "/components/input"],
+        ["Modal", "/components/modal"],
+        ["Radio Group", "/components/radio-group"],
+        ["Switch", "/components/switch"],
+        ["Table", "/components/table"],
+        ["Text", "/components/text"],
+        ["Toast", "/components/toast"],
+        ["Tooltip", "/components/tooltip"]
+      ]
+    }
+  ]
+}

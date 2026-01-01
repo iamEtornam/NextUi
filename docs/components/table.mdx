@@ -1,0 +1,119 @@
+# Table
+
+Tables are used to display tabular data using rows and columns. Following HeroUI design patterns.
+
+## Basic Usage
+
+```dart
+NextTable<User>(
+  columns: [
+    TableColumnDef(key: 'name', label: 'NAME'),
+    TableColumnDef(key: 'role', label: 'ROLE'),
+    TableColumnDef(key: 'status', label: 'STATUS'),
+  ],
+  rows: [
+    User(name: 'Tony Reichert', role: 'CEO', status: 'Active'),
+    User(name: 'Zoey Lang', role: 'Technical Lead', status: 'Paused'),
+    User(name: 'Jane Fisher', role: 'Senior Developer', status: 'Active'),
+  ],
+)
+```
+
+## Custom Cells
+
+Use the `builder` property in `TableColumnDef` to customize how data is rendered:
+
+```dart
+TableColumnDef<User>(
+  key: 'status',
+  label: 'STATUS',
+  builder: (user) => NextChip(
+    color: user.status == 'Active' ? ChipColor.success : ChipColor.danger,
+    child: Text(user.status),
+  ),
+)
+```
+
+## Selection
+
+Support for single or multiple row selection:
+
+```dart
+NextTable<User>(
+  selectionMode: TableSelectionMode.multiple,
+  onSelectionChange: (keys) => print('Selected rows: $keys'),
+  // ...
+)
+```
+
+## Striped Rows
+
+Enable zebra-striping for better readability:
+
+```dart
+NextTable(
+  isStriped: true,
+  // ...
+)
+```
+
+## Sorting
+
+Enable sorting for specific columns:
+
+```dart
+TableColumnDef(
+  key: 'name',
+  label: 'NAME',
+  allowsSorting: true,
+)
+
+// In NextTable
+onSortChange: (descriptor) {
+  print('Sort by ${descriptor.columnKey} ${descriptor.ascending}');
+}
+```
+
+## Empty State
+
+Provide custom content when there's no data:
+
+```dart
+NextTable(
+  rows: [],
+  emptyContent: Column(
+    children: [
+      Icon(Icons.inbox, size: 48, color: Colors.grey),
+      Text('No users found'),
+    ],
+  ),
+)
+```
+
+## API Reference
+
+### Table Properties
+
+| Property | Type | Default | Description |
+| --- | --- | --- | --- |
+| `columns` | `List<TableColumnDef<T>>` | - | Column definitions |
+| `rows` | `List<T>` | - | Data source |
+| `selectionMode` | `TableSelectionMode` | `none` | Row selection behavior |
+| `isStriped` | `bool` | `false` | Zebra-striping |
+| `isCompact` | `bool` | `false` | Reduced padding |
+| `hideHeader` | `bool` | `false` | Removes the header row |
+| `emptyContent` | `Widget?` | - | Shown when rows list is empty |
+| `onSelectionChange`| `ValueChanged<Set<String>>?` | - | Selection callback |
+| `onSortChange` | `ValueChanged<TableSortDescriptor>?`| - | Sorting callback |
+
+### TableColumnDef Properties
+
+| Property | Type | Default | Description |
+| --- | --- | --- | --- |
+| `key` | `String` | - | Unique identifier |
+| `label` | `String` | - | Displayed header text |
+| `align` | `TableColumnAlign` | `start` | Text alignment |
+| `allowsSorting` | `bool` | `false` | Enable sort interaction |
+| `width` | `double?` | - | Fixed column width |
+| `builder` | `Widget Function(T)?`| - | Custom cell renderer |
+

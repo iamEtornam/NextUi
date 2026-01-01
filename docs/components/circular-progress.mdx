@@ -1,0 +1,76 @@
+# Circular Progress
+
+Circular progress indicators are used to indicate an undetermined wait period or visually represent the duration of a process. Following HeroUI design principles.
+
+## Basic Usage
+
+```dart
+// Indeterminate (default)
+NextCircularProgress()
+
+// Determinate
+NextCircularProgress(
+  value: 0.7,
+  showValueLabel: true,
+)
+```
+
+## Sizes
+
+Choose between different sizes:
+
+```dart
+NextCircularProgress(size: CircularProgressSize.sm)
+NextCircularProgress(size: CircularProgressSize.md)
+NextCircularProgress(size: CircularProgressSize.lg)
+```
+
+## Colors
+
+Style the progress indicator with predefined colors:
+
+```dart
+NextCircularProgress(color: CircularProgressColor.primary)
+NextCircularProgress(color: CircularProgressColor.success)
+NextCircularProgress(color: CircularProgressColor.danger)
+```
+
+## With Label
+
+Add a text label below the indicator:
+
+```dart
+NextCircularProgress(
+  label: Text('Loading files...'),
+)
+```
+
+## Custom Value Label
+
+Customize the text shown in the center of the indicator:
+
+```dart
+NextCircularProgress(
+  value: 0.45,
+  valueLabel: Text('45/100'),
+)
+```
+
+## API Reference
+
+### CircularProgress Properties
+
+| Property | Type | Default | Description |
+| --- | --- | --- | --- |
+| `value` | `double?` | - | Current progress (0.0 to 1.0) |
+| `isIndeterminate` | `bool` | `true` | Continuous animation |
+| `size` | `CircularProgressSize` | `md` | Size of the component |
+| `color` | `CircularProgressColor` | `primary` | Color theme |
+| `label` | `Widget?` | - | Label text below |
+| `showValueLabel` | `bool` | `true` | Shows percentage in center |
+| `valueLabel` | `Widget?` | - | Custom center widget |
+| `strokeWidth` | `double` | `2` | Thickness of the ring |
+| `isDisabled` | `bool` | `false` | Dims the appearance |
+| `minValue` | `double` | `0` | Minimum value for scale |
+| `maxValue` | `double` | `100` | Maximum value for scale |
+

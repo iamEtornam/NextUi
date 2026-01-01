@@ -1,0 +1,137 @@
+# Badge
+
+Badges are used as a small numerical value or status descriptor for UI elements. They are typically attached to the corner of an icon or another widget.
+
+## Basic Usage
+
+```dart
+NextBadge(
+  content: '5',
+  child: Icon(Icons.notifications),
+)
+```
+
+## Variants
+
+Next UI supports several badge variants:
+
+```dart
+// Solid badge (default)
+NextBadge.solid(
+  content: '5',
+  child: Icon(Icons.notifications),
+)
+
+// Flat badge
+NextBadge.flat(
+  content: '5',
+  child: Icon(Icons.notifications),
+)
+
+// Faded badge
+NextBadge.faded(
+  content: '5',
+  child: Icon(Icons.notifications),
+)
+
+// Shadow badge
+NextBadge.shadow(
+  content: '5',
+  child: Icon(Icons.notifications),
+)
+```
+
+## Colors
+
+Style badges with predefined colors to represent different statuses:
+
+```dart
+NextBadge(
+  color: BadgeColor.primary,
+  content: '5',
+  child: Icon(Icons.notifications),
+)
+
+NextBadge(
+  color: BadgeColor.success,
+  content: 'New',
+  child: Icon(Icons.mail),
+)
+
+NextBadge(
+  color: BadgeColor.danger,
+  content: '99+',
+  child: Icon(Icons.message),
+)
+```
+
+## Sizes
+
+Choose between different badge sizes:
+
+```dart
+NextBadge(
+  size: BadgeSize.sm,
+  content: '5',
+  child: Icon(Icons.notifications),
+)
+
+NextBadge(
+  size: BadgeSize.md,
+  content: '5',
+  child: Icon(Icons.notifications),
+)
+
+NextBadge(
+  size: BadgeSize.lg,
+  content: '5',
+  child: Icon(Icons.notifications),
+)
+```
+
+## Placements
+
+Position the badge at any corner of the child widget:
+
+```dart
+NextBadge(
+  placement: BadgePlacement.topRight,
+  content: '5',
+  child: Icon(Icons.notifications),
+)
+
+NextBadge(
+  placement: BadgePlacement.bottomLeft,
+  content: 'New',
+  child: Icon(Icons.mail),
+)
+```
+
+## Dot Badge
+
+Show a simple dot without content, useful for indicating status without a specific count:
+
+```dart
+NextBadge(
+  isDot: true,
+  child: Icon(Icons.notifications),
+)
+```
+
+## API Reference
+
+### Badge Properties
+
+| Property | Type | Default | Description |
+| --- | --- | --- | --- |
+| `child` | `Widget` | - | The widget to which the badge is attached |
+| `content` | `dynamic` | - | Content to display (String, int, or Widget) |
+| `variant` | `BadgeVariant` | `solid` | Badge variant styling |
+| `color` | `BadgeColor` | `defaultColor` | Color theme |
+| `size` | `BadgeSize` | `md` | Size of the badge |
+| `shape` | `BadgeShape` | `rectangle` | Shape of the badge (circle or rectangle) |
+| `placement` | `BadgePlacement` | `topRight` | Position relative to the child |
+| `isDot` | `bool` | `false` | Shows a small dot without content |
+| `isInvisible` | `bool` | `false` | Hides the badge |
+| `showOutline` | `bool` | `true` | Shows a white outline around the badge |
+
