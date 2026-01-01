@@ -1,0 +1,124 @@
+# Checkbox Group
+
+A checkbox group widget that allows users to select one or more items from a list of choices. Following HeroUI design principles.
+
+## Basic Usage
+
+```dart
+NextCheckboxGroup(
+  label: 'Select your interests',
+  children: [
+    NextGroupCheckbox(
+      value: 'sports',
+      children: Text('Sports'),
+    ),
+    NextGroupCheckbox(
+      value: 'music',
+      children: Text('Music'),
+    ),
+    NextGroupCheckbox(
+      value: 'travel',
+      children: Text('Travel'),
+    ),
+  ],
+  onValueChange: (values) {
+    print('Selected: $values');
+  },
+)
+```
+
+## Orientation
+
+Display checkboxes vertically or horizontally:
+
+```dart
+// Vertical (default)
+NextCheckboxGroup(
+  orientation: CheckboxGroupOrientation.vertical,
+  children: [ /* ... */ ],
+)
+
+// Horizontal
+NextCheckboxGroup(
+  orientation: CheckboxGroupOrientation.horizontal,
+  children: [ /* ... */ ],
+)
+```
+
+## Colors and Sizes
+
+Style all checkboxes in the group at once:
+
+```dart
+NextCheckboxGroup(
+  color: CheckboxColor.success,
+  size: CheckboxSize.lg,
+  children: [ /* ... */ ],
+)
+```
+
+## With Description
+
+Add context to individual options or the entire group:
+
+```dart
+NextCheckboxGroup(
+  label: 'Notifications',
+  description: Text('Choose how you want to be notified'),
+  children: [
+    NextGroupCheckbox(
+      value: 'email',
+      children: Text('Email'),
+      description: Text('Get daily updates in your inbox'),
+    ),
+    NextGroupCheckbox(
+      value: 'push',
+      children: Text('Push Notifications'),
+      description: Text('Real-time alerts on your device'),
+    ),
+  ],
+)
+```
+
+## Validation
+
+Handle error states and validation messages:
+
+```dart
+NextCheckboxGroup(
+  label: 'Permissions',
+  isInvalid: true,
+  errorMessage: Text('You must select at least one permission'),
+  children: [ /* ... */ ],
+)
+```
+
+## API Reference
+
+### CheckboxGroup Properties
+
+| Property | Type | Default | Description |
+| --- | --- | --- | --- |
+| `children` | `List<Widget>` | - | List of `NextGroupCheckbox` widgets |
+| `label` | `String?` | - | Group label text |
+| `description` | `Widget?` | - | Supporting text below label |
+| `value` | `List<String>?`| - | Controlled selected values |
+| `defaultValue` | `List<String>?`| - | Initial selected values |
+| `orientation` | `CheckboxGroupOrientation` | `vertical` | Layout direction |
+| `color` | `CheckboxColor` | `primary` | Color for all checkboxes |
+| `size` | `CheckboxSize` | `md` | Size for all checkboxes |
+| `radius` | `CheckboxRadius` | `sm` | Radius for all checkboxes |
+| `lineThrough` | `bool` | `false` | Strike-through on select |
+| `isDisabled` | `bool` | `false` | Disables the entire group |
+| `isInvalid` | `bool` | `false` | Shows error state |
+| `errorMessage` | `Widget?` | - | Message for invalid state |
+
+### NextGroupCheckbox Properties
+
+| Property | Type | Default | Description |
+| --- | --- | --- | --- |
+| `value` | `String` | - | Unique value for this option |
+| `children` | `Widget?` | - | Label content |
+| `description` | `Widget?` | - | Secondary supporting text |
+| `isDisabled` | `bool?` | - | Disables this specific option |
+| `icon` | `Widget?` | - | Custom check icon |

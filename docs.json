@@ -1,6 +1,7 @@
 {
   "name": "Next UI",
   "theme": "indigo",
+  "github": "iamEtornam/NextUi",
   "sidebar": [
     ["Introduction", "/"],
     ["Getting Started", "/getting-started"],
@@ -12,6 +13,7 @@
         ["Button", "/components/button"],
         ["Card", "/components/card"],
         ["Checkbox", "/components/checkbox"],
+        ["Checkbox Group", "/components/checkbox-group"],
         ["Chip", "/components/chip"],
         ["Circular Progress", "/components/circular-progress"],
         ["Dropdown", "/components/dropdown"],
